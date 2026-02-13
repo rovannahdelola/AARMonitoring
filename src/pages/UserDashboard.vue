@@ -1004,7 +1004,7 @@ const submitForm = async () => {
       // Get public URL
       const {
         data: { publicUrl },
-      } = supabase.storage.from('Screenshots').getPublicUrl(fileName)
+      } = supabase.storage.from('AARIMAGES').getPublicUrl(fileName)
 
       uploadedUrls.push(publicUrl)
       console.log('Uploaded:', fileName, '→', publicUrl)
