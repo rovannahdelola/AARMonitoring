@@ -1,21 +1,21 @@
 <template>
-  <div class="min-h-screen bg-[#f3f1ee]">
+  <div class="min-h-screen bg-slate-50">
     <!-- Sidebar - Desktop Only -->
     <div
-      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-white flex-col shadow-2xl z-40 bg-[linear-gradient(180deg,_#001a3a_0%,_#002147_50%,_#00295a_100%)]"
+      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-slate-800 flex-col shadow-sm z-40 bg-white border-r border-slate-200"
     >
       <!-- Sidebar Header -->
-      <div class="p-6 border-b border-white/10">
+      <div class="p-6 border-b border-slate-200">
         <div class="flex flex-col items-center text-center gap-4">
-          <div class="rounded-full p-4" style="background: #f3f1ee">
+          <div class="rounded-full p-4 bg-blue-50">
             <img src="../assets/pnplogo.png" alt="PNP Logo" class="w-20 h-20 object-contain" />
           </div>
           <div>
-            <h1 class="text-lg font-bold text-white uppercase tracking-wide">
+            <h1 class="text-lg font-bold text-slate-800 uppercase tracking-wide">
               Admin<br />Dashboard
             </h1>
-            <p class="text-xs mt-2 font-semibold" style="color: #f3f1ee">
-              Police Attendance System
+            <p class="text-xs mt-2 font-semibold text-slate-600">
+              AAR Monitoring System
             </p>
           </div>
         </div>
@@ -25,32 +25,30 @@
       <div class="flex-1 p-5 space-y-3">
         <router-link
           to="/admin-dashboard"
-          class="block p-4 hover:bg-white/10 rounded-lg transition-all duration-200 cursor-pointer group"
+          class="block p-4 hover:bg-slate-100 rounded-lg transition-all duration-200 cursor-pointer group"
         >
           <div class="flex items-center gap-3">
             <div
-              class="rounded-lg p-2 group-hover:bg-white/10 transition"
-              style="background: rgba(255, 255, 255, 0.05)"
+              class="rounded-lg p-2 bg-slate-100 group-hover:bg-slate-200 transition"
             >
-              <svg class="w-5 h-5" style="color: #f3f1ee" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-slate-600" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
                 ></path>
               </svg>
             </div>
-            <span class="text-sm font-semibold uppercase tracking-wider" style="color: #f3f1ee"
+            <span class="text-sm font-semibold uppercase tracking-wider text-slate-600"
               >Overview</span
             >
           </div>
         </router-link>
 
         <div
-          class="rounded-lg p-4 border-l-4 shadow-lg"
-          style="background: #004595; border-left-color: #ffffff"
+          class="rounded-lg p-4 border-l-4 border-blue-600 bg-blue-50"
         >
           <div class="flex items-center gap-3">
-            <div class="rounded-lg p-2" style="background: rgba(255, 255, 255, 0.1)">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="rounded-lg p-2 bg-blue-100">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -59,17 +57,16 @@
                 ></path>
               </svg>
             </div>
-            <span class="font-bold text-sm uppercase tracking-wider">Records</span>
+            <span class="font-bold text-sm uppercase tracking-wider text-blue-600">Records</span>
           </div>
         </div>
       </div>
 
       <!-- Logout Button -->
-      <div class="p-5 border-t border-white/10 mt-auto">
+      <div class="p-5 border-t border-slate-200 mt-auto">
         <button
           @click="handleLogout"
-          class="w-full text-white py-3.5 rounded-md text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 hover:opacity-90"
-          style="background: #dc2626"
+          class="w-full text-white py-3.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 hover:bg-red-700 bg-red-600"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -89,13 +86,12 @@
       <div class="p-4 sm:p-6 lg:p-8 max-w-screen-2xl mx-auto">
         <!-- Page Header -->
         <div
-          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-sm bg-white border-l-4 border-l-[#004595]"
+          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-sm bg-white border-l-4 border-blue-600"
         >
           <div class="flex items-center gap-3 sm:gap-4">
-            <div class="rounded-full p-2 sm:p-3" style="background: #f3f1ee">
+            <div class="rounded-full p-2 sm:p-3 bg-blue-50">
               <svg
-                class="w-6 h-6 sm:w-8 sm:h-8"
-                style="color: #002147"
+                class="w-6 h-6 sm:w-8 sm:h-8 text-blue-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -109,30 +105,25 @@
               </svg>
             </div>
             <div>
-              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1" style="color: #002147">
-                Attendance Records
+              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-slate-800">
+                AAR Records
               </h1>
-              <p class="text-xs sm:text-sm font-semibold" style="color: #00397a">
-                Filter and view attendance records by date
+              <p class="text-xs sm:text-sm font-semibold text-slate-600">
+                Filter and view AAR records by date
               </p>
             </div>
           </div>
         </div>
 
         <!-- Filter and Tabs Section -->
-        <div class="bg-white rounded-lg p-4 sm:p-5 lg:p-6 mb-4 sm:mb-6 shadow-sm">
+        <div class="bg-white rounded-lg p-4 sm:p-5 lg:p-6 mb-4 sm:mb-6 shadow-sm border border-slate-200">
           <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             <!-- Tab Buttons -->
             <div class="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
               <button
                 @click="activeTab = 'with-attendance'"
                 :class="
-                  activeTab === 'with-attendance' ? 'text-white shadow-lg' : 'bg-white border-2'
-                "
-                :style="
-                  activeTab === 'with-attendance'
-                    ? 'background: #004595; color: #ffffff;'
-                    : 'background: #ffffff; color: #002147; border-color: #e5e7eb;'
+                  activeTab === 'with-attendance' ? 'text-white shadow-md bg-blue-600 border-blue-600' : 'bg-white border-2 border-slate-300 text-slate-700'
                 "
                 class="px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center justify-center gap-2 transition hover:opacity-90"
               >
@@ -144,26 +135,17 @@
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   ></path>
                 </svg>
-                With Attendance
+                Submitted
                 <span
                   class="px-2 py-0.5 rounded-full text-xs font-bold"
-                  :style="
-                    activeTab === 'with-attendance'
-                      ? 'background: #ffffff; color: #004595;'
-                      : 'background: #e0f2fe; color: #0369a1;'
-                  "
+                  :class="activeTab === 'with-attendance' ? 'bg-white text-blue-600' : 'bg-blue-50 text-blue-600'"
                   >{{ filteredRecords.length }}</span
                 >
               </button>
               <button
                 @click="activeTab = 'without-attendance'"
                 :class="
-                  activeTab === 'without-attendance' ? 'text-white shadow-lg' : 'bg-white border-2'
-                "
-                :style="
-                  activeTab === 'without-attendance'
-                    ? 'background: #ef4444; color: #ffffff;'
-                    : 'background: #ffffff; color: #002147; border-color: #e5e7eb;'
+                  activeTab === 'without-attendance' ? 'text-white shadow-md bg-red-600 border-red-600' : 'bg-white border-2 border-slate-300 text-slate-700'
                 "
                 class="px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center justify-center gap-2 transition hover:opacity-90"
               >
@@ -175,15 +157,33 @@
                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   ></path>
                 </svg>
-                Without Attendance
+                Not Submitted
                 <span
                   class="px-2 py-0.5 rounded-full text-xs font-bold"
-                  :style="
-                    activeTab === 'without-attendance'
-                      ? 'background: #ffffff; color: #ef4444;'
-                      : 'background: #fee2e2; color: #991b1b;'
-                  "
+                  :class="activeTab === 'without-attendance' ? 'bg-white text-red-600' : 'bg-red-50 text-red-600'"
                   >{{ officersWithoutAttendance.length }}</span
+                >
+              </button>
+              <button
+                @click="activeTab = 'history'"
+                :class="
+                  activeTab === 'history' ? 'text-white shadow-md bg-emerald-600 border-emerald-600' : 'bg-white border-2 border-slate-300 text-slate-700'
+                "
+                class="px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center justify-center gap-2 transition hover:opacity-90"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                History
+                <span
+                  class="px-2 py-0.5 rounded-full text-xs font-bold"
+                  :class="activeTab === 'history' ? 'bg-white text-emerald-600' : 'bg-emerald-50 text-emerald-600'"
+                  >{{ aarHistory.length }}</span
                 >
               </button>
             </div>
@@ -193,13 +193,11 @@
               class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full lg:w-auto"
             >
               <label
-                class="text-xs sm:text-sm font-bold uppercase flex items-center gap-2"
-                style="color: #002147"
+                class="text-xs sm:text-sm font-bold uppercase flex items-center gap-2 text-slate-800"
               >
-                <div class="rounded-lg p-1.5" style="background: #f3f1ee">
+                <div class="rounded-lg p-1.5 bg-blue-50">
                   <svg
-                    class="w-3 h-3 sm:w-4 sm:h-4"
-                    style="color: #004595"
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -217,14 +215,12 @@
               <input
                 v-model="selectedDate"
                 type="date"
-                class="px-3 sm:px-4 py-2.5 border-2 rounded-lg focus:outline-none text-xs sm:text-sm font-medium w-full sm:w-auto"
-                style="border-color: #e5e7eb; color: #002147"
+                class="px-3 sm:px-4 py-2.5 border-2 border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 text-xs sm:text-sm font-medium w-full sm:w-auto text-slate-700"
                 @change="filterRecords"
               />
               <button
                 @click="resetFilters"
-                class="text-white px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 flex items-center justify-center gap-2 transition"
-                style="background: #00397a"
+                class="text-white px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:bg-slate-700 flex items-center justify-center gap-2 transition bg-slate-600"
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -241,15 +237,14 @@
         </div>
 
         <!-- Tab Content -->
-        <!-- With Attendance Tab -->
+        <!-- Submitted Tab -->
         <div
           v-if="activeTab === 'with-attendance'"
-          class="bg-white rounded overflow-hidden shadow-sm"
+          class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200"
         >
-          <div class="p-4 sm:p-5 lg:p-6 border-b bg-[#f3f1ee] border-gray-200">
+          <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-200 bg-slate-50">
             <h2
-              class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3"
-              style="color: #002147"
+              class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3 text-slate-800"
             >
               <svg
                 class="w-4 h-4 sm:w-5 sm:h-5"
@@ -264,15 +259,15 @@
                   d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 ></path>
               </svg>
-              All Attendance Records
+              Submitted Reports
             </h2>
-            <p class="text-xs sm:text-sm mt-1" style="color: #00397a">
+            <p class="text-xs sm:text-sm mt-1 text-slate-600">
               Showing {{ filteredRecords.length }} records
             </p>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full min-w-[720px] sm:min-w-[840px]">
-              <thead class="text-white bg-[#002147]">
+              <thead class="text-white bg-slate-700">
                 <tr>
                   <th
                     class="px-3 sm:px-4 py-2.5 sm:py-3 text-left text-xs sm:text-sm font-bold uppercase"
@@ -296,26 +291,24 @@
                   </th>
                 </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-100">
-                <tr v-for="record in filteredRecords" :key="record.id" class="hover:bg-gray-50">
-                  <td class="px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-900">
+              <tbody class="bg-white divide-y divide-slate-100">
+                <tr v-for="record in filteredRecords" :key="record.id" class="hover:bg-slate-50">
+                  <td class="px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-800">
                     {{ record.date }}
                   </td>
-                  <td class="px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-900">
+                  <td class="px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-800 font-semibold">
                     {{ record.name }}
                   </td>
                   <td class="px-3 sm:px-4 py-2.5 sm:py-3">
                     <span
                       v-if="record.status === true"
-                      class="px-2.5 sm:px-3 py-1 inline-flex text-xs sm:text-sm font-bold rounded"
-                      style="background: #d1fae5; color: #065f46"
+                      class="px-2.5 sm:px-3 py-1 inline-flex text-xs sm:text-sm font-bold rounded-full bg-emerald-100 text-emerald-700"
                     >
                       Present
                     </span>
                     <span
                       v-else
-                      class="px-2.5 sm:px-3 py-1 inline-flex text-xs sm:text-sm font-bold rounded"
-                      style="background: #fee2e2; color: #991b1b"
+                      class="px-2.5 sm:px-3 py-1 inline-flex text-xs sm:text-sm font-bold rounded-full bg-red-100 text-red-700"
                     >
                       Absent
                     </span>
@@ -324,8 +317,7 @@
                     <div class="flex flex-col sm:flex-row gap-2">
                       <button
                         @click="previewReport(record)"
-                        class="text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded font-bold flex items-center justify-center gap-2 text-xs sm:text-sm"
-                        style="background: #004595"
+                        class="text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-bold flex items-center justify-center gap-2 text-xs sm:text-sm bg-blue-600 hover:bg-blue-700 transition"
                       >
                         <svg
                           class="w-3 h-3 sm:w-4 sm:h-4"
@@ -381,7 +373,7 @@
           </div>
         </div>
 
-        <!-- Without Attendance Tab -->
+        <!-- Not Submitted Tab -->
         <div
           v-if="activeTab === 'without-attendance'"
           class="bg-white rounded p-4 sm:p-5 lg:p-6 shadow-sm"
@@ -405,10 +397,10 @@
                       d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                     ></path>
                   </svg>
-                  Officers Without Attendance
+                  Officers - Not Submitted
                 </h2>
                 <p class="text-xs sm:text-sm mt-1">
-                  {{ officersWithoutAttendance.length }} officer(s) without attendance
+                  {{ officersWithoutAttendance.length }} officer(s) have not submitted
                 </p>
               </div>
               <div
@@ -521,11 +513,288 @@
               </svg>
             </div>
             <p class="text-gray-800 text-sm sm:text-base font-bold">
-              All officers have submitted attendance!
+              All officers have submitted their AAR!
             </p>
             <p class="text-gray-600 text-xs sm:text-sm mt-2">
-              100% attendance for the selected date
+              100% submission for the selected date
             </p>
+          </div>
+        </div>
+
+        <!-- History Tab -->
+        <div
+          v-if="activeTab === 'history'"
+          class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200"
+        >
+          <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-200 bg-slate-50">
+            <h2
+              class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3 text-slate-800"
+            >
+              <svg
+                class="w-4 h-4 sm:w-5 sm:h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              Officer AAR History
+            </h2>
+            <p class="text-xs sm:text-sm mt-1 text-slate-600">
+              Search for an officer to view their AAR submission history
+            </p>
+          </div>
+
+          <div class="p-4 sm:p-5 lg:p-6 space-y-5">
+            <!-- Officer Search -->
+            <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm relative z-20">
+              <label
+                class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-slate-800"
+              >
+                <svg
+                  class="w-5 h-5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  ></path>
+                </svg>
+                Search Officer
+              </label>
+              <div class="relative">
+                <input
+                  v-model="searchQuery"
+                  @focus="showDropdown = true"
+                  @blur="hideDropdown"
+                  type="text"
+                  placeholder="Type to search officer name..."
+                  class="w-full px-4 py-3 text-sm border-2 border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 transition font-medium text-slate-800"
+                  autocomplete="off"
+                />
+
+                <!-- Dropdown List -->
+                <div
+                  v-if="showDropdown && filteredOfficers.length > 0"
+                  class="absolute z-40 w-full mt-2 bg-white border-2 border-slate-300 rounded-lg max-h-64 overflow-y-auto shadow-lg"
+                >
+                  <div
+                    v-for="user in filteredOfficers"
+                    :key="user.id"
+                    @mousedown.prevent="selectOfficer(user)"
+                    class="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm border-b last:border-b-0 transition font-medium text-gray-700"
+                    :class="
+                      selectedOfficer?.id === user.id ? 'font-bold bg-blue-100 text-blue-800' : ''
+                    "
+                  >
+                    {{ user.rank_fullname }}
+                  </div>
+                </div>
+
+                <!-- Clear button -->
+                <button
+                  v-if="selectedOfficer"
+                  type="button"
+                  @mousedown.prevent
+                  @click="clearOfficerSelection"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-red-600 bg-white border border-red-200 px-3 py-1 rounded-md hover:bg-red-50 transition"
+                >
+                  Clear
+                </button>
+              </div>
+
+              <p v-if="allUsers.length > 0" class="text-xs text-gray-500 mt-3">
+                {{ filteredOfficers.length }} of {{ allUsers.length }} officers
+              </p>
+            </div>
+
+            <!-- AAR History Results -->
+            <div v-if="selectedOfficer" class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                  <div class="rounded-lg p-2 bg-emerald-50">
+                    <svg
+                      class="w-5 h-5 text-emerald-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-sm md:text-base font-bold text-slate-800">{{ selectedOfficer.rank_fullname }}</h3>
+                    <p class="text-xs text-slate-600">AAR Submission History</p>
+                  </div>
+                </div>
+                <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-600">
+                  {{ aarHistory.length }} {{ aarHistory.length === 1 ? 'record' : 'records' }}
+                </span>
+              </div>
+
+              <!-- Loading State -->
+              <div v-if="isLoadingHistory" class="text-center py-8">
+                <svg
+                  class="animate-spin h-8 w-8 mx-auto text-emerald-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <p class="text-sm text-slate-600 mt-2">Loading history...</p>
+              </div>
+
+              <!-- No Records -->
+              <div
+                v-else-if="aarHistory.length === 0"
+                class="text-center py-8 border-2 border-dashed border-slate-200 rounded-lg"
+              >
+                <div class="rounded-full p-3 mx-auto w-fit mb-2 bg-slate-50">
+                  <svg
+                    class="w-8 h-8 text-slate-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="text-sm font-semibold text-slate-700">No AAR records found</p>
+                <p class="text-xs text-slate-500 mt-1">This officer hasn't submitted any reports yet</p>
+              </div>
+
+              <!-- History Records Table -->
+              <div v-else class="overflow-x-auto">
+                <table class="w-full min-w-[720px]">
+                  <thead class="text-white bg-emerald-700">
+                    <tr>
+                      <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">
+                        Date
+                      </th>
+                      <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">
+                        Description
+                      </th>
+                      <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">
+                        Address
+                      </th>
+                      <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">
+                        Status
+                      </th>
+                      <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-slate-100">
+                    <tr
+                      v-for="record in aarHistory"
+                      :key="record.id"
+                      class="hover:bg-slate-50 transition"
+                    >
+                      <td class="px-4 py-4">
+                        <div class="flex items-center gap-2">
+                          <svg
+                            class="w-4 h-4 text-emerald-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            ></path>
+                          </svg>
+                          <span class="text-xs font-semibold text-slate-800">
+                            {{ new Date(record.date).toLocaleDateString('en-US', { 
+                              year: 'numeric', 
+                              month: 'short', 
+                              day: 'numeric' 
+                            }) }}
+                          </span>
+                        </div>
+                      </td>
+                      <td class="px-4 py-4">
+                        <p class="text-xs text-slate-700 line-clamp-2">{{ record.description }}</p>
+                      </td>
+                      <td class="px-4 py-4">
+                        <p class="text-xs text-slate-700 line-clamp-1">{{ record.address }}</p>
+                      </td>
+                      <td class="px-4 py-4">
+                        <span class="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700">
+                          Submitted
+                        </span>
+                      </td>
+                      <td class="px-4 py-4 text-center">
+                        <button
+                          @click="viewHistoryDetails(record)"
+                          class="text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-blue-700 transition bg-blue-600"
+                        >
+                          View Details
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- No Officer Selected State -->
+            <div
+              v-else
+              class="text-center py-12 border-2 border-dashed border-slate-200 rounded-lg bg-slate-50"
+            >
+              <div class="rounded-full p-4 mx-auto w-fit mb-3 bg-white">
+                <svg
+                  class="w-12 h-12 text-slate-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+                </svg>
+              </div>
+              <p class="text-base font-semibold text-slate-700">Search for an Officer</p>
+              <p class="text-sm text-slate-500 mt-1">Use the search field above to find and view an officer's AAR history</p>
+            </div>
           </div>
         </div>
       </div>
@@ -800,27 +1069,16 @@
 
     <!-- Mobile Bottom Navigation -->
     <nav
-      class="lg:hidden fixed bottom-0 left-0 right-0 z-50"
-      style="box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08)"
+      class="lg:hidden fixed bottom-0 left-0 right-0 z-50 shadow-lg bg-white border-t-2 border-blue-600"
     >
-      <!-- Top Border Gradient -->
-      <div
-        class="h-1"
-        style="background: linear-gradient(90deg, #002147 0%, #004595 50%, #002147 100%)"
-      ></div>
-
-      <div class="grid grid-cols-4 h-16 sm:h-18" style="background: #ffffff">
+      <div class="grid grid-cols-3 h-16 sm:h-18">
         <!-- Overview -->
         <router-link
           to="/admin-dashboard"
-          class="relative flex flex-col items-center justify-center overflow-hidden border-t-4 border-transparent active:scale-95 transition-all duration-300"
+          class="relative flex flex-col items-center justify-center active:scale-95 transition-all duration-300 hover:bg-slate-50"
         >
-          <div
-            class="absolute inset-0 bg-gray-50 opacity-0 hover:opacity-100 transition-opacity duration-300"
-          ></div>
           <svg
-            class="w-5 h-5 sm:w-6 sm:h-6 mb-0.5 relative z-10 transform hover:scale-110 transition-transform duration-300"
-            style="color: #6b7280"
+            class="w-5 h-5 sm:w-6 sm:h-6 mb-0.5 text-slate-600"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -829,26 +1087,17 @@
             ></path>
           </svg>
           <span
-            class="text-[10px] sm:text-xs font-semibold relative z-10 tracking-wide"
-            style="color: #6b7280"
+            class="text-[10px] sm:text-xs font-semibold tracking-wide text-slate-600"
             >Overview</span
           >
         </router-link>
 
         <!-- Records -->
         <div
-          class="relative flex flex-col items-center justify-center overflow-hidden border-t-4 transition-all duration-300"
-          style="
-            border-color: #004595;
-            background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
-          "
+          class="relative flex flex-col items-center justify-center bg-blue-50"
         >
-          <div
-            class="absolute inset-0 bg-blue-50 opacity-0 hover:opacity-100 transition-opacity duration-300"
-          ></div>
           <svg
-            class="w-5 h-5 sm:w-6 sm:h-6 mb-0.5 relative z-10 transform transition-transform duration-300"
-            style="color: #004595"
+            class="w-5 h-5 sm:w-6 sm:h-6 mb-0.5 text-blue-600"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -861,22 +1110,17 @@
             ></path>
           </svg>
           <span
-            class="text-[10px] sm:text-xs font-bold relative z-10 tracking-wide"
-            style="color: #003d82"
+            class="text-[10px] sm:text-xs font-bold tracking-wide text-blue-600"
             >Records</span
           >
         </div>
         <!-- Logout -->
         <button
           @click="showLogoutConfirm = true"
-          class="relative flex flex-col items-center justify-center overflow-hidden border-t-4 border-transparent active:scale-95 transition-all duration-300"
+          class="relative flex flex-col items-center justify-center active:scale-95 transition-all duration-300 hover:bg-red-50"
         >
-          <div
-            class="absolute inset-0 bg-red-50 opacity-0 hover:opacity-100 transition-opacity duration-300"
-          ></div>
           <svg
-            class="w-5 h-5 sm:w-6 sm:h-6 mb-0.5 relative z-10 transform hover:scale-110 transition-transform duration-300"
-            style="color: #dc2626"
+            class="w-5 h-5 sm:w-6 sm:h-6 mb-0.5 text-red-600"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -889,8 +1133,7 @@
             ></path>
           </svg>
           <span
-            class="text-[10px] sm:text-xs font-semibold relative z-10 tracking-wide"
-            style="color: #dc2626"
+            class="text-[10px] sm:text-xs font-semibold tracking-wide text-red-600"
             >Logout</span
           >
         </button>
@@ -919,6 +1162,14 @@ const allRecords = ref([])
 const filteredRecords = ref([])
 const absenceRecords = ref([])
 const filteredAbsenceRecords = ref([])
+
+// History search
+const allUsers = ref([])
+const selectedOfficer = ref(null)
+const aarHistory = ref([])
+const isLoadingHistory = ref(false)
+const searchQuery = ref('')
+const showDropdown = ref(false)
 
 // Preview modal state
 const showPreviewModal = ref(false)
@@ -987,13 +1238,13 @@ const loadHtmlDocx = async () => {
 // Fetch all attendance records
 const fetchRecords = async () => {
   try {
-    // Fetch all attendance
+    // Fetch all AAR reports
     const { data: attendance, error } = await supabase
       .from('aar_reports_with_screenshots1')
       .select('*')
       .order('date', { ascending: false })
 
-    console.log('Fetched attendance records:', attendance)
+    console.log('Fetched AAR records:', attendance)
 
     if (error) throw error
 
@@ -1036,7 +1287,7 @@ const fetchRecords = async () => {
       }
     })
 
-    // Fetch records without attendance (status false)
+    // Fetch records not submitted
     const { data: absenceData, error: absenceError } = await supabase
       .from('aar_reports_with_screenshots')
       .select('*')
@@ -1074,7 +1325,7 @@ const fetchRecords = async () => {
     filterRecords()
   } catch (error) {
     console.error('Error fetching records:', error)
-    alert(`Unable to fetch attendance data. Details: ${error?.message || error}`)
+    alert(`Unable to fetch AAR data. Details: ${error?.message || error}`)
   }
 }
 
@@ -1374,10 +1625,10 @@ const previewWithoutAttendanceReport = () => {
                         </div>
                         <div>
                             <p style="color: #991b1b; font-weight: bold; font-size: 12px; margin: 0;">
-                                Total Officers Without Attendance: ${officersWithoutAttendance.value.length}
+                                Total Officers - Not Submitted: ${officersWithoutAttendance.value.length}
                             </p>
                             <p style="color: #b91c1c; font-size: 10px; margin: 2px 0 0 0;">
-                                These officers have not submitted their attendance for the selected date
+                                These officers have not submitted their AAR for the selected date
                             </p>
                         </div>
                     </div>
@@ -1444,6 +1695,69 @@ const closePreview = () => {
   isWithoutAttendancePreview.value = false
 }
 
+// History tab functions
+const filteredOfficers = computed(() => {
+  if (!searchQuery.value || searchQuery.value.trim() === '') {
+    return allUsers.value
+  }
+  const query = searchQuery.value.toLowerCase()
+  return allUsers.value.filter((user) => user.rank_fullname.toLowerCase().includes(query))
+})
+
+const selectOfficer = (user) => {
+  selectedOfficer.value = user
+  searchQuery.value = user.rank_fullname
+  showDropdown.value = false
+  fetchAARHistory(user.id)
+}
+
+const clearOfficerSelection = () => {
+  selectedOfficer.value = null
+  searchQuery.value = ''
+  aarHistory.value = []
+  showDropdown.value = false
+}
+
+const hideDropdown = () => {
+  setTimeout(() => {
+    showDropdown.value = false
+  }, 200)
+}
+
+const fetchAARHistory = async (userId) => {
+  if (!userId) {
+    aarHistory.value = []
+    return
+  }
+
+  isLoadingHistory.value = true
+  
+  try {
+    const { data, error } = await supabase
+      .from('aar_report')
+      .select('*')
+      .eq('user_id', userId)
+      .order('date', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching AAR history:', error)
+      aarHistory.value = []
+      return
+    }
+
+    aarHistory.value = data || []
+  } catch (err) {
+    console.error('Exception fetching AAR history:', err)
+    aarHistory.value = []
+  } finally {
+    isLoadingHistory.value = false
+  }
+}
+
+const viewHistoryDetails = (record) => {
+  previewReport(record)
+}
+
 // Logout handler
 const handleLogout = async () => {
   try {
@@ -1470,7 +1784,26 @@ onMounted(async () => {
   setDefaultDate()
   await preloadHeaderImages()
   await fetchRecords()
+  await fetchUsers()
 })
+
+const fetchUsers = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .order('rank_fullname', { ascending: true })
+
+    if (error) {
+      console.error('Error fetching users:', error)
+      return
+    }
+
+    allUsers.value = data || []
+  } catch (err) {
+    console.error('Exception fetching users:', err)
+  }
+}
 </script>
 
 <style scoped>

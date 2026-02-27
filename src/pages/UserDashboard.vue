@@ -1,14 +1,11 @@
 <template>
   <div
-    class="min-h-screen relative overflow-hidden bg-[radial-gradient(circle_at_20%_20%,#e7f0ff_0%,#f5f7fb_45%,#eaf0ff_100%)]"
+    class="min-h-screen relative overflow-hidden bg-slate-50"
   >
-    <div
-      class="absolute inset-0 opacity-30 pointer-events-none bg-[linear-gradient(120deg,rgba(255,255,255,0.35)_0%,rgba(189,212,255,0.35)_45%,rgba(255,255,255,0.2)_100%)]"
-    ></div>
     <div class="relative max-w-[1600px] mx-auto px-4 md:px-8 py-4 md:py-6">
       <!-- Header -->
       <div
-        class="rounded-2xl p-5 md:p-6 mb-5 md:mb-6 text-white shadow-xl border border-white/20 bg-[linear-gradient(120deg,#001a3d_0%,#003f8c_55%,#0c66c6_100%)]"
+        class="rounded-lg p-5 md:p-6 mb-5 md:mb-6 text-white shadow-sm border-l-4 border-blue-600 bg-blue-600"
       >
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
           <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:w-auto">
@@ -17,28 +14,28 @@
               <img
                 src="../assets/BCPO1.png"
                 alt="Police Station 1"
-                class="w-16 h-16 md:w-20 md:h-20 object-contain"
+                class="w-16 h-16 md:w-20 md:h-20 object-contain bg-white rounded-lg p-2"
               />
             </div>
             <div class="text-center md:text-left md:ml-2">
               <div
-                class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-white/15 text-[#d8e6ff]"
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-white/20 text-white"
               >
                 <span>Daily AAR</span>
                 <span class="w-1 h-1 rounded-full bg-white"></span>
                 <span>Station 1</span>
               </div>
-              <h1 class="text-2xl md:text-3xl font-extrabold uppercase mt-2">
-                Attendance Check-In
+              <h1 class="text-2xl md:text-3xl font-bold uppercase mt-2">
+                AAR Submission
               </h1>
-              <p class="text-xs md:text-sm font-semibold mt-1 text-[#fcd77f]">
+              <p class="text-xs md:text-sm font-semibold mt-1 text-blue-100">
                 Philippine National Police · Police Station 1
               </p>
             </div>
           </div>
           <button
             @click="returnToLogin"
-            class="text-white font-bold px-5 md:px-6 py-2.5 md:py-3 rounded-xl flex items-center gap-2 hover:opacity-90 transition w-full md:w-auto justify-center shadow-lg shadow-black/20 bg-[linear-gradient(135deg,#f04444,#c91f1f)]"
+            class="text-white font-bold px-5 md:px-6 py-2.5 md:py-3 rounded-lg flex items-center gap-2 hover:bg-red-700 transition w-full md:w-auto justify-center shadow-sm bg-red-600"
           >
             <svg
               class="w-4 h-4 md:w-5 md:h-5"
@@ -62,22 +59,22 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5 md:mb-6">
         <!-- Current Date -->
         <div
-          class="rounded-2xl p-5 md:p-6 shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(232,238,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
+          class="rounded-lg p-5 md:p-6 shadow-sm border border-slate-200 bg-white"
         >
           <div class="flex items-center justify-between">
             <div>
               <p
-                class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
+                class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-slate-600"
               >
                 Today's Date
               </p>
-              <p class="text-lg md:text-2xl font-bold mt-1 text-[#002147]">
+              <p class="text-lg md:text-2xl font-bold mt-1 text-slate-800">
                 {{ currentDate }}
               </p>
             </div>
-            <div class="rounded-2xl p-3 bg-[rgba(16,185,129,0.15)]">
+            <div class="rounded-lg p-3 bg-emerald-50">
               <svg
-                class="w-6 h-6 md:w-7 md:h-7 text-[#10b981]"
+                class="w-6 h-6 md:w-7 md:h-7 text-emerald-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -95,22 +92,22 @@
 
         <!-- Current Time -->
         <div
-          class="rounded-2xl p-5 md:p-6 shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(223,236,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
+          class="rounded-lg p-5 md:p-6 shadow-sm border border-slate-200 bg-white"
         >
           <div class="flex items-center justify-between">
             <div>
               <p
-                class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
+                class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-slate-600"
               >
                 Current Time
               </p>
-              <p class="text-2xl md:text-3xl font-bold mt-1 text-[#002147]">
+              <p class="text-2xl md:text-3xl font-bold mt-1 text-slate-800">
                 {{ currentTime }}
               </p>
             </div>
-            <div class="rounded-2xl p-3 bg-[rgba(251,191,36,0.18)]">
+            <div class="rounded-lg p-3 bg-amber-50">
               <svg
-                class="w-6 h-6 md:w-7 md:h-7 text-[#fbbf24]"
+                class="w-6 h-6 md:w-7 md:h-7 text-amber-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -133,10 +130,10 @@
         <div class="lg:col-span-3 order-1 space-y-4">
           <!-- Instructions Card -->
           <div
-            class="rounded-2xl p-5 shadow-lg border border-[#d4def8] bg-[linear-gradient(155deg,#ffffff_0%,#eef3ff_65%,#e3ecff_100%)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
+            class="rounded-lg p-5 shadow-sm border border-slate-200 bg-white"
           >
             <div class="flex items-center gap-3 mb-4">
-              <div class="rounded-xl p-2 bg-[#002147]">
+              <div class="rounded-lg p-2 bg-blue-600">
                 <svg
                   class="w-5 h-5 text-white"
                   fill="none"
@@ -152,74 +149,74 @@
                 </svg>
               </div>
               <div>
-                <h2 class="text-base md:text-lg font-bold text-[#002147]">Submission Protocol</h2>
-                <p class="text-[11px] font-semibold tracking-wide uppercase text-[#5c6b93]">
+                <h2 class="text-base md:text-lg font-bold text-slate-800">Submission Protocol</h2>
+                <p class="text-[11px] font-semibold tracking-wide uppercase text-slate-600">
                   Follow each step carefully
                 </p>
               </div>
             </div>
-            <div class="space-y-3 border-l-2 border-[#cdd8ff] pl-4">
-              <div class="flex gap-3 items-start rounded-xl p-3">
+            <div class="space-y-3 border-l-2 border-blue-200 pl-4">
+              <div class="flex gap-3 items-start rounded-lg p-3">
                 <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
                 >
                   1
                 </div>
                 <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Select Officer</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
+                  <p class="text-xs md:text-sm font-semibold text-slate-800">Select Officer</p>
+                  <p class="text-[11px] md:text-xs text-slate-600">
                     Use the search field to pick your official rank and name from the roster.
                   </p>
                 </div>
               </div>
-              <div class="flex gap-3 items-start rounded-xl p-3">
+              <div class="flex gap-3 items-start rounded-lg p-3">
                 <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
                 >
                   2
                 </div>
                 <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Describe Activity</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
+                  <p class="text-xs md:text-sm font-semibold text-slate-800">Describe Activity</p>
+                  <p class="text-[11px] md:text-xs text-slate-600">
                     Complete the description box with your duty summary and accountability notes.
                   </p>
                 </div>
               </div>
-              <div class="flex gap-3 items-start rounded-xl p-3">
+              <div class="flex gap-3 items-start rounded-lg p-3">
                 <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
                 >
                   3
                 </div>
                 <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Confirm Address</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
+                  <p class="text-xs md:text-sm font-semibold text-slate-800">Confirm Address</p>
+                  <p class="text-[11px] md:text-xs text-slate-600">
                     Enter the exact deployment location, including barangay or landmark for clarity.
                   </p>
                 </div>
               </div>
-              <div class="flex gap-3 items-start rounded-xl p-3">
+              <div class="flex gap-3 items-start rounded-lg p-3">
                 <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
                 >
                   4
                 </div>
                 <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Set Deployment Date</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
+                  <p class="text-xs md:text-sm font-semibold text-slate-800">Set Deployment Date</p>
+                  <p class="text-[11px] md:text-xs text-slate-600">
                     Use the date picker to match the actual day of your field assignment.
                   </p>
                 </div>
               </div>
-              <div class="flex gap-3 items-start rounded-xl p-3">
+              <div class="flex gap-3 items-start rounded-lg p-3">
                 <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
                 >
                   5
                 </div>
                 <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Attach Evidence</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
+                  <p class="text-xs md:text-sm font-semibold text-slate-800">Attach Evidence</p>
+                  <p class="text-[11px] md:text-xs text-slate-600">
                     Upload clear PNG/JPG screenshots (max 25MB each) that prove your deployment.
                   </p>
                 </div>
@@ -229,11 +226,11 @@
 
           <!-- Important Notice (hidden on mobile) -->
           <div
-            class="hidden lg:block rounded-2xl p-4 shadow-md border-l-4 bg-[#eaf0ff] border-[#0f63c7] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl"
+            class="hidden lg:block rounded-lg p-4 shadow-sm border-l-4 border-blue-600 bg-blue-50"
           >
             <div class="flex items-start gap-3">
               <svg
-                class="w-6 h-6 flex-shrink-0 text-[#0f63c7]"
+                class="w-6 h-6 flex-shrink-0 text-blue-600"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -244,8 +241,8 @@
                 ></path>
               </svg>
               <div>
-                <h3 class="font-bold text-sm md:text-base mb-2 text-[#10224b]">Important Notice</h3>
-                <p class="text-xs md:text-sm text-[#1f3b7b]">
+                <h3 class="font-bold text-sm md:text-base mb-2 text-slate-800">Important Notice</h3>
+                <p class="text-xs md:text-sm text-slate-700">
                   Ensure all information is accurate before submission. Screenshots must be clear
                   and readable.
                 </p>
@@ -255,21 +252,21 @@
 
           <!-- System Information (hidden on mobile) -->
           <div
-            class="hidden lg:block bg-white rounded-lg p-4 shadow-md transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl"
+            class="hidden lg:block bg-white rounded-lg p-4 shadow-sm border border-slate-200"
           >
-            <h3 class="font-bold text-sm md:text-base mb-3 text-[#002147]">System Information</h3>
+            <h3 class="font-bold text-sm md:text-base mb-3 text-slate-800">System Information</h3>
             <div class="space-y-2">
               <div class="flex justify-between text-xs md:text-sm">
-                <span class="text-gray-600">Status:</span>
-                <span class="font-bold text-green-600">● Active</span>
+                <span class="text-slate-600">Status:</span>
+                <span class="font-bold text-emerald-600">● Active</span>
               </div>
               <div class="flex justify-between text-xs md:text-sm">
-                <span class="text-gray-600">Registered Users:</span>
-                <span class="font-bold text-[#002147]">{{ allUsers.length }}</span>
+                <span class="text-slate-600">Registered Users:</span>
+                <span class="font-bold text-slate-800">{{ allUsers.length }}</span>
               </div>
               <div class="flex justify-between text-xs md:text-sm">
-                <span class="text-gray-600">Max File Size:</span>
-                <span class="font-bold text-[#002147]">25 MB</span>
+                <span class="text-slate-600">Max File Size:</span>
+                <span class="font-bold text-slate-800">25 MB</span>
               </div>
             </div>
           </div>
@@ -277,11 +274,11 @@
 
         <!-- Right Column: Form -->
         <div class="lg:col-span-9 order-2">
-          <div class="bg-white rounded-lg p-6 space-y-5 shadow-md">
+          <div class="bg-white rounded-lg p-6 space-y-5 shadow-sm border border-slate-200">
             <div
-              class="flex items-center gap-3 p-4 rounded-lg bg-[#eff6ff] border-l-4 border-[#002147]"
+              class="flex items-center gap-3 p-4 rounded-lg bg-blue-50 border-l-4 border-blue-600"
             >
-              <div class="rounded-lg p-2 bg-[#002147]">
+              <div class="rounded-lg p-2 bg-blue-600">
                 <svg
                   class="w-5 h-5 md:w-6 md:h-6 text-white"
                   fill="none"
@@ -297,17 +294,17 @@
                 </svg>
               </div>
               <div>
-                <p class="text-sm md:text-base font-bold text-[#002147]">
-                  Attendance Registration Form
+                <p class="text-sm md:text-base font-bold text-slate-800">
+                  AAR Submission Form
                 </p>
-                <p class="text-xs text-gray-600">Complete all required fields below</p>
+                <p class="text-xs text-slate-600">Complete all required fields below</p>
               </div>
             </div>
 
             <!-- Error Message -->
             <div
               v-if="fetchError"
-              class="border-l-4 border-[#dc2626] bg-[#fee2e2] p-4 rounded-lg text-xs md:text-sm font-bold text-[#dc2626]"
+              class="border-l-4 border-red-600 bg-red-50 p-4 rounded-lg text-xs md:text-sm font-bold text-red-700"
             >
               <div class="flex items-center gap-2">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -323,10 +320,10 @@
 
             <!-- Searchable User Selection -->
             <div
-              class="rounded-2xl border border-[#dfe7ff] bg-white/95 p-5 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg relative z-20"
+              class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm relative z-20"
             >
               <label
-                class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-[#002147]"
+                class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-slate-800"
               >
                 <svg
                   class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
@@ -417,6 +414,151 @@
               <p v-if="!isLoadingUsers && allUsers.length > 0" class="text-xs text-gray-500 mt-4">
                 {{ filteredUsers.length }} of {{ allUsers.length }} users
               </p>
+            </div>
+
+            <!-- AAR History Section -->
+            <div
+              v-if="selectedUserId"
+              class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                  <div class="rounded-lg p-2 bg-blue-50">
+                    <svg
+                      class="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-sm md:text-base font-bold text-slate-800">AAR History</h3>
+                    <p class="text-xs text-slate-600">Previous submissions for this officer</p>
+                  </div>
+                </div>
+                <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-600">
+                  {{ aarHistory.length }} {{ aarHistory.length === 1 ? 'record' : 'records' }}
+                </span>
+              </div>
+
+              <!-- Loading State -->
+              <div v-if="isLoadingHistory" class="text-center py-8">
+                <svg
+                  class="animate-spin h-8 w-8 mx-auto text-blue-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <p class="text-sm text-slate-600 mt-2">Loading history...</p>
+              </div>
+
+              <!-- No Records -->
+              <div
+                v-else-if="aarHistory.length === 0"
+                class="text-center py-8 border-2 border-dashed border-slate-200 rounded-lg"
+              >
+                <div class="rounded-full p-3 mx-auto w-fit mb-2 bg-slate-50">
+                  <svg
+                    class="w-8 h-8 text-slate-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="text-sm font-semibold text-slate-700">No AAR records found</p>
+                <p class="text-xs text-slate-500 mt-1">This officer hasn't submitted any reports yet</p>
+              </div>
+
+              <!-- History Records -->
+              <div v-else class="space-y-3 max-h-96 overflow-y-auto">
+                <div
+                  v-for="record in aarHistory"
+                  :key="record.id"
+                  class="border border-slate-200 rounded-lg p-4 hover:shadow-md transition bg-slate-50"
+                >
+                  <div class="flex items-start justify-between gap-3 mb-3">
+                    <div class="flex items-center gap-2">
+                      <div class="rounded-lg p-1.5 bg-emerald-50">
+                        <svg
+                          class="w-4 h-4 text-emerald-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <span class="text-xs font-bold text-slate-800">
+                        {{ new Date(record.date).toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        }) }}
+                      </span>
+                    </div>
+                    <span class="text-xs font-semibold px-2 py-1 rounded-full bg-emerald-100 text-emerald-700">
+                      Submitted
+                    </span>
+                  </div>
+
+                  <div class="space-y-2">
+                    <div>
+                      <p class="text-xs font-semibold text-slate-600 mb-1">Description:</p>
+                      <p class="text-xs text-slate-700">{{ record.description }}</p>
+                    </div>
+                    <div>
+                      <p class="text-xs font-semibold text-slate-600 mb-1">Address:</p>
+                      <p class="text-xs text-slate-700">{{ record.address }}</p>
+                    </div>
+                    <div v-if="record.screenshots" class="pt-2 border-t border-slate-200">
+                      <p class="text-xs font-semibold text-slate-600 mb-2">Screenshots:</p>
+                      <div class="flex gap-2 overflow-x-auto pb-2">
+                        <img
+                          v-for="(screenshot, idx) in record.screenshots.split(',')"
+                          :key="idx"
+                          :src="screenshot"
+                          @click="zoomImage(screenshot)"
+                          class="w-16 h-16 object-cover rounded border border-slate-300 cursor-zoom-in hover:opacity-80 transition"
+                          alt="Screenshot"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Additional Details -->
@@ -727,7 +869,7 @@
                   ></path>
                 </svg>
                 <span v-if="isSubmitting">Uploading...</span>
-                <span v-else>Submit Attendance</span>
+                <span v-else>Submit AAR</span>
               </button>
               <div class="mt-4 p-3 rounded-lg text-center bg-[#fef3c7]">
                 <p class="text-xs md:text-sm font-bold text-[#92400e]">
@@ -853,6 +995,8 @@ const fetchError = ref('')
 const searchQuery = ref('')
 const showDropdown = ref(false)
 const searchInput = ref(null)
+const aarHistory = ref([])
+const isLoadingHistory = ref(false)
 
 const getTodayString = () => new Date().toISOString().split('T')[0]
 
@@ -898,6 +1042,7 @@ const selectUser = (user) => {
   selectedUserId.value = user.id
   searchQuery.value = user.rank_fullname
   showDropdown.value = false
+  fetchAARHistory(user.id)
 }
 
 const focusSearchInput = () => {
@@ -912,6 +1057,7 @@ const clearSelection = () => {
   selectedUserId.value = null
   searchQuery.value = ''
   showDropdown.value = true
+  aarHistory.value = []
   focusSearchInput()
 }
 
@@ -969,6 +1115,36 @@ const zoomImage = (imageUrl) => {
 const closeZoom = () => {
   showZoomModal.value = false
   zoomedImage.value = null
+}
+
+const fetchAARHistory = async (userId) => {
+  if (!userId) {
+    aarHistory.value = []
+    return
+  }
+
+  isLoadingHistory.value = true
+  
+  try {
+    const { data, error } = await supabase
+      .from('aar_report')
+      .select('*')
+      .eq('user_id', userId)
+      .order('date', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching AAR history:', error)
+      aarHistory.value = []
+      return
+    }
+
+    aarHistory.value = data || []
+  } catch (err) {
+    console.error('Exception fetching AAR history:', err)
+    aarHistory.value = []
+  } finally {
+    isLoadingHistory.value = false
+  }
 }
 
 const submitForm = async () => {
@@ -1037,6 +1213,11 @@ const submitForm = async () => {
     console.log('Form aar_report successfully:', data)
     showSuccess.value = true
 
+    // Refresh AAR history for this user
+    if (selectedUserId.value) {
+      await fetchAARHistory(selectedUserId.value)
+    }
+
     // Reset form after 5 seconds
     setTimeout(() => {
       selectedUserId.value = null
@@ -1048,6 +1229,7 @@ const submitForm = async () => {
         screenshots: [],
       }
       previewImages.value = []
+      aarHistory.value = []
       showSuccess.value = false
     }, 5000)
   } catch (err) {
