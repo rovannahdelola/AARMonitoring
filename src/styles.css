@@ -1,3 +1,32 @@
 @import 'tailwindcss/theme' layer(theme);
 @import 'tailwindcss/preflight' layer(base);
 @import 'tailwindcss/utilities' layer(utilities);
+
+/* Police Color Palette */
+:root {
+  --police-dark: #002147;
+  --police-medium: #00397a;
+  --police-light: #004595;
+  --police-cream: #f3f1ee;
+  --police-white: #ffffff;
+}
+
+/* Custom Police Theme Classes */
+.bg-police-dark { background-color: var(--police-dark); }
+.bg-police-medium { background-color: var(--police-medium); }
+.bg-police-light { background-color: var(--police-light); }
+.bg-police-cream { background-color: var(--police-cream); }
+
+.text-police-dark { color: var(--police-dark); }
+.text-police-medium { color: var(--police-medium); }
+.text-police-light { color: var(--police-light); }
+
+.border-police-dark { border-color: var(--police-dark); }
+.border-police-medium { border-color: var(--police-medium); }
+.border-police-light { border-color: var(--police-light); }
+
+.hover\:bg-police-medium:hover { background-color: var(--police-medium); }
+.hover\:bg-police-light:hover { background-color: var(--police-light); }
+
+.focus\:border-police-light:focus { border-color: var(--police-light); }
+.focus\:ring-police-light:focus { --tw-ring-color: var(--police-light); }

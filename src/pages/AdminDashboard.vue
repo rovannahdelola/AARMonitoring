@@ -1,17 +1,17 @@
 <template>
-  <div class="min-h-screen bg-slate-50">
+  <div class="min-h-screen bg-police-cream">
     <!-- Sidebar - Desktop Only -->
     <div
-      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-slate-800 flex-col shadow-sm z-40 bg-white border-r border-slate-200"
+      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-slate-800 flex-col shadow-sm z-40 bg-white border-r border-slate-300"
     >
       <!-- Sidebar Header -->
       <div class="p-6 border-b border-slate-200">
         <div class="flex flex-col items-center text-center gap-4">
-          <div class="rounded-full p-4 bg-blue-50">
+          <div class="rounded-full p-4 bg-police-cream">
             <img src="../assets/pnplogo.png" alt="PNP Logo" class="w-20 h-20 object-contain" />
           </div>
           <div>
-            <h1 class="text-lg font-bold text-slate-800 uppercase tracking-wide">
+            <h1 class="text-lg font-bold text-police-dark uppercase tracking-wide">
               Admin<br />Dashboard
             </h1>
             <p class="text-xs mt-2 font-semibold text-slate-600">
@@ -24,17 +24,17 @@
       <!-- Navigation Menu -->
       <div class="flex-1 p-5 space-y-3">
         <div
-          class="rounded-lg p-4 border-l-4 border-blue-600 bg-blue-50"
+          class="rounded-lg p-4 border-l-4 border-police-dark bg-police-cream"
         >
           <div class="flex items-center gap-3">
-            <div class="rounded-lg p-2 bg-blue-100">
-              <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+            <div class="rounded-lg p-2 bg-police-light">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
                 ></path>
               </svg>
             </div>
-            <span class="font-bold text-sm uppercase tracking-wider text-blue-600">Overview</span>
+            <span class="font-bold text-sm uppercase tracking-wider text-police-dark">Overview</span>
           </div>
         </div>
 
@@ -91,12 +91,12 @@
       <div class="p-4 sm:p-6 lg:p-8">
         <!-- Welcome Header -->
         <div
-          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-sm bg-white border-l-4 border-blue-600"
+          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-sm bg-white border-l-4 border-police-dark"
         >
           <div class="flex items-center gap-3 sm:gap-4">
-            <div class="rounded-full p-2 sm:p-3 bg-blue-50">
+            <div class="rounded-full p-2 sm:p-3 bg-police-cream">
               <svg
-                class="w-6 h-6 sm:w-8 sm:h-8 text-blue-600"
+                class="w-6 h-6 sm:w-8 sm:h-8 text-police-dark"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -110,7 +110,7 @@
               </svg>
             </div>
             <div>
-              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-slate-800">
+              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-police-dark">
                 Welcome Back, Administrator
               </h1>
               <p class="text-xs sm:text-sm font-semibold text-slate-600">
@@ -123,8 +123,8 @@
         <!-- Today's Statistics -->
         <div class="mb-6">
           <div class="flex items-center gap-2 mb-5">
-            <div class="h-1 w-1 rounded-full bg-blue-600"></div>
-            <p class="text-sm font-bold uppercase tracking-wider text-slate-800">
+            <div class="h-1 w-1 rounded-full bg-police-light"></div>
+            <p class="text-sm font-bold uppercase tracking-wider text-police-dark">
               Today's Statistics
             </p>
           </div>
@@ -311,9 +311,9 @@
           <div class="rounded-lg shadow-sm bg-white border border-slate-200">
             <div class="p-5 border-b border-slate-200">
               <div class="flex items-center gap-3">
-                <div class="rounded-lg p-2 bg-blue-50">
+                <div class="rounded-lg p-2 bg-police-cream">
                   <svg
-                    class="w-5 h-5 text-blue-600"
+                    class="w-5 h-5 text-police-dark"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -326,7 +326,7 @@
                     ></path>
                   </svg>
                 </div>
-                <h2 class="text-base font-bold uppercase tracking-wide text-slate-800">
+                <h2 class="text-base font-bold uppercase tracking-wide text-police-dark">
                   Quick Summary
                 </h2>
               </div>
@@ -353,10 +353,10 @@
 
               <!-- Total Records -->
               <div
-                class="p-4 rounded-lg flex items-center justify-between bg-slate-50 border-2 border-slate-200"
+                class="p-4 rounded-lg flex items-center justify-between bg-police-cream border-2 border-slate-300"
               >
                 <div class="flex items-center gap-3">
-                  <div class="rounded-lg p-2.5 bg-blue-600">
+                  <div class="rounded-lg p-2.5 bg-police-dark">
                     <svg
                       class="w-5 h-5 text-white"
                       fill="none"
@@ -375,14 +375,14 @@
                     <p class="text-xs font-bold uppercase mb-1 text-slate-600">
                       Total Records
                     </p>
-                    <p class="text-2xl font-bold text-slate-800">{{ totalAttendance }}</p>
+                    <p class="text-2xl font-bold text-police-dark">{{ totalAttendance }}</p>
                   </div>
                 </div>
               </div>
 
               <!-- System Status -->
               <div
-                class="p-4 rounded-lg bg-blue-50"
+                class="p-4 rounded-lg bg-police-cream border-2 border-slate-300"
               >
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-3">
@@ -390,7 +390,7 @@
                       <div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
                     </div>
                     <div>
-                      <p class="text-xs font-bold uppercase text-blue-800">
+                      <p class="text-xs font-bold uppercase text-police-dark">
                         System Status
                       </p>
                       <p class="text-sm font-semibold mt-0.5 text-emerald-600">

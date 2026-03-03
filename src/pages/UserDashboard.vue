@@ -1,11 +1,11 @@
 <template>
   <div
-    class="min-h-screen relative overflow-hidden bg-slate-50"
+    class="min-h-screen relative overflow-hidden bg-police-cream"
   >
     <div class="relative max-w-[1600px] mx-auto px-4 md:px-8 py-4 md:py-6">
       <!-- Header -->
       <div
-        class="rounded-lg p-5 md:p-6 mb-5 md:mb-6 text-white shadow-sm border-l-4 border-blue-600 bg-blue-600"
+        class="rounded-lg p-5 md:p-6 mb-5 md:mb-6 text-white shadow-sm border-l-4 border-police-dark bg-police-dark"
       >
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
           <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:w-auto">
@@ -68,7 +68,7 @@
               >
                 Today's Date
               </p>
-              <p class="text-lg md:text-2xl font-bold mt-1 text-slate-800">
+              <p class="text-lg md:text-2xl font-bold mt-1 text-police-dark">
                 {{ currentDate }}
               </p>
             </div>
@@ -101,7 +101,7 @@
               >
                 Current Time
               </p>
-              <p class="text-2xl md:text-3xl font-bold mt-1 text-slate-800">
+              <p class="text-2xl md:text-3xl font-bold mt-1 text-police-dark">
                 {{ currentTime }}
               </p>
             </div>
@@ -133,7 +133,7 @@
             class="rounded-lg p-5 shadow-sm border border-slate-200 bg-white"
           >
             <div class="flex items-center gap-3 mb-4">
-              <div class="rounded-lg p-2 bg-blue-600">
+              <div class="rounded-lg p-2 bg-police-dark">
                 <svg
                   class="w-5 h-5 text-white"
                   fill="none"
@@ -149,16 +149,16 @@
                 </svg>
               </div>
               <div>
-                <h2 class="text-base md:text-lg font-bold text-slate-800">Submission Protocol</h2>
+                <h2 class="text-base md:text-lg font-bold text-police-dark">Submission Protocol</h2>
                 <p class="text-[11px] font-semibold tracking-wide uppercase text-slate-600">
                   Follow each step carefully
                 </p>
               </div>
             </div>
-            <div class="space-y-3 border-l-2 border-blue-200 pl-4">
+            <div class="space-y-3 border-l-2 border-police-light pl-4">
               <div class="flex gap-3 items-start rounded-lg p-3">
                 <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
+                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-police-dark"
                 >
                   1
                 </div>
@@ -226,11 +226,11 @@
 
           <!-- Important Notice (hidden on mobile) -->
           <div
-            class="hidden lg:block rounded-lg p-4 shadow-sm border-l-4 border-blue-600 bg-blue-50"
+            class="hidden lg:block rounded-lg p-4 shadow-sm border-l-4 border-police-light bg-police-cream"
           >
             <div class="flex items-start gap-3">
               <svg
-                class="w-6 h-6 flex-shrink-0 text-blue-600"
+                class="w-6 h-6 flex-shrink-0 text-police-dark"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -241,7 +241,7 @@
                 ></path>
               </svg>
               <div>
-                <h3 class="font-bold text-sm md:text-base mb-2 text-slate-800">Important Notice</h3>
+                <h3 class="font-bold text-sm md:text-base mb-2 text-police-dark">Important Notice</h3>
                 <p class="text-xs md:text-sm text-slate-700">
                   Ensure all information is accurate before submission. Screenshots must be clear
                   and readable.
@@ -254,7 +254,7 @@
           <div
             class="hidden lg:block bg-white rounded-lg p-4 shadow-sm border border-slate-200"
           >
-            <h3 class="font-bold text-sm md:text-base mb-3 text-slate-800">System Information</h3>
+            <h3 class="font-bold text-sm md:text-base mb-3 text-police-dark">System Information</h3>
             <div class="space-y-2">
               <div class="flex justify-between text-xs md:text-sm">
                 <span class="text-slate-600">Status:</span>
@@ -262,11 +262,11 @@
               </div>
               <div class="flex justify-between text-xs md:text-sm">
                 <span class="text-slate-600">Registered Users:</span>
-                <span class="font-bold text-slate-800">{{ allUsers.length }}</span>
+                <span class="font-bold text-police-dark">{{ allUsers.length }}</span>
               </div>
               <div class="flex justify-between text-xs md:text-sm">
                 <span class="text-slate-600">Max File Size:</span>
-                <span class="font-bold text-slate-800">25 MB</span>
+                <span class="font-bold text-police-dark">25 MB</span>
               </div>
             </div>
           </div>
@@ -276,9 +276,9 @@
         <div class="lg:col-span-9 order-2">
           <div class="bg-white rounded-lg p-6 space-y-5 shadow-sm border border-slate-200">
             <div
-              class="flex items-center gap-3 p-4 rounded-lg bg-blue-50 border-l-4 border-blue-600"
+              class="flex items-center gap-3 p-4 rounded-lg bg-police-cream border-l-4 border-police-dark"
             >
-              <div class="rounded-lg p-2 bg-blue-600">
+              <div class="rounded-lg p-2 bg-police-dark">
                 <svg
                   class="w-5 h-5 md:w-6 md:h-6 text-white"
                   fill="none"
@@ -294,7 +294,7 @@
                 </svg>
               </div>
               <div>
-                <p class="text-sm md:text-base font-bold text-slate-800">
+                <p class="text-sm md:text-base font-bold text-police-dark">
                   AAR Submission Form
                 </p>
                 <p class="text-xs text-slate-600">Complete all required fields below</p>
@@ -349,7 +349,7 @@
                   :disabled="isLoadingUsers"
                   type="text"
                   placeholder="Type to search or click to view all..."
-                  class="w-full px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-2 border-[#d1d5db] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition font-medium text-[#002147]"
+                  class="w-full px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-2 border-[#d1d5db] rounded-lg focus:outline-none focus:ring-2 focus:ring-police-light/30 transition font-medium text-police-dark"
                   autocomplete="off"
                 />
 
@@ -368,9 +368,9 @@
                     v-for="user in filteredUsers"
                     :key="user.id"
                     @mousedown.prevent="selectUser(user)"
-                    class="px-3 md:px-4 py-2.5 md:py-3 hover:bg-blue-50 cursor-pointer text-xs md:text-sm border-b last:border-b-0 transition font-medium text-gray-700"
+                    class="px-3 md:px-4 py-2.5 md:py-3 hover:bg-police-cream cursor-pointer text-xs md:text-sm border-b last:border-b-0 transition font-medium text-gray-700"
                     :class="
-                      selectedUserId === user.id ? 'font-bold bg-blue-100 text-[#002147]' : ''
+                      selectedUserId === user.id ? 'font-bold bg-police-cream text-police-dark' : ''
                     "
                   >
                     {{ user.rank_fullname }}
@@ -389,7 +389,7 @@
                 </button>
                 <div v-else-if="isLoadingUsers" class="absolute right-3 top-2.5 md:top-3">
                   <svg
-                    class="animate-spin h-4 w-4 md:h-5 md:w-5 text-blue-900"
+                    class="animate-spin h-4 w-4 md:h-5 md:w-5 text-police-dark"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -423,9 +423,9 @@
             >
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-2">
-                  <div class="rounded-lg p-2 bg-blue-50">
+                  <div class="rounded-lg p-2 bg-police-cream">
                     <svg
-                      class="w-5 h-5 text-blue-600"
+                      class="w-5 h-5 text-police-dark"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -439,11 +439,11 @@
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-sm md:text-base font-bold text-slate-800">AAR History</h3>
+                    <h3 class="text-sm md:text-base font-bold text-police-dark">AAR History</h3>
                     <p class="text-xs text-slate-600">Previous submissions for this officer</p>
                   </div>
                 </div>
-                <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-600">
+                <span class="text-xs font-bold px-3 py-1 rounded-full bg-police-cream text-police-dark">
                   {{ aarHistory.length }} {{ aarHistory.length === 1 ? 'record' : 'records' }}
                 </span>
               </div>
@@ -451,7 +451,7 @@
               <!-- Loading State -->
               <div v-if="isLoadingHistory" class="text-center py-8">
                 <svg
-                  class="animate-spin h-8 w-8 mx-auto text-blue-600"
+                  class="animate-spin h-8 w-8 mx-auto text-police-dark"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"

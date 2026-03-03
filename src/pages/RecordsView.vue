@@ -1,17 +1,17 @@
 <template>
-  <div class="min-h-screen bg-slate-50">
+  <div class="min-h-screen bg-police-cream">
     <!-- Sidebar - Desktop Only -->
     <div
-      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-slate-800 flex-col shadow-sm z-40 bg-white border-r border-slate-200"
+      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-slate-800 flex-col shadow-sm z-40 bg-white border-r border-slate-300"
     >
       <!-- Sidebar Header -->
       <div class="p-6 border-b border-slate-200">
         <div class="flex flex-col items-center text-center gap-4">
-          <div class="rounded-full p-4 bg-blue-50">
+          <div class="rounded-full p-4 bg-police-cream">
             <img src="../assets/pnplogo.png" alt="PNP Logo" class="w-20 h-20 object-contain" />
           </div>
           <div>
-            <h1 class="text-lg font-bold text-slate-800 uppercase tracking-wide">
+            <h1 class="text-lg font-bold text-police-dark uppercase tracking-wide">
               Admin<br />Dashboard
             </h1>
             <p class="text-xs mt-2 font-semibold text-slate-600">
@@ -44,11 +44,11 @@
         </router-link>
 
         <div
-          class="rounded-lg p-4 border-l-4 border-blue-600 bg-blue-50"
+          class="rounded-lg p-4 border-l-4 border-police-dark bg-police-cream"
         >
           <div class="flex items-center gap-3">
-            <div class="rounded-lg p-2 bg-blue-100">
-              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="rounded-lg p-2 bg-police-light">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -57,7 +57,7 @@
                 ></path>
               </svg>
             </div>
-            <span class="font-bold text-sm uppercase tracking-wider text-blue-600">Records</span>
+            <span class="font-bold text-sm uppercase tracking-wider text-police-dark">Records</span>
           </div>
         </div>
       </div>
@@ -86,12 +86,12 @@
       <div class="p-4 sm:p-6 lg:p-8 max-w-screen-2xl mx-auto">
         <!-- Page Header -->
         <div
-          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-sm bg-white border-l-4 border-blue-600"
+          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-sm bg-white border-l-4 border-police-dark"
         >
           <div class="flex items-center gap-3 sm:gap-4">
-            <div class="rounded-full p-2 sm:p-3 bg-blue-50">
+            <div class="rounded-full p-2 sm:p-3 bg-police-cream">
               <svg
-                class="w-6 h-6 sm:w-8 sm:h-8 text-blue-600"
+                class="w-6 h-6 sm:w-8 sm:h-8 text-police-dark"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -105,7 +105,7 @@
               </svg>
             </div>
             <div>
-              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-slate-800">
+              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-police-dark">
                 AAR Records
               </h1>
               <p class="text-xs sm:text-sm font-semibold text-slate-600">
@@ -123,7 +123,7 @@
               <button
                 @click="activeTab = 'with-attendance'"
                 :class="
-                  activeTab === 'with-attendance' ? 'text-white shadow-md bg-blue-600 border-blue-600' : 'bg-white border-2 border-slate-300 text-slate-700'
+                  activeTab === 'with-attendance' ? 'text-white shadow-md bg-police-dark border-police-dark' : 'bg-white border-2 border-slate-300 text-slate-700'
                 "
                 class="px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center justify-center gap-2 transition hover:opacity-90"
               >
@@ -138,7 +138,7 @@
                 Submitted
                 <span
                   class="px-2 py-0.5 rounded-full text-xs font-bold"
-                  :class="activeTab === 'with-attendance' ? 'bg-white text-blue-600' : 'bg-blue-50 text-blue-600'"
+                  :class="activeTab === 'with-attendance' ? 'bg-white text-police-dark' : 'bg-police-cream text-police-dark'"
                   >{{ filteredRecords.length }}</span
                 >
               </button>
@@ -554,7 +554,7 @@
             <!-- Officer Search -->
             <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm relative z-20">
               <label
-                class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-slate-800"
+                class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-police-dark"
               >
                 <svg
                   class="w-5 h-5 flex-shrink-0"
@@ -578,7 +578,7 @@
                   @blur="hideDropdown"
                   type="text"
                   placeholder="Type to search officer name..."
-                  class="w-full px-4 py-3 text-sm border-2 border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 transition font-medium text-slate-800"
+                  class="w-full px-4 py-3 text-sm border-2 border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-police-light/30 transition font-medium text-slate-800"
                   autocomplete="off"
                 />
 
@@ -591,9 +591,9 @@
                     v-for="user in filteredOfficers"
                     :key="user.id"
                     @mousedown.prevent="selectOfficer(user)"
-                    class="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm border-b last:border-b-0 transition font-medium text-gray-700"
+                    class="px-4 py-3 hover:bg-police-cream cursor-pointer text-sm border-b last:border-b-0 transition font-medium text-gray-700"
                     :class="
-                      selectedOfficer?.id === user.id ? 'font-bold bg-blue-100 text-blue-800' : ''
+                      selectedOfficer?.id === user.id ? 'font-bold bg-police-cream text-police-dark' : ''
                     "
                   >
                     {{ user.rank_fullname }}
@@ -637,7 +637,7 @@
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-sm md:text-base font-bold text-slate-800">{{ selectedOfficer.rank_fullname }}</h3>
+                    <h3 class="text-sm md:text-base font-bold text-police-dark">{{ selectedOfficer.rank_fullname }}</h3>
                     <p class="text-xs text-slate-600">AAR Submission History</p>
                   </div>
                 </div>
