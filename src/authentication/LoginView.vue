@@ -1,9 +1,16 @@
 <template>
-    <div class="h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 relative overflow-hidden">
+    <div class="h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+             style="background-image: url('/src/assets/police-background.jpg');">
+            <!-- Dark overlay for better readability -->
+            <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"></div>
+        </div>
+
         <!-- Animated background elements -->
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-700"></div>
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-700"></div>
         </div>
 
         <!-- Main container -->
