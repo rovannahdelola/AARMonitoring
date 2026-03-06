@@ -2,7 +2,7 @@
     <div class="h-screen flex items-center justify-center relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
-             style="background-image: url('/src/assets/police-background.jpg');">
+             style="background-image: url('/src/assets/landing.jpg');">
             <!-- Dark overlay for better readability -->
             <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"></div>
         </div>
