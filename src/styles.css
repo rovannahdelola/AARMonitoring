@@ -2,6 +2,11 @@
 @import 'tailwindcss/preflight' layer(base);
 @import 'tailwindcss/utilities' layer(utilities);
 
+/* Global Formal Font */
+*, *::before, *::after {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
 /* Police Color Palette */
 :root {
   --police-dark: #002147;
