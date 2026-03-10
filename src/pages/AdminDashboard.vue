@@ -1,20 +1,20 @@
 <template>
-  <div class="min-h-screen bg-police-cream">
+  <div class="min-h-screen bg-slate-50">
     <!-- Sidebar - Desktop Only -->
     <div
-      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-slate-800 flex-col shadow-sm z-40 bg-white border-r border-slate-300"
+      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-white flex-col shadow-2xl z-40 bg-police-dark border-r border-white/10"
     >
       <!-- Sidebar Header -->
-      <div class="p-6 border-b border-slate-200">
+      <div class="p-6 border-b border-white/10">
         <div class="flex flex-col items-center text-center gap-4">
-          <div class="rounded-full p-4 bg-police-cream">
-            <img src="../assets/pnplogo.png" alt="PNP Logo" class="w-20 h-20 object-contain" />
+          <div class="rounded-full p-4 bg-white/10">
+            <img src="../assets/pnplogo.png" alt="PNP Logo" class="w-20 h-20 object-contain opacity-90" />
           </div>
           <div>
-            <h1 class="text-lg font-bold text-police-dark uppercase tracking-wide">
+            <h1 class="text-lg font-bold text-white uppercase tracking-wide">
               Admin<br />Dashboard
             </h1>
-            <p class="text-xs mt-2 font-semibold text-slate-600">
+            <p class="text-xs mt-2 font-semibold text-blue-300">
               AAR Monitoring System
             </p>
           </div>
@@ -24,30 +24,30 @@
       <!-- Navigation Menu -->
       <div class="flex-1 p-5 space-y-3">
         <div
-          class="rounded-lg p-4 border-l-4 border-police-dark bg-police-cream"
+          class="rounded-lg p-4 border-l-4 border-blue-400 bg-white/10"
         >
           <div class="flex items-center gap-3">
-            <div class="rounded-lg p-2 bg-police-light">
+            <div class="rounded-lg p-2 bg-blue-500/30">
               <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
                 ></path>
               </svg>
             </div>
-            <span class="font-bold text-sm uppercase tracking-wider text-police-dark">Overview</span>
+            <span class="font-bold text-sm uppercase tracking-wider text-white">Overview</span>
           </div>
         </div>
 
         <router-link
           to="/records-view"
-          class="block p-4 hover:bg-slate-100 rounded-lg transition-all duration-200 cursor-pointer group"
+          class="block p-4 hover:bg-white/10 rounded-lg transition-all duration-200 cursor-pointer group"
         >
           <div class="flex items-center gap-3">
             <div
-              class="rounded-lg p-2 bg-slate-100 group-hover:bg-slate-200 transition"
+              class="rounded-lg p-2 bg-white/10 group-hover:bg-white/20 transition"
             >
               <svg
-                class="w-5 h-5 text-slate-600"
+                class="w-5 h-5 text-blue-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -60,7 +60,7 @@
                 ></path>
               </svg>
             </div>
-            <span class="text-sm font-semibold uppercase tracking-wider text-slate-600"
+            <span class="text-sm font-semibold uppercase tracking-wider text-blue-300"
               >Records</span
             >
           </div>
@@ -68,10 +68,10 @@
       </div>
 
       <!-- Logout Button -->
-      <div class="p-5 border-t border-slate-200 mt-auto">
+      <div class="p-5 border-t border-white/10 mt-auto">
         <button
           @click="showLogoutConfirm = true"
-          class="w-full text-white py-3.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 hover:bg-red-700 bg-red-600"
+          class="w-full text-white py-3.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -91,12 +91,12 @@
       <div class="p-4 sm:p-6 lg:p-8">
         <!-- Welcome Header -->
         <div
-          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-sm bg-white border-l-4 border-police-dark"
+          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-md bg-gradient-to-r from-slate-900 to-blue-900"
         >
           <div class="flex items-center gap-3 sm:gap-4">
-            <div class="rounded-full p-2 sm:p-3 bg-police-cream">
+            <div class="rounded-full p-2 sm:p-3 bg-white/10">
               <svg
-                class="w-6 h-6 sm:w-8 sm:h-8 text-police-dark"
+                class="w-6 h-6 sm:w-8 sm:h-8 text-blue-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -110,10 +110,10 @@
               </svg>
             </div>
             <div>
-              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-police-dark">
+              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-white">
                 Welcome Back, Administrator
               </h1>
-              <p class="text-xs sm:text-sm font-semibold text-slate-600">
+              <p class="text-xs sm:text-sm font-semibold text-blue-300">
                 Today's AAR submissions overview and statistics
               </p>
             </div>
@@ -311,7 +311,7 @@
           <div class="rounded-lg shadow-sm bg-white border border-slate-200">
             <div class="p-5 border-b border-slate-200">
               <div class="flex items-center gap-3">
-                <div class="rounded-lg p-2 bg-police-cream">
+                <div class="rounded-lg p-2 bg-blue-50">
                   <svg
                     class="w-5 h-5 text-police-dark"
                     fill="none"
@@ -353,7 +353,7 @@
 
               <!-- Total Records -->
               <div
-                class="p-4 rounded-lg flex items-center justify-between bg-police-cream border-2 border-slate-300"
+                class="p-4 rounded-lg flex items-center justify-between bg-slate-50 border border-slate-200"
               >
                 <div class="flex items-center gap-3">
                   <div class="rounded-lg p-2.5 bg-police-dark">
@@ -382,7 +382,7 @@
 
               <!-- System Status -->
               <div
-                class="p-4 rounded-lg bg-police-cream border-2 border-slate-300"
+                class="p-4 rounded-lg bg-slate-50 border border-slate-200"
               >
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-3">
@@ -432,7 +432,7 @@
       >
         <!-- Modal Header -->
         <div
-          class="relative px-8 pt-8 pb-6 bg-blue-600"
+          class="relative px-8 pt-8 pb-6 bg-gradient-to-br from-slate-900 to-blue-900"
         >
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-3">
