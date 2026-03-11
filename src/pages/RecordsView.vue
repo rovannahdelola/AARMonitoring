@@ -1,20 +1,28 @@
 <template>
-  <div class="min-h-screen bg-slate-50">
+  <div class="min-h-screen bg-slate-100">
     <!-- Sidebar - Desktop Only -->
     <div
-      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-white flex-col shadow-2xl z-40 bg-police-dark border-r border-white/10"
+      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-white flex-col shadow-2xl z-40 overflow-hidden"
+      style="background: linear-gradient(160deg, #001a3a 0%, #002147 50%, #003070 100%)"
     >
+      <!-- Geometric decorative circles (like LoginView) -->
+      <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500 rounded-full mix-blend-multiply filter blur-2xl opacity-15 pointer-events-none"></div>
+      <div class="absolute bottom-20 -left-10 w-32 h-32 bg-indigo-400 rounded-full mix-blend-multiply filter blur-2xl opacity-10 pointer-events-none"></div>
+      <!-- Diagonal accent strip -->
+      <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, transparent 60%)"></div>
+
       <!-- Sidebar Header -->
-      <div class="p-6 border-b border-white/10">
+      <div class="relative p-6 border-b border-white/10">
         <div class="flex flex-col items-center text-center gap-4">
-          <div class="rounded-full p-4 bg-white/10">
+          <div class="rounded-full p-4 ring-2 ring-white/20 bg-white/10 shadow-lg">
             <img src="../assets/pnplogo.png" alt="PNP Logo" class="w-20 h-20 object-contain opacity-90" />
           </div>
           <div>
             <h1 class="text-lg font-bold text-white uppercase tracking-wide">
               Admin<br />Dashboard
             </h1>
-            <p class="text-xs mt-2 font-semibold text-blue-300">
+            <div class="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-transparent mx-auto my-2"></div>
+            <p class="text-xs font-semibold text-blue-300">
               AAR Monitoring System
             </p>
           </div>
@@ -22,10 +30,11 @@
       </div>
 
       <!-- Navigation Menu -->
-      <div class="flex-1 p-5 space-y-3">
+      <div class="relative flex-1 p-5 space-y-2">
+        <p class="text-xs font-bold uppercase tracking-widest text-white/30 px-1 mb-3">Navigation</p>
         <router-link
           to="/admin-dashboard"
-          class="block p-4 hover:bg-white/10 rounded-lg transition-all duration-200 cursor-pointer group"
+          class="block p-4 hover:bg-white/10 rounded-xl transition-all duration-200 cursor-pointer group border border-transparent hover:border-white/10"
         >
           <div class="flex items-center gap-3">
             <div
@@ -37,17 +46,18 @@
                 ></path>
               </svg>
             </div>
-            <span class="text-sm font-semibold uppercase tracking-wider text-blue-300"
+            <span class="text-sm font-semibold uppercase tracking-wider text-blue-300 group-hover:text-white transition"
               >Overview</span
             >
           </div>
         </router-link>
 
         <div
-          class="rounded-lg p-4 border-l-4 border-blue-400 bg-white/10"
+          class="rounded-xl p-4 border-l-4 border-blue-400 shadow-lg"
+          style="background: rgba(255,255,255,0.12)"
         >
           <div class="flex items-center gap-3">
-            <div class="rounded-lg p-2 bg-blue-500/30">
+            <div class="rounded-lg p-2 bg-blue-500/40 shadow-inner">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
@@ -63,10 +73,10 @@
       </div>
 
       <!-- Logout Button -->
-      <div class="p-5 border-t border-white/10 mt-auto">
+      <div class="relative p-5 border-t border-white/10 mt-auto">
         <button
           @click="handleLogout"
-          class="w-full text-white py-3.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
+          class="w-full text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 shadow-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 hover:shadow-red-900/40"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -78,6 +88,7 @@
           </svg>
           Logout
         </button>
+        <p class="text-center text-xs text-white/20 mt-3">BCPO PS1 © 2026</p>
       </div>
     </div>
 
@@ -86,10 +97,17 @@
       <div class="p-4 sm:p-6 lg:p-8 max-w-screen-2xl mx-auto">
         <!-- Page Header -->
         <div
-          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-md bg-gradient-to-r from-slate-900 to-blue-900"
+          class="mb-6 lg:mb-8 rounded-2xl shadow-xl overflow-hidden relative"
+          style="background: linear-gradient(135deg, #001a3a 0%, #002147 50%, #004595 100%)"
         >
+          <!-- Geometric background blobs -->
+          <div class="absolute -top-8 -right-8 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none"></div>
+          <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse pointer-events-none" style="animation-delay:700ms"></div>
+          <!-- Diagonal accent -->
+          <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%)"></div>
+          <div class="relative p-5 sm:p-6 lg:p-8">
           <div class="flex items-center gap-3 sm:gap-4">
-            <div class="rounded-full p-2 sm:p-3 bg-white/10">
+            <div class="rounded-xl p-2.5 sm:p-3 ring-2 ring-white/20 bg-white/10 backdrop-blur-sm shadow-lg">
               <svg
                 class="w-6 h-6 sm:w-8 sm:h-8 text-blue-300"
                 fill="none"
@@ -108,106 +126,79 @@
               <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-white">
                 AAR Records
               </h1>
+              <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-transparent mb-1.5"></div>
               <p class="text-xs sm:text-sm font-semibold text-blue-300">
                 Filter and view AAR records by date
               </p>
             </div>
           </div>
+          </div>
         </div>
 
         <!-- Filter and Tabs Section -->
-        <div class="bg-white rounded-lg p-4 sm:p-5 lg:p-6 mb-4 sm:mb-6 shadow-sm border border-slate-200">
-          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+        <div class="bg-white rounded-2xl p-5 mb-4 sm:mb-6 shadow-md border border-slate-200">
+          <div class="flex flex-wrap items-center justify-between gap-3">
             <!-- Tab Buttons -->
-            <div class="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
+            <div class="flex flex-wrap gap-2">
               <button
                 @click="activeTab = 'with-attendance'"
                 :class="
-                  activeTab === 'with-attendance' ? 'text-white shadow-md bg-police-dark border-police-dark' : 'bg-white border-2 border-slate-300 text-slate-700'
+                  activeTab === 'with-attendance' ? 'text-white shadow-md bg-police-dark' : 'bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-100'
                 "
-                class="px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center justify-center gap-2 transition hover:opacity-90"
+                class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase flex items-center gap-2 transition-all duration-200"
               >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 Submitted
                 <span
                   class="px-2 py-0.5 rounded-full text-xs font-bold"
-                  :class="activeTab === 'with-attendance' ? 'bg-white text-police-dark' : 'bg-police-cream text-police-dark'"
+                  :class="activeTab === 'with-attendance' ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-700'"
                   >{{ filteredRecords.length }}</span
                 >
               </button>
               <button
                 @click="activeTab = 'without-attendance'"
                 :class="
-                  activeTab === 'without-attendance' ? 'text-white shadow-md bg-red-600 border-red-600' : 'bg-white border-2 border-slate-300 text-slate-700'
+                  activeTab === 'without-attendance' ? 'text-white shadow-md bg-red-600' : 'bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-100'
                 "
-                class="px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center justify-center gap-2 transition hover:opacity-90"
+                class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase flex items-center gap-2 transition-all duration-200"
               >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 Not Submitted
                 <span
                   class="px-2 py-0.5 rounded-full text-xs font-bold"
-                  :class="activeTab === 'without-attendance' ? 'bg-white text-red-600' : 'bg-red-50 text-red-600'"
+                  :class="activeTab === 'without-attendance' ? 'bg-white/20 text-white' : 'bg-red-50 text-red-600'"
                   >{{ officersWithoutAttendance.length }}</span
                 >
               </button>
               <button
                 @click="activeTab = 'history'"
                 :class="
-                  activeTab === 'history' ? 'text-white shadow-md bg-emerald-600 border-emerald-600' : 'bg-white border-2 border-slate-300 text-slate-700'
+                  activeTab === 'history' ? 'text-white shadow-md bg-emerald-600' : 'bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-100'
                 "
-                class="px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center justify-center gap-2 transition hover:opacity-90"
+                class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase flex items-center gap-2 transition-all duration-200"
               >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 History
                 <span
                   class="px-2 py-0.5 rounded-full text-xs font-bold"
-                  :class="activeTab === 'history' ? 'bg-white text-emerald-600' : 'bg-emerald-50 text-emerald-600'"
+                  :class="activeTab === 'history' ? 'bg-white/20 text-white' : 'bg-emerald-50 text-emerald-600'"
                   >{{ aarHistory.length }}</span
                 >
               </button>
             </div>
 
             <!-- Date Filter -->
-            <div
-              class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full lg:w-auto"
-            >
-              <label
-                class="text-xs sm:text-sm font-bold uppercase flex items-center gap-2 text-slate-800"
-              >
+            <div class="flex flex-wrap items-center gap-2">
+              <label class="text-sm font-bold uppercase flex items-center gap-2 text-slate-800">
                 <div class="rounded-lg p-1.5 bg-blue-50">
-                  <svg
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    ></path>
+                  <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                   </svg>
                 </div>
                 Select Date
@@ -215,20 +206,15 @@
               <input
                 v-model="selectedDate"
                 type="date"
-                class="px-3 sm:px-4 py-2.5 border-2 border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 text-xs sm:text-sm font-medium w-full sm:w-auto text-slate-700"
+                class="px-4 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 text-sm font-medium text-slate-700 bg-slate-50"
                 @change="filterRecords"
               />
               <button
                 @click="resetFilters"
-                class="text-white px-3 sm:px-4 py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:bg-slate-700 flex items-center justify-center gap-2 transition bg-slate-600"
+                class="text-white px-4 py-2.5 rounded-xl font-bold text-sm uppercase flex items-center gap-2 transition bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
                 Clear
               </button>
@@ -240,11 +226,11 @@
         <!-- Submitted Tab -->
         <div
           v-if="activeTab === 'with-attendance'"
-          class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200"
+          class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200"
         >
-          <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-200 bg-slate-50">
+          <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-200 bg-gradient-to-r from-slate-800 to-blue-900">
             <h2
-              class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3 text-slate-800"
+              class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3 text-white"
             >
               <svg
                 class="w-4 h-4 sm:w-5 sm:h-5"
@@ -261,13 +247,13 @@
               </svg>
               Submitted Reports
             </h2>
-            <p class="text-xs sm:text-sm mt-1 text-slate-600">
+            <p class="text-xs sm:text-sm mt-1 text-blue-200">
               Showing {{ filteredRecords.length }} records
             </p>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full min-w-[720px] sm:min-w-[840px]">
-              <thead class="text-white bg-slate-700">
+              <thead class="text-white" style="background: linear-gradient(90deg, #002147 0%, #004595 100%)">
                 <tr>
                   <th
                     class="px-3 sm:px-4 py-2.5 sm:py-3 text-left text-xs sm:text-sm font-bold uppercase"
@@ -376,9 +362,11 @@
         <!-- Not Submitted Tab -->
         <div
           v-if="activeTab === 'without-attendance'"
-          class="bg-white rounded p-4 sm:p-5 lg:p-6 shadow-sm"
+          class="bg-white rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md border border-slate-200"
         >
-          <div class="mb-4 sm:mb-5 lg:mb-6 rounded p-4 sm:p-5 lg:p-6 text-white bg-red-500">
+          <div class="mb-4 sm:mb-5 lg:mb-6 rounded-xl p-4 sm:p-5 lg:p-6 text-white overflow-hidden relative" style="background: linear-gradient(135deg, #b91c1c 0%, #ef4444 100%)">
+            <div class="absolute -top-6 -right-6 w-32 h-32 bg-white rounded-full opacity-5 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-10 w-20 h-20 bg-white rounded-full opacity-5 pointer-events-none"></div>
             <div
               class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4"
             >
@@ -524,11 +512,11 @@
         <!-- History Tab -->
         <div
           v-if="activeTab === 'history'"
-          class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200"
+          class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200"
         >
-          <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-200 bg-slate-50">
+          <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-200 bg-gradient-to-r from-emerald-800 to-emerald-600">
             <h2
-              class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3 text-slate-800"
+              class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3 text-white"
             >
               <svg
                 class="w-4 h-4 sm:w-5 sm:h-5"
@@ -545,7 +533,7 @@
               </svg>
               Officer AAR History
             </h2>
-            <p class="text-xs sm:text-sm mt-1 text-slate-600">
+            <p class="text-xs sm:text-sm mt-1 text-emerald-100">
               Search for an officer to view their AAR submission history
             </p>
           </div>
@@ -921,27 +909,25 @@
     <!-- Logout Confirmation Modal -->
     <div
       v-if="showLogoutConfirm"
-      class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in"
-      style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px)"
+      class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in bg-black/20 backdrop-blur-sm"
     >
       <!-- Backdrop overlay -->
-      <div @click="showLogoutConfirm = false" class="absolute inset-0 bg-opacity-40"></div>
+      <div @click="showLogoutConfirm = false" class="absolute inset-0"></div>
 
       <!-- Modal dialog -->
       <div
         @click.stop
-        class="relative bg-white rounded-2xl max-w-md w-full mx-3 sm:mx-4 transform transition-all animate-scale-in shadow-2xl overflow-hidden"
+        class="relative bg-white rounded-2xl max-w-md w-full mx-4 transform transition-all animate-scale-in shadow-2xl overflow-hidden"
       >
-        <!-- Modal Header with gradient -->
+        <!-- Modal Header -->
         <div
-          class="relative px-6 sm:px-8 pt-6 sm:pt-8 pb-5 sm:pb-6"
-          style="background: linear-gradient(135deg, #002147 0%, #004595 100%)"
+          class="relative px-8 pt-8 pb-6 bg-gradient-to-br from-slate-900 to-blue-900"
         >
-          <div class="flex items-center justify-between mb-3 sm:mb-4">
-            <div class="flex items-center gap-2 sm:gap-3">
-              <div class="rounded-lg p-2 sm:p-2.5" style="background: rgba(255, 255, 255, 0.15)">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="rounded-lg p-2.5 bg-white/20">
                 <svg
-                  class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                  class="w-6 h-6 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -954,7 +940,7 @@
                   ></path>
                 </svg>
               </div>
-              <h3 class="text-lg sm:text-xl font-bold text-white uppercase tracking-wide">
+              <h3 class="text-xl font-bold text-white uppercase tracking-wide">
                 Logout Confirmation
               </h3>
             </div>
@@ -962,13 +948,12 @@
         </div>
 
         <!-- Modal Body -->
-        <div class="px-6 sm:px-8 py-5 sm:py-6">
-          <div class="flex items-start gap-3 sm:gap-4 mb-5 sm:mb-6">
+        <div class="px-8 py-6">
+          <div class="flex items-start gap-4 mb-6">
             <div class="flex-shrink-0">
-              <div class="rounded-full p-2 sm:p-3" style="background: #fef2f2">
+              <div class="rounded-full p-3 bg-red-50">
                 <svg
-                  class="h-6 w-6 sm:h-7 sm:w-7"
-                  style="color: #dc2626"
+                  class="h-7 w-7 text-red-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -983,10 +968,10 @@
               </div>
             </div>
             <div class="flex-1">
-              <h4 class="text-sm sm:text-base font-bold mb-2" style="color: #002147">
+              <h4 class="text-base font-bold mb-2 text-slate-800">
                 Are you sure you want to logout?
               </h4>
-              <p class="text-xs sm:text-sm leading-relaxed" style="color: #6b7280">
+              <p class="text-sm leading-relaxed text-slate-600">
                 You will be signed out from the admin dashboard and redirected to the login page.
               </p>
             </div>
@@ -994,42 +979,30 @@
 
           <!-- Important Info Box -->
           <div
-            class="rounded-lg p-3 sm:p-4 mb-5 sm:mb-6 border-l-4"
-            style="background: #f0f9ff; border-left-color: #002147"
+            class="rounded-lg p-4 mb-6 border-l-4 border-blue-600 bg-blue-50"
           >
             <div class="flex items-center gap-2">
-              <svg
-                class="w-3 h-3 sm:w-4 sm:h-4"
-                style="color: #002147"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
+              <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   fill-rule="evenodd"
                   d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                   clip-rule="evenodd"
                 ></path>
               </svg>
-              <p class="text-xs font-semibold" style="color: #002147">
+              <p class="text-xs font-semibold text-blue-800">
                 You can login again anytime using your credentials
               </p>
             </div>
           </div>
 
           <!-- Action Buttons -->
-          <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+          <div class="flex gap-3">
             <button
               @click="showLogoutConfirm = false"
-              class="flex-1 font-bold py-3 sm:py-3.5 px-4 sm:px-5 rounded-lg text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 hover:shadow-lg border-2"
-              style="background: #ffffff; color: #002147; border-color: #e5e7eb"
+              class="flex-1 font-bold py-3.5 px-5 rounded-lg text-sm uppercase tracking-wider transition-all duration-200 hover:shadow-lg border-2 border-slate-300 bg-white text-slate-800"
             >
               <div class="flex items-center justify-center gap-2">
-                <svg
-                  class="w-3 h-3 sm:w-4 sm:h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -1042,16 +1015,10 @@
             </button>
             <button
               @click="handleLogout"
-              class="flex-1 text-white font-bold py-3 sm:py-3.5 px-4 sm:px-5 rounded-lg text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 hover:shadow-lg"
-              style="background: #dc2626"
+              class="flex-1 text-white font-bold py-3.5 px-5 rounded-lg text-sm uppercase tracking-wider transition-all duration-200 hover:shadow-lg hover:bg-red-700 bg-red-600"
             >
               <div class="flex items-center justify-center gap-2">
-                <svg
-                  class="w-3 h-3 sm:w-4 sm:h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"

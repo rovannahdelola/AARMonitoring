@@ -1,20 +1,28 @@
 <template>
-  <div class="min-h-screen bg-slate-50">
+  <div class="min-h-screen bg-slate-100">
     <!-- Sidebar - Desktop Only -->
     <div
-      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-white flex-col shadow-2xl z-40 bg-police-dark border-r border-white/10"
+      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-white flex-col shadow-2xl z-40 overflow-hidden"
+      style="background: linear-gradient(160deg, #001a3a 0%, #002147 50%, #003070 100%)"
     >
+      <!-- Geometric decorative circles (like LoginView) -->
+      <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500 rounded-full mix-blend-multiply filter blur-2xl opacity-15 pointer-events-none"></div>
+      <div class="absolute bottom-20 -left-10 w-32 h-32 bg-indigo-400 rounded-full mix-blend-multiply filter blur-2xl opacity-10 pointer-events-none"></div>
+      <!-- Diagonal accent strip -->
+      <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, transparent 60%)"></div>
+
       <!-- Sidebar Header -->
-      <div class="p-6 border-b border-white/10">
+      <div class="relative p-6 border-b border-white/10">
         <div class="flex flex-col items-center text-center gap-4">
-          <div class="rounded-full p-4 bg-white/10">
+          <div class="rounded-full p-4 ring-2 ring-white/20 bg-white/10 shadow-lg">
             <img src="../assets/pnplogo.png" alt="PNP Logo" class="w-20 h-20 object-contain opacity-90" />
           </div>
           <div>
             <h1 class="text-lg font-bold text-white uppercase tracking-wide">
               Admin<br />Dashboard
             </h1>
-            <p class="text-xs mt-2 font-semibold text-blue-300">
+            <div class="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-transparent mx-auto my-2"></div>
+            <p class="text-xs font-semibold text-blue-300">
               AAR Monitoring System
             </p>
           </div>
@@ -22,12 +30,14 @@
       </div>
 
       <!-- Navigation Menu -->
-      <div class="flex-1 p-5 space-y-3">
+      <div class="relative flex-1 p-5 space-y-2">
+        <p class="text-xs font-bold uppercase tracking-widest text-white/30 px-1 mb-3">Navigation</p>
         <div
-          class="rounded-lg p-4 border-l-4 border-blue-400 bg-white/10"
+          class="rounded-xl p-4 border-l-4 border-blue-400 shadow-lg"
+          style="background: rgba(255,255,255,0.12)"
         >
           <div class="flex items-center gap-3">
-            <div class="rounded-lg p-2 bg-blue-500/30">
+            <div class="rounded-lg p-2 bg-blue-500/40 shadow-inner">
               <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
@@ -40,7 +50,7 @@
 
         <router-link
           to="/records-view"
-          class="block p-4 hover:bg-white/10 rounded-lg transition-all duration-200 cursor-pointer group"
+          class="block p-4 hover:bg-white/10 rounded-xl transition-all duration-200 cursor-pointer group border border-transparent hover:border-white/10"
         >
           <div class="flex items-center gap-3">
             <div
@@ -60,7 +70,7 @@
                 ></path>
               </svg>
             </div>
-            <span class="text-sm font-semibold uppercase tracking-wider text-blue-300"
+            <span class="text-sm font-semibold uppercase tracking-wider text-blue-300 group-hover:text-white transition"
               >Records</span
             >
           </div>
@@ -68,10 +78,10 @@
       </div>
 
       <!-- Logout Button -->
-      <div class="p-5 border-t border-white/10 mt-auto">
+      <div class="relative p-5 border-t border-white/10 mt-auto">
         <button
           @click="showLogoutConfirm = true"
-          class="w-full text-white py-3.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
+          class="w-full text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 shadow-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 hover:shadow-red-900/40"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -83,6 +93,7 @@
           </svg>
           Logout
         </button>
+        <p class="text-center text-xs text-white/20 mt-3">BCPO PS1 © 2026</p>
       </div>
     </div>
 
@@ -91,10 +102,17 @@
       <div class="p-4 sm:p-6 lg:p-8">
         <!-- Welcome Header -->
         <div
-          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-md bg-gradient-to-r from-slate-900 to-blue-900"
+          class="mb-6 lg:mb-8 rounded-2xl shadow-xl overflow-hidden relative"
+          style="background: linear-gradient(135deg, #001a3a 0%, #002147 50%, #004595 100%)"
         >
+          <!-- Geometric background blobs -->
+          <div class="absolute -top-8 -right-8 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none"></div>
+          <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse pointer-events-none" style="animation-delay:700ms"></div>
+          <!-- Diagonal accent -->
+          <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%)"></div>
+          <div class="relative p-5 sm:p-6 lg:p-8">
           <div class="flex items-center gap-3 sm:gap-4">
-            <div class="rounded-full p-2 sm:p-3 bg-white/10">
+            <div class="rounded-xl p-2.5 sm:p-3 ring-2 ring-white/20 bg-white/10 backdrop-blur-sm shadow-lg">
               <svg
                 class="w-6 h-6 sm:w-8 sm:h-8 text-blue-300"
                 fill="none"
@@ -113,30 +131,34 @@
               <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-white">
                 Welcome Back, Administrator
               </h1>
+              <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-transparent mb-1.5"></div>
               <p class="text-xs sm:text-sm font-semibold text-blue-300">
                 Today's AAR submissions overview and statistics
               </p>
             </div>
           </div>
+          </div>
         </div>
 
         <!-- Today's Statistics -->
         <div class="mb-6">
-          <div class="flex items-center gap-2 mb-5">
-            <div class="h-1 w-1 rounded-full bg-police-light"></div>
-            <p class="text-sm font-bold uppercase tracking-wider text-police-dark">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="h-4 w-1 rounded-full bg-gradient-to-b from-blue-500 to-blue-800"></div>
+            <p class="text-sm font-bold uppercase tracking-wider text-slate-700">
               Today's Statistics
             </p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             <!-- Today's Attendance -->
             <div
-              class="rounded-lg p-4 sm:p-5 lg:p-6 border-l-4 border-emerald-500 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer group bg-white"
+              class="rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group overflow-hidden relative bg-white border border-emerald-100"
             >
-              <div class="flex items-center justify-between">
+              <div class="absolute -top-4 -right-4 w-24 h-24 bg-emerald-400 rounded-full opacity-10 pointer-events-none"></div>
+              <div class="absolute bottom-2 right-12 w-12 h-12 bg-emerald-300 rounded-full opacity-10 pointer-events-none"></div>
+              <div class="flex items-center justify-between relative">
                 <div class="flex-1">
                   <p
-                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-slate-600"
+                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-emerald-700"
                   >
                     AAR Submissions
                   </p>
@@ -148,10 +170,10 @@
                   </p>
                 </div>
                 <div
-                  class="rounded-xl p-2 sm:p-3 group-hover:scale-110 transition-transform duration-300 bg-emerald-50"
+                  class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br from-emerald-500 to-emerald-600"
                 >
                   <svg
-                    class="w-8 h-8 sm:w-10 sm:h-10 text-emerald-600"
+                    class="w-7 h-7 sm:w-9 sm:h-9 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -169,12 +191,14 @@
 
             <!-- Absent Officers -->
             <div
-              class="rounded-lg p-4 sm:p-5 lg:p-6 border-l-4 border-red-500 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer group bg-white"
+              class="rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group overflow-hidden relative bg-white border border-red-100"
             >
-              <div class="flex items-center justify-between">
+              <div class="absolute -top-4 -right-4 w-24 h-24 bg-red-400 rounded-full opacity-10 pointer-events-none"></div>
+              <div class="absolute bottom-2 right-12 w-12 h-12 bg-red-300 rounded-full opacity-10 pointer-events-none"></div>
+              <div class="flex items-center justify-between relative">
                 <div class="flex-1">
                   <p
-                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-slate-600"
+                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-red-700"
                   >
                     NO AAR
                   </p>
@@ -183,9 +207,9 @@
                   </p>
                   <p class="text-xs sm:text-sm font-semibold text-slate-500">Officers</p>
                 </div>
-                <div class="rounded-xl p-2 sm:p-3 bg-red-50">
+                <div class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br from-red-500 to-red-600">
                   <svg
-                    class="w-8 h-8 sm:w-10 sm:h-10 text-red-600"
+                    class="w-7 h-7 sm:w-9 sm:h-9 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -206,7 +230,7 @@
         <!-- Recent Activity & Absent Officers Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
           <!-- Absent Officers Today -->
-          <div class="rounded-lg shadow-sm bg-white border border-slate-200">
+          <div class="rounded-2xl shadow-md bg-white border border-slate-200 overflow-hidden">
             <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-200">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2 sm:gap-3">
@@ -308,7 +332,7 @@
           </div>
 
           <!-- Quick Stats & Summary -->
-          <div class="rounded-lg shadow-sm bg-white border border-slate-200">
+          <div class="rounded-2xl shadow-md bg-white border border-slate-200 overflow-hidden">
             <div class="p-5 border-b border-slate-200">
               <div class="flex items-center gap-3">
                 <div class="rounded-lg p-2 bg-blue-50">
