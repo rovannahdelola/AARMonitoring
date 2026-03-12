@@ -1,5 +1,40 @@
 <template>
-  <div class="min-h-screen bg-slate-100">
+  <div class="min-h-screen relative overflow-x-hidden" style="background: linear-gradient(145deg, #eef2ff 0%, #e8edf8 35%, #f0f4ff 70%, #e9f0fb 100%)">
+    <!-- Geometric background decorations (inspired by LoginView) -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <!-- Animated blurred circles like LoginView -->
+      <div class="absolute -top-40 -right-32 w-[28rem] h-[28rem] bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.10] animate-pulse"></div>
+      <div class="absolute -bottom-40 -left-32 w-[28rem] h-[28rem] bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.09] animate-pulse" style="animation-delay:700ms"></div>
+      <div class="absolute top-1/2 -translate-y-1/2 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.07] animate-pulse" style="animation-delay:1400ms"></div>
+      <!-- Diagonal accent strip -->
+      <div class="absolute inset-y-0 right-0 w-2/5 opacity-[0.04]" style="background: linear-gradient(to bottom left, #3b82f6 0%, transparent 70%); transform: skewX(-12deg); transform-origin: top right;"></div>
+      <!-- SVG geometric shapes - top right -->
+      <svg class="absolute top-0 right-0 w-[500px] opacity-[0.05]" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="250,15 485,400 15,400" stroke="#1e3a8a" stroke-width="1.5" fill="none"/>
+        <polygon points="250,65 435,375 65,375" stroke="#1e3a8a" stroke-width="1" fill="none"/>
+        <circle cx="250" cy="265" r="155" stroke="#1e3a8a" stroke-width="1" fill="none"/>
+        <circle cx="250" cy="265" r="90" stroke="#1e3a8a" stroke-width="0.8" fill="none"/>
+        <line x1="0" y1="0" x2="500" y2="500" stroke="#3b82f6" stroke-width="0.6"/>
+        <line x1="500" y1="0" x2="0" y2="500" stroke="#3b82f6" stroke-width="0.6"/>
+      </svg>
+      <!-- SVG geometric shapes - bottom left -->
+      <svg class="absolute bottom-0 left-0 w-[380px] opacity-[0.05]" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40" y="40" width="300" height="300" stroke="#1e3a8a" stroke-width="1.5" fill="none" transform="rotate(12 190 190)"/>
+        <rect x="85" y="85" width="210" height="210" stroke="#1e3a8a" stroke-width="1" fill="none" transform="rotate(28 190 190)"/>
+        <circle cx="190" cy="190" r="130" stroke="#1e3a8a" stroke-width="1" fill="none"/>
+        <circle cx="190" cy="190" r="60" stroke="#1e3a8a" stroke-width="0.8" fill="none"/>
+      </svg>
+      <!-- Dot grid overlay -->
+      <svg class="absolute inset-0 w-full h-full opacity-[0.07]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="records-dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1.5" fill="#94a3b8"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#records-dots)"/>
+      </svg>
+    </div>
+
     <!-- Sidebar - Desktop Only -->
     <div
       class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-white flex-col shadow-2xl z-40 overflow-hidden"
@@ -93,7 +128,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="lg:ml-64 min-h-screen overflow-auto pb-20 lg:pb-0">
+    <div class="lg:ml-64 min-h-screen overflow-auto pb-20 lg:pb-0 relative z-10">
       <div class="p-4 sm:p-6 lg:p-8 max-w-screen-2xl mx-auto">
         <!-- Page Header -->
         <div
