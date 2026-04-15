@@ -93,7 +93,7 @@
             </div>
             <div class="rounded-2xl p-2 md:p-3 bg-[rgba(16,185,129,0.15)] flex-shrink-0">
               <svg
-                class="w-5 h-5 md:w-7 md:h-7 text-[#10b981]"
+                class="w-5 h-5 md:w-7 md:h-7 text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -126,7 +126,7 @@
             </div>
             <div class="rounded-2xl p-2 md:p-3 bg-[rgba(251,191,36,0.18)] flex-shrink-0">
               <svg
-                class="w-5 h-5 md:w-7 md:h-7 text-[#fbbf24]"
+                class="w-5 h-5 md:w-7 md:h-7 text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -323,7 +323,9 @@
                 ></path>
               </svg>
               <div>
-                <h3 class="font-bold text-sm md:text-base mb-2 text-police-dark">Important Notice</h3>
+                <h3 class="font-bold text-sm md:text-base mb-2 text-police-dark">
+                  Important Notice
+                </h3>
                 <p class="text-xs md:text-sm text-slate-700">
                   Ensure all information is accurate before submission. Screenshots must be clear
                   and readable.
@@ -333,9 +335,7 @@
           </div>
 
           <!-- System Information (hidden on mobile) -->
-          <div
-            class="hidden lg:block bg-white rounded-lg p-4 shadow-sm border border-slate-200"
-          >
+          <div class="hidden lg:block bg-white rounded-lg p-4 shadow-sm border border-slate-200">
             <h3 class="font-bold text-sm md:text-base mb-3 text-police-dark">System Information</h3>
             <div class="space-y-2">
               <div class="flex justify-between text-xs md:text-sm">
@@ -376,9 +376,7 @@
                 </svg>
               </div>
               <div>
-                <p class="text-sm md:text-base font-bold text-police-dark">
-                  AAR Submission Form
-                </p>
+                <p class="text-sm md:text-base font-bold text-police-dark">AAR Submission Form</p>
                 <p class="text-xs text-slate-600">Complete all required fields below</p>
               </div>
             </div>
@@ -401,9 +399,7 @@
             </div>
 
             <!-- Searchable User Selection -->
-            <div
-              class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm relative z-20"
-            >
+            <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm relative z-20">
               <label
                 class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-slate-800"
               >
@@ -525,7 +521,9 @@
                     <p class="text-xs text-slate-600">Previous submissions for this officer</p>
                   </div>
                 </div>
-                <span class="text-xs font-bold px-3 py-1 rounded-full bg-police-cream text-police-dark">
+                <span
+                  class="text-xs font-bold px-3 py-1 rounded-full bg-police-cream text-police-dark"
+                >
                   {{ aarHistory.length }} {{ aarHistory.length === 1 ? 'record' : 'records' }}
                 </span>
               </div>
@@ -576,7 +574,9 @@
                   </svg>
                 </div>
                 <p class="text-sm font-semibold text-slate-700">No AAR records found</p>
-                <p class="text-xs text-slate-500 mt-1">This officer hasn't submitted any reports yet</p>
+                <p class="text-xs text-slate-500 mt-1">
+                  This officer hasn't submitted any reports yet
+                </p>
               </div>
 
               <!-- History Records -->
@@ -604,14 +604,18 @@
                         </svg>
                       </div>
                       <span class="text-xs font-bold text-slate-800">
-                        {{ new Date(record.date).toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
-                        }) }}
+                        {{
+                          new Date(record.date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })
+                        }}
                       </span>
                     </div>
-                    <span class="text-xs font-semibold px-2 py-1 rounded-full bg-emerald-100 text-emerald-700">
+                    <span
+                      class="text-xs font-semibold px-2 py-1 rounded-full bg-emerald-100 text-emerald-700"
+                    >
                       Submitted
                     </span>
                   </div>
@@ -1423,7 +1427,7 @@ const fetchAARHistory = async (userId) => {
   }
 
   isLoadingHistory.value = true
-  
+
   try {
     const { data, error } = await supabase
       .from('aar_report')
