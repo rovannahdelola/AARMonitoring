@@ -1340,8 +1340,10 @@ const currentDate = ref('')
 const currentTime = ref('')
 
 const isFormValid = computed(() => {
-  const hasName = (selectedUserId.value !== null && selectedUserId.value !== '') || (searchQuery.value && searchQuery.value.trim() !== '')
-  
+  const hasName =
+    (selectedUserId.value !== null && selectedUserId.value !== '') ||
+    (searchQuery.value && searchQuery.value.trim() !== '')
+
   return (
     hasName &&
     formData.value.description.trim() !== '' &&
