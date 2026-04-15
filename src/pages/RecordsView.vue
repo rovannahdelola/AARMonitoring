@@ -1,91 +1,25 @@
 <template>
-  <div class="min-h-screen bg-[#f3f1ee]">
-    <!-- Sidebar - Desktop Only -->
+  <div
+    class="min-h-screen relative overflow-hidden"
+    style="background: radial-gradient(circle at 20% 20%, #87ceeb 0%, #b0e0e6 45%, #add8e6 100%)"
+  >
     <div
-      class="hidden lg:flex fixed left-0 top-0 h-screen w-64 text-white flex-col shadow-2xl z-40 bg-[linear-gradient(180deg,_#001a3a_0%,_#002147_50%,_#00295a_100%)]"
-    >
-      <!-- Sidebar Header -->
-      <div class="p-6 border-b border-white/10">
-        <div class="flex flex-col items-center text-center gap-4">
-          <div class="rounded-full p-4" style="background: #f3f1ee">
-            <img src="../assets/pnplogo.png" alt="PNP Logo" class="w-20 h-20 object-contain" />
-          </div>
-          <div>
-            <h1 class="text-lg font-bold text-white uppercase tracking-wide">
-              Admin<br />Dashboard
-            </h1>
-            <p class="text-xs mt-2 font-semibold" style="color: #f3f1ee">
-              Police Attendance System
-            </p>
-          </div>
-        </div>
-      </div>
+      class="absolute inset-0 opacity-20 pointer-events-none"
+      style="
+        background: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.4) 0%,
+          rgba(135, 206, 235, 0.2) 45%,
+          rgba(255, 255, 255, 0.15) 100%
+        );
+      "
+    ></div>
 
-      <!-- Navigation Menu -->
-      <div class="flex-1 p-5 space-y-3">
-        <router-link
-          to="/admin-dashboard"
-          class="block p-4 hover:bg-white/10 rounded-lg transition-all duration-200 cursor-pointer group"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="rounded-lg p-2 group-hover:bg-white/10 transition"
-              style="background: rgba(255, 255, 255, 0.05)"
-            >
-              <svg class="w-5 h-5" style="color: #f3f1ee" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
-                ></path>
-              </svg>
-            </div>
-            <span class="text-sm font-semibold uppercase tracking-wider" style="color: #f3f1ee"
-              >Overview</span
-            >
-          </div>
-        </router-link>
-
-        <div
-          class="rounded-lg p-4 border-l-4 shadow-lg"
-          style="background: #004595; border-left-color: #ffffff"
-        >
-          <div class="flex items-center gap-3">
-            <div class="rounded-lg p-2" style="background: rgba(255, 255, 255, 0.1)">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                ></path>
-              </svg>
-            </div>
-            <span class="font-bold text-sm uppercase tracking-wider">Records</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Logout Button -->
-      <div class="p-5 border-t border-white/10 mt-auto">
-        <button
-          @click="handleLogout"
-          class="w-full text-white py-3.5 rounded-md text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 hover:opacity-90"
-          style="background: #dc2626"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-            ></path>
-          </svg>
-          Logout
-        </button>
-      </div>
-    </div>
+    <!-- Navigation Component -->
+    <NavigationPage sidebarTitle="Admin Dashboard" />
 
     <!-- Main Content -->
-    <div class="lg:ml-64 min-h-screen overflow-auto pb-20 lg:pb-0">
+    <div class="relative lg:ml-64 min-h-screen overflow-auto pb-20 lg:pb-0">
       <div class="p-4 sm:p-6 lg:p-8 max-w-screen-2xl mx-auto">
         <!-- Page Header -->
         <div
@@ -648,254 +582,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Logout Confirmation Modal -->
-    <div
-      v-if="showLogoutConfirm"
-      class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in"
-      style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px)"
-    >
-      <!-- Backdrop overlay -->
-      <div @click="showLogoutConfirm = false" class="absolute inset-0 bg-opacity-40"></div>
-
-      <!-- Modal dialog -->
-      <div
-        @click.stop
-        class="relative bg-white rounded-2xl max-w-md w-full mx-3 sm:mx-4 transform transition-all animate-scale-in shadow-2xl overflow-hidden"
-      >
-        <!-- Modal Header with gradient -->
-        <div
-          class="relative px-6 sm:px-8 pt-6 sm:pt-8 pb-5 sm:pb-6"
-          style="background: linear-gradient(135deg, #002147 0%, #004595 100%)"
-        >
-          <div class="flex items-center justify-between mb-3 sm:mb-4">
-            <div class="flex items-center gap-2 sm:gap-3">
-              <div class="rounded-lg p-2 sm:p-2.5" style="background: rgba(255, 255, 255, 0.15)">
-                <svg
-                  class="w-5 h-5 sm:w-6 sm:h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                  ></path>
-                </svg>
-              </div>
-              <h3 class="text-lg sm:text-xl font-bold text-white uppercase tracking-wide">
-                Logout Confirmation
-              </h3>
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal Body -->
-        <div class="px-6 sm:px-8 py-5 sm:py-6">
-          <div class="flex items-start gap-3 sm:gap-4 mb-5 sm:mb-6">
-            <div class="flex-shrink-0">
-              <div class="rounded-full p-2 sm:p-3" style="background: #fef2f2">
-                <svg
-                  class="h-6 w-6 sm:h-7 sm:w-7"
-                  style="color: #dc2626"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-            <div class="flex-1">
-              <h4 class="text-sm sm:text-base font-bold mb-2" style="color: #002147">
-                Are you sure you want to logout?
-              </h4>
-              <p class="text-xs sm:text-sm leading-relaxed" style="color: #6b7280">
-                You will be signed out from the admin dashboard and redirected to the login page.
-              </p>
-            </div>
-          </div>
-
-          <!-- Important Info Box -->
-          <div
-            class="rounded-lg p-3 sm:p-4 mb-5 sm:mb-6 border-l-4"
-            style="background: #f0f9ff; border-left-color: #002147"
-          >
-            <div class="flex items-center gap-2">
-              <svg
-                class="w-3 h-3 sm:w-4 sm:h-4"
-                style="color: #002147"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              <p class="text-xs font-semibold" style="color: #002147">
-                You can login again anytime using your credentials
-              </p>
-            </div>
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
-            <button
-              @click="showLogoutConfirm = false"
-              class="flex-1 font-bold py-3 sm:py-3.5 px-4 sm:px-5 rounded-lg text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 hover:shadow-lg border-2"
-              style="background: #ffffff; color: #002147; border-color: #e5e7eb"
-            >
-              <div class="flex items-center justify-center gap-2">
-                <svg
-                  class="w-3 h-3 sm:w-4 sm:h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
-                </svg>
-                Cancel
-              </div>
-            </button>
-            <button
-              @click="handleLogout"
-              class="flex-1 text-white font-bold py-3 sm:py-3.5 px-4 sm:px-5 rounded-lg text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 hover:shadow-lg"
-              style="background: #dc2626"
-            >
-              <div class="flex items-center justify-center gap-2">
-                <svg
-                  class="w-3 h-3 sm:w-4 sm:h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                  ></path>
-                </svg>
-                Logout
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile Bottom Navigation -->
-    <nav
-      class="lg:hidden fixed bottom-0 left-0 right-0 z-50"
-      style="box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08)"
-    >
-      <!-- Top Border Gradient -->
-      <div
-        class="h-1"
-        style="background: linear-gradient(90deg, #002147 0%, #004595 50%, #002147 100%)"
-      ></div>
-
-      <div class="grid grid-cols-4 h-16 sm:h-18" style="background: #ffffff">
-        <!-- Overview -->
-        <router-link
-          to="/admin-dashboard"
-          class="relative flex flex-col items-center justify-center overflow-hidden border-t-4 border-transparent active:scale-95 transition-all duration-300"
-        >
-          <div
-            class="absolute inset-0 bg-gray-50 opacity-0 hover:opacity-100 transition-opacity duration-300"
-          ></div>
-          <svg
-            class="w-5 h-5 sm:w-6 sm:h-6 mb-0.5 relative z-10 transform hover:scale-110 transition-transform duration-300"
-            style="color: #6b7280"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
-            ></path>
-          </svg>
-          <span
-            class="text-[10px] sm:text-xs font-semibold relative z-10 tracking-wide"
-            style="color: #6b7280"
-            >Overview</span
-          >
-        </router-link>
-
-        <!-- Records -->
-        <div
-          class="relative flex flex-col items-center justify-center overflow-hidden border-t-4 transition-all duration-300"
-          style="
-            border-color: #004595;
-            background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
-          "
-        >
-          <div
-            class="absolute inset-0 bg-blue-50 opacity-0 hover:opacity-100 transition-opacity duration-300"
-          ></div>
-          <svg
-            class="w-5 h-5 sm:w-6 sm:h-6 mb-0.5 relative z-10 transform transition-transform duration-300"
-            style="color: #004595"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-            ></path>
-          </svg>
-          <span
-            class="text-[10px] sm:text-xs font-bold relative z-10 tracking-wide"
-            style="color: #003d82"
-            >Records</span
-          >
-        </div>
-        <!-- Logout -->
-        <button
-          @click="showLogoutConfirm = true"
-          class="relative flex flex-col items-center justify-center overflow-hidden border-t-4 border-transparent active:scale-95 transition-all duration-300"
-        >
-          <div
-            class="absolute inset-0 bg-red-50 opacity-0 hover:opacity-100 transition-opacity duration-300"
-          ></div>
-          <svg
-            class="w-5 h-5 sm:w-6 sm:h-6 mb-0.5 relative z-10 transform hover:scale-110 transition-transform duration-300"
-            style="color: #dc2626"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-            ></path>
-          </svg>
-          <span
-            class="text-[10px] sm:text-xs font-semibold relative z-10 tracking-wide"
-            style="color: #dc2626"
-            >Logout</span
-          >
-        </button>
-      </div>
-    </nav>
   </div>
 </template>
 
@@ -904,6 +590,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { supabase } from '@/lib/supabase.js'
 import { saveAs } from 'file-saver'
+import NavigationPage from '@/components/NavigationPage.vue'
 import bcpoSeal from '@/assets/BCPO1.png'
 import pnpSeal from '@/assets/pnplogo.png'
 import signature from '@/assets/signature.png'
@@ -924,7 +611,6 @@ const filteredAbsenceRecords = ref([])
 const showPreviewModal = ref(false)
 const previewContent = ref('')
 const previewRecord = ref(null)
-const showLogoutConfirm = ref(false)
 const isWithoutAttendancePreview = ref(false)
 const headerImageData = ref({ pnp: '', bcpo: '' })
 
@@ -1442,18 +1128,6 @@ const closePreview = () => {
   previewContent.value = ''
   previewRecord.value = null
   isWithoutAttendancePreview.value = false
-}
-
-// Logout handler
-const handleLogout = async () => {
-  try {
-    await supabase.auth.signOut()
-    localStorage.removeItem('currentAdmin')
-    router.push('/')
-  } catch (err) {
-    console.error('Logout error:', err)
-    router.push('/')
-  }
 }
 
 // Initialize

@@ -1,16 +1,31 @@
 <template>
   <div
-    class="min-h-screen relative overflow-hidden bg-[radial-gradient(circle_at_20%_20%,#e7f0ff_0%,#f5f7fb_45%,#eaf0ff_100%)]"
+    class="min-h-screen relative overflow-hidden bg-[radial-gradient(circle_at_20%_20%,#87CEEB_0%,#B0E0E6_45%,#ADD8E6_100%)]"
   >
     <div
-      class="absolute inset-0 opacity-30 pointer-events-none bg-[linear-gradient(120deg,rgba(255,255,255,0.35)_0%,rgba(189,212,255,0.35)_45%,rgba(255,255,255,0.2)_100%)]"
+      class="absolute inset-0 opacity-20 pointer-events-none bg-[linear-gradient(120deg,rgba(255,255,255,0.4)_0%,rgba(135,206,235,0.2)_45%,rgba(255,255,255,0.15)_100%)]"
     ></div>
     <div class="relative max-w-[1600px] mx-auto px-4 md:px-8 py-4 md:py-6">
       <!-- Header -->
       <div
-        class="rounded-2xl p-5 md:p-6 mb-5 md:mb-6 text-white shadow-xl border border-white/20 bg-[linear-gradient(120deg,#001a3d_0%,#003f8c_55%,#0c66c6_100%)]"
+        class="relative rounded-2xl p-5 md:p-6 mb-5 md:mb-6 text-white shadow-xl border border-white/20 bg-[linear-gradient(120deg,#001a3d_0%,#003f8c_55%,#0c66c6_100%)]"
       >
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <!-- Mobile: Back Arrow (Left) -->
+          <button
+            @click="returnToLogin"
+            class="md:hidden absolute left-3 top-3 text-white hover:opacity-80 transition"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              ></path>
+            </svg>
+          </button>
+
           <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:w-auto">
             <!-- Logo -->
             <div class="flex items-center gap-3">
@@ -29,16 +44,17 @@
                 <span>Station 1</span>
               </div>
               <h1 class="text-2xl md:text-3xl font-extrabold uppercase mt-2">
-                Attendance Check-In
+                AFTER ACTIVITY REPORT SUBMISSION PORTAL
               </h1>
               <p class="text-xs md:text-sm font-semibold mt-1 text-[#fcd77f]">
                 Philippine National Police · Police Station 1
               </p>
             </div>
           </div>
+          <!-- Desktop: Full Button -->
           <button
             @click="returnToLogin"
-            class="text-white font-bold px-5 md:px-6 py-2.5 md:py-3 rounded-xl flex items-center gap-2 hover:opacity-90 transition w-full md:w-auto justify-center shadow-lg shadow-black/20 bg-[linear-gradient(135deg,#f04444,#c91f1f)]"
+            class="hidden md:flex text-white font-bold px-5 md:px-6 py-2.5 md:py-3 rounded-xl items-center gap-2 hover:opacity-90 transition justify-center shadow-lg shadow-black/20 bg-[linear-gradient(135deg,#f04444,#c91f1f)]"
           >
             <svg
               class="w-4 h-4 md:w-5 md:h-5"
@@ -59,25 +75,25 @@
       </div>
 
       <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5 md:mb-6">
+      <div class="grid grid-cols-2 gap-4 mb-0.5 md:mb-6">
         <!-- Current Date -->
         <div
-          class="rounded-2xl p-5 md:p-6 shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(232,238,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
+          class="rounded-2xl p-4 md:p-6 shadow-lg md:shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(232,238,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
         >
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between gap-2">
             <div>
               <p
-                class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
+                class="text-[10px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
               >
                 Today's Date
               </p>
-              <p class="text-lg md:text-2xl font-bold mt-1 text-[#002147]">
+              <p class="text-base md:text-2xl font-bold mt-1 text-[#002147]">
                 {{ currentDate }}
               </p>
             </div>
-            <div class="rounded-2xl p-3 bg-[rgba(16,185,129,0.15)]">
+            <div class="rounded-2xl p-2 md:p-3 bg-[rgba(16,185,129,0.15)] flex-shrink-0">
               <svg
-                class="w-6 h-6 md:w-7 md:h-7 text-[#10b981]"
+                class="w-5 h-5 md:w-7 md:h-7 text-[#10b981]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -95,22 +111,22 @@
 
         <!-- Current Time -->
         <div
-          class="rounded-2xl p-5 md:p-6 shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(223,236,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
+          class="rounded-2xl p-4 md:p-6 shadow-lg md:shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(223,236,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
         >
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between gap-2">
             <div>
               <p
-                class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
+                class="text-[10px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
               >
                 Current Time
               </p>
-              <p class="text-2xl md:text-3xl font-bold mt-1 text-[#002147]">
+              <p class="text-base md:text-3xl font-bold mt-1 text-[#002147]">
                 {{ currentTime }}
               </p>
             </div>
-            <div class="rounded-2xl p-3 bg-[rgba(251,191,36,0.18)]">
+            <div class="rounded-2xl p-2 md:p-3 bg-[rgba(251,191,36,0.18)] flex-shrink-0">
               <svg
-                class="w-6 h-6 md:w-7 md:h-7 text-[#fbbf24]"
+                class="w-5 h-5 md:w-7 md:h-7 text-[#fbbf24]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -131,14 +147,16 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6">
         <!-- Left Column: Instructions -->
         <div class="lg:col-span-3 order-1 space-y-4">
-          <!-- Instructions Card -->
-          <div
-            class="rounded-2xl p-5 shadow-lg border border-[#d4def8] bg-[linear-gradient(155deg,#ffffff_0%,#eef3ff_65%,#e3ecff_100%)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
-          >
-            <div class="flex items-center gap-3 mb-4">
-              <div class="rounded-xl p-2 bg-[#002147]">
+          <!-- Instructions Card - Submission Protocol Icon (Mobile) / Full Card (Desktop) -->
+          <div class="relative">
+            <!-- Mobile: Floating Icon Button (Top-Left) -->
+            <button
+              @click="showProtocolInfo = !showProtocolInfo"
+              class="lg:hidden fixed top-20 left-4 z-30 rounded-full p-1.5 shadow-md border border-[#d4def8] bg-[linear-gradient(155deg,#ffffff_0%,#eef3ff_65%,#e3ecff_100%)] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center"
+            >
+              <div class="rounded p-1 bg-[#002147]">
                 <svg
-                  class="w-5 h-5 text-white"
+                  class="w-4 h-4 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -151,77 +169,138 @@
                   ></path>
                 </svg>
               </div>
-              <div>
-                <h2 class="text-base md:text-lg font-bold text-[#002147]">Submission Protocol</h2>
-                <p class="text-[11px] font-semibold tracking-wide uppercase text-[#5c6b93]">
-                  Follow each step carefully
-                </p>
+            </button>
+
+            <!-- Mobile: Popup Info (appears when clicked) -->
+            <div
+              v-if="showProtocolInfo"
+              class="lg:hidden fixed inset-0 bg-black/40 z-40 flex items-center justify-center p-4"
+              @click="showProtocolInfo = false"
+            >
+              <div
+                @click.stop
+                class="w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-y-auto max-h-[80vh] transform transition-all duration-300"
+              >
+                <!-- Modal Header -->
+                <div
+                  class="sticky top-0 bg-[linear-gradient(135deg,#002147_0%,#0f63c7_100%)] text-white p-5 flex items-center justify-between rounded-t-3xl"
+                >
+                  <div class="flex items-center gap-3">
+                    <div class="rounded-xl p-2 bg-white/20">
+                      <svg
+                        class="w-5 h-5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h2 class="text-lg font-bold">Submission Protocol</h2>
+                      <p class="text-[11px] font-semibold opacity-90 uppercase">Follow each step</p>
+                    </div>
+                  </div>
+                  <button
+                    @click="showProtocolInfo = false"
+                    class="p-2 hover:bg-white/20 rounded-lg transition"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Steps List -->
+                <div class="p-5 space-y-3">
+                  <div
+                    v-for="step in submissionSteps"
+                    :key="step.id"
+                    @click="openStepModal(step)"
+                    class="flex gap-3 items-start rounded-xl p-3 cursor-pointer transition-all duration-200 hover:bg-blue-100 active:scale-95"
+                  >
+                    <div
+                      class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                    >
+                      {{ step.id }}
+                    </div>
+                    <div>
+                      <p class="text-xs font-semibold text-[#0f1f4b]">{{ step.title }}</p>
+                      <p class="text-[10px] text-gray-600">{{ step.description }}</p>
+                    </div>
+                    <svg
+                      class="w-4 h-4 text-[#0f63c7] flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="space-y-3 border-l-2 border-[#cdd8ff] pl-4">
-              <div class="flex gap-3 items-start rounded-xl p-3">
-                <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
-                >
-                  1
+
+            <!-- Desktop: Full Card (always visible) -->
+            <div
+              class="hidden lg:block rounded-2xl p-5 shadow-lg border border-[#d4def8] bg-[linear-gradient(155deg,#ffffff_0%,#eef3ff_65%,#e3ecff_100%)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
+            >
+              <div class="flex items-center gap-3 mb-4">
+                <div class="rounded-xl p-2 bg-[#002147]">
+                  <svg
+                    class="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
                 </div>
                 <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Select Officer</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
-                    Use the search field to pick your official rank and name from the roster.
+                  <h2 class="text-base md:text-lg font-bold text-[#002147]">Submission Protocol</h2>
+                  <p class="text-[11px] font-semibold tracking-wide uppercase text-[#5c6b93]">
+                    Follow each step carefully
                   </p>
                 </div>
               </div>
-              <div class="flex gap-3 items-start rounded-xl p-3">
+              <div class="space-y-3 border-l-2 border-[#cdd8ff] pl-4">
                 <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                  v-for="step in submissionSteps"
+                  :key="step.id"
+                  @click="openStepModal(step)"
+                  class="flex gap-3 items-start rounded-xl p-3 cursor-pointer transition-all duration-200 hover:bg-blue-100 active:scale-95"
                 >
-                  2
-                </div>
-                <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Describe Activity</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
-                    Complete the description box with your duty summary and accountability notes.
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-3 items-start rounded-xl p-3">
-                <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
-                >
-                  3
-                </div>
-                <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Confirm Address</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
-                    Enter the exact deployment location, including barangay or landmark for clarity.
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-3 items-start rounded-xl p-3">
-                <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
-                >
-                  4
-                </div>
-                <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Set Deployment Date</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
-                    Use the date picker to match the actual day of your field assignment.
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-3 items-start rounded-xl p-3">
-                <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
-                >
-                  5
-                </div>
-                <div>
-                  <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">Attach Evidence</p>
-                  <p class="text-[11px] md:text-xs text-gray-600">
-                    Upload clear PNG/JPG screenshots (max 25MB each) that prove your deployment.
-                  </p>
+                  <div
+                    class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                  >
+                    {{ step.id }}
+                  </div>
+                  <div>
+                    <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">{{ step.title }}</p>
+                    <p class="text-[11px] md:text-xs text-gray-600">
+                      {{ step.description }}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -836,6 +915,138 @@
           @click.stop
         />
       </div>
+
+      <!-- Step Details Modal -->
+      <div
+        v-if="showStepModal"
+        @click="closeStepModal"
+        class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 transition-opacity duration-300"
+        :class="showStepModal ? 'opacity-100' : 'opacity-0'"
+      >
+        <div
+          @click.stop
+          class="w-full sm:max-w-lg bg-white rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-300 max-h-[80vh] flex flex-col"
+          :class="showStepModal ? 'scale-100 opacity-100' : 'scale-95 opacity-0'"
+        >
+          <!-- Modal Header -->
+          <div
+            class="sticky top-0 bg-[linear-gradient(135deg,#002147_0%,#0f63c7_100%)] text-white p-5 flex items-center justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold bg-white/20 border-2 border-white/40"
+              >
+                {{ selectedStep?.id }}
+              </div>
+              <div>
+                <h2 class="text-base font-bold">{{ selectedStep?.title }}</h2>
+                <p class="text-[10px] font-semibold opacity-85 uppercase">
+                  Step {{ selectedStep?.id }} of 5
+                </p>
+              </div>
+            </div>
+            <button
+              @click="closeStepModal"
+              class="flex-shrink-0 p-1.5 hover:bg-white/20 rounded-lg transition-colors duration-200"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Modal Content -->
+          <div class="overflow-y-auto flex-1 p-5 space-y-4">
+            <!-- Full Description -->
+            <div class="space-y-2">
+              <h3 class="text-sm font-bold text-[#002147] flex items-center gap-2">
+                <svg class="w-5 h-5 text-[#0f63c7]" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zm-11-1a1 1 0 11-2 0 1 1 0 012 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Details
+              </h3>
+              <p class="text-xs text-gray-700 leading-relaxed">
+                {{ selectedStep?.fullDescription }}
+              </p>
+            </div>
+
+            <!-- Helpful Tips -->
+            <div class="space-y-2">
+              <h3 class="text-sm font-bold text-[#002147] flex items-center gap-2">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Tips
+              </h3>
+              <ul class="text-xs text-gray-700 space-y-2">
+                <li
+                  v-for="(tip, index) in selectedStep?.tips"
+                  :key="index"
+                  class="flex gap-2 items-start"
+                >
+                  <span class="text-[#0f63c7] font-bold flex-shrink-0">•</span>
+                  <span>{{ tip }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Important Notes -->
+            <div class="rounded-xl bg-[#fef3c7] border-l-4 border-[#f97316] p-3 space-y-2">
+              <h3 class="text-sm font-bold text-[#92400e] flex items-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Important
+              </h3>
+              <p class="text-xs text-[#b45309]">{{ selectedStep?.important }}</p>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="sticky bottom-0 bg-gray-50 p-4 border-t border-gray-200 space-y-2">
+            <div class="flex gap-2">
+              <button
+                v-if="selectedStep?.id > 1"
+                @click="previousStep"
+                class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg border-2 border-[#002147] text-[#002147] hover:bg-gray-100 transition-colors"
+              >
+                ← Previous
+              </button>
+              <button
+                v-if="selectedStep?.id < 5"
+                @click="nextStep"
+                class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg bg-[#002147] text-white hover:opacity-90 transition-colors"
+              >
+                Next →
+              </button>
+              <button
+                v-else
+                @click="closeStepModal"
+                class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg bg-green-600 text-white hover:opacity-90 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -853,6 +1064,91 @@ const fetchError = ref('')
 const searchQuery = ref('')
 const showDropdown = ref(false)
 const searchInput = ref(null)
+
+// Protocol Info States
+const showProtocolInfo = ref(false)
+const showStepModal = ref(false)
+const selectedStep = ref(null)
+
+// Submission Steps Data
+const submissionSteps = ref([
+  {
+    id: 1,
+    title: 'Select Officer',
+    description: 'Use the search field to pick your official rank and name from the roster.',
+    fullDescription:
+      'Search for and select your full name with your official rank from the roster. This ensures proper attribution of the attendance report to the correct personnel.',
+    tips: [
+      'Type the first few letters of your name to quickly filter results',
+      'Select your complete rank and name (e.g., "Police Officer John Doe")',
+      'If you cannot find your name, contact the administrator',
+    ],
+    important:
+      'Make sure you select the correct officer name. Submitting under a different name may result in the report being rejected.',
+  },
+  {
+    id: 2,
+    title: 'Describe Activity',
+    description: 'Complete the description box with your duty summary and accountability notes.',
+    fullDescription:
+      'Provide a clear and concise description of your daily activities, duties performed, and accountability notes. This should summarize what you accomplished during your shift.',
+    tips: [
+      'Be specific about the activities performed',
+      'Include location details if applicable',
+      'Mention any incidents or notable occurrences',
+      'Keep the description clear and professional',
+    ],
+    important:
+      'The description must be detailed enough for supervisors to understand your contributions. Vague descriptions may be rejected.',
+  },
+  {
+    id: 3,
+    title: 'Confirm Address',
+    description: 'Enter the exact deployment location, including barangay or landmark for clarity.',
+    fullDescription:
+      'Enter your exact deployment or operational address. Include the specific barangay, landmark, or street name to provide clear location information for record purposes.',
+    tips: [
+      'Use specific landmarks (e.g., "Near Municipal Building")',
+      'Include barangay name for clarity',
+      'Use complete street names and addresses',
+      'Use Google Maps to verify the correct location name',
+    ],
+    important:
+      'The address must be specific and verifiable. General locations like "Patrol" or "Office" are not acceptable.',
+  },
+  {
+    id: 4,
+    title: 'Set Deployment Date',
+    description: 'Use the date picker to match the actual day of your field assignment.',
+    fullDescription:
+      'Select the date that corresponds to when you actually performed the duty or activity. This is crucial for accurate record-keeping and attendance tracking.',
+    tips: [
+      'The date should match your actual deployment day',
+      'Use the calendar widget to select the date easily',
+      'You can only report for current or past dates',
+      'Do not use future dates',
+    ],
+    important:
+      'The date must be accurate and match your actual assignment day. Incorrect dates may invalidate your report.',
+  },
+  {
+    id: 5,
+    title: 'Attach Evidence',
+    description: 'Upload clear PNG/JPG screenshots (max 25MB each) that prove your deployment.',
+    fullDescription:
+      'Attach clear, readable screenshots or photos as evidence of your deployment. These should show proof of your presence at the specified location (e.g., timestamps, official locations, activity proof).',
+    tips: [
+      'Ensure screenshots are clear and readable',
+      'Include timestamps if possible',
+      'Upload evidence from the actual deployment location',
+      'PNG or JPG formats are preferred',
+      'Each file should be maximum 25MB',
+      'Include at least one screenshot per submission',
+    ],
+    important:
+      'Photos must be clear and relevant to your deployment. Blurry, irrelevant, or inappropriate images will be rejected.',
+  },
+])
 
 const getTodayString = () => new Date().toISOString().split('T')[0]
 
