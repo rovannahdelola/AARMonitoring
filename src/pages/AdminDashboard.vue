@@ -23,14 +23,19 @@
       <div class="p-4 sm:p-6 lg:p-8">
         <!-- Welcome Header -->
         <div
-          class="mb-6 lg:mb-8 p-4 sm:p-5 lg:p-6 rounded-lg shadow-sm"
-          style="background: #ffffff; border-left: 4px solid #004595"
+          class="mb-6 lg:mb-8 rounded-2xl shadow-xl overflow-hidden relative"
+          style="background: linear-gradient(135deg, #001a3a 0%, #002147 50%, #004595 100%)"
         >
+          <!-- Animated blobs -->
+          <div class="absolute -top-8 -right-8 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none"></div>
+          <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse pointer-events-none" style="animation-delay:700ms"></div>
+          <!-- Diagonal accent -->
+          <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%)"></div>
+          <div class="relative p-5 sm:p-6 lg:p-8">
           <div class="flex items-center gap-3 sm:gap-4">
-            <div class="rounded-full p-2 sm:p-3" style="background: #f3f1ee">
+            <div class="rounded-xl p-2.5 sm:p-3 ring-2 ring-white/20 bg-white/10 backdrop-blur-sm shadow-lg">
               <svg
-                class="w-6 h-6 sm:w-8 sm:h-8"
-                style="color: #002147"
+                class="w-6 h-6 sm:w-8 sm:h-8 text-blue-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -44,51 +49,52 @@
               </svg>
             </div>
             <div>
-              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1" style="color: #002147">
+              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-white">
                 Welcome Back, Administrator
               </h1>
-              <p class="text-xs sm:text-sm font-semibold" style="color: #00397a">
-                Today's attendance overview and statistics
+              <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-transparent mb-1.5"></div>
+              <p class="text-xs sm:text-sm font-semibold text-blue-300">
+                Today's AAR submissions overview and statistics
               </p>
             </div>
+          </div>
           </div>
         </div>
 
         <!-- Today's Statistics -->
         <div class="mb-6">
-          <div class="flex items-center gap-2 mb-5">
-            <div class="h-1 w-1 rounded-full" style="background: #004595"></div>
-            <p class="text-sm font-bold uppercase tracking-wider" style="color: #002147">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="h-4 w-1 rounded-full bg-gradient-to-b from-blue-500 to-blue-800"></div>
+            <p class="text-sm font-bold uppercase tracking-wider text-slate-700">
               Today's Statistics
             </p>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             <!-- Today's Attendance -->
             <div
-              class="rounded-lg p-4 sm:p-5 lg:p-6 border-l-4 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
-              style="background: #ffffff; border-left-color: #10b981"
+              class="rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group overflow-hidden relative bg-white border border-emerald-100"
             >
-              <div class="flex items-center justify-between">
+              <div class="absolute -top-4 -right-4 w-24 h-24 bg-emerald-400 rounded-full opacity-10 pointer-events-none"></div>
+              <div class="absolute bottom-2 right-12 w-12 h-12 bg-emerald-300 rounded-full opacity-10 pointer-events-none"></div>
+              <div class="flex items-center justify-between relative">
                 <div class="flex-1">
                   <p
-                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider"
-                    style="color: #6b7280"
+                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-emerald-700"
                   >
-                    Attendance
+                    AAR Submissions
                   </p>
-                  <p class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2" style="color: #10b981">
+                  <p class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2 text-emerald-600">
                     {{ todayCheckIns }}
                   </p>
-                  <p class="text-xs sm:text-sm font-semibold" style="color: #9ca3af">
+                  <p class="text-xs sm:text-sm font-semibold text-slate-500">
                     {{ currentDate }}
                   </p>
                 </div>
                 <div
-                  class="rounded-xl p-2 sm:p-3 group-hover:scale-110 transition-transform duration-300"
-                  style="background: linear-gradient(135deg, #10b981 0%, #059669 100%)"
+                  class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br from-emerald-500 to-emerald-600"
                 >
                   <svg
-                    class="w-8 h-8 sm:w-10 sm:h-10 text-white"
+                    class="w-7 h-7 sm:w-9 sm:h-9 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -104,66 +110,27 @@
               </div>
             </div>
 
-            <!-- Total Officers -->
-            <div
-              class="rounded-lg p-4 sm:p-5 lg:p-6 border-l-4 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
-              style="background: #ffffff; border-left-color: #004595"
-            >
-              <div class="flex items-center justify-between">
-                <div class="flex-1">
-                  <p
-                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider"
-                    style="color: #6b7280"
-                  >
-                    Officers
-                  </p>
-                  <p class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2" style="color: #004595">
-                    {{ totalOfficers }}
-                  </p>
-                  <p class="text-xs sm:text-sm font-semibold" style="color: #9ca3af">Registered</p>
-                </div>
-                <div
-                  class="rounded-xl p-2 sm:p-3 group-hover:scale-110 transition-transform duration-300"
-                  style="background: linear-gradient(135deg, #004595 0%, #0369a1 100%)"
-                >
-                  <svg
-                    class="w-8 h-8 sm:w-10 sm:h-10 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
-            </div>
-
             <!-- Absent Officers -->
             <div
-              class="rounded-lg p-4 sm:p-5 lg:p-6 border-l-4 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
-              style="background: #ffffff; border-left-color: #ef4444"
+              class="rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group overflow-hidden relative bg-white border border-red-100"
             >
-              <div class="flex items-center justify-between">
+              <div class="absolute -top-4 -right-4 w-24 h-24 bg-red-400 rounded-full opacity-10 pointer-events-none"></div>
+              <div class="absolute bottom-2 right-12 w-12 h-12 bg-red-300 rounded-full opacity-10 pointer-events-none"></div>
+              <div class="flex items-center justify-between relative">
                 <div class="flex-1">
                   <p
-                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider"
-                    style="color: #6b7280"
+                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-red-700"
                   >
                     NO AAR
                   </p>
-                  <p class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2" style="color: #ef4444">
+                  <p class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2 text-red-600">
                     {{ officersWithoutAttendance.length }}
                   </p>
-                  <p class="text-xs sm:text-sm font-semibold" style="color: #9ca3af">Officers</p>
+                  <p class="text-xs sm:text-sm font-semibold text-slate-500">Officers</p>
                 </div>
-                <div class="rounded-xl p-2 sm:p-3" style="background: #ef4444">
+                <div class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br from-red-500 to-red-600">
                   <svg
-                    class="w-8 h-8 sm:w-10 sm:h-10 text-white"
+                    class="w-7 h-7 sm:w-9 sm:h-9 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -184,14 +151,13 @@
         <!-- Recent Activity & Absent Officers Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
           <!-- Absent Officers Today -->
-          <div class="rounded-lg shadow-lg" style="background: #ffffff">
-            <div class="p-4 sm:p-5 lg:p-6 border-b" style="border-color: #e5e7eb">
+          <div class="rounded-lg shadow-sm bg-white border border-slate-200">
+            <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-200">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2 sm:gap-3">
-                  <div class="rounded-lg p-1.5 sm:p-2" style="background: #fef2f2">
+                  <div class="rounded-lg p-1.5 sm:p-2 bg-red-50">
                     <svg
-                      class="w-4 h-4 sm:w-5 sm:h-5"
-                      style="color: #ef4444"
+                      class="w-4 h-4 sm:w-5 sm:h-5 text-red-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -205,15 +171,13 @@
                     </svg>
                   </div>
                   <h2
-                    class="text-sm sm:text-base font-bold uppercase tracking-wide"
-                    style="color: #002147"
+                    class="text-sm sm:text-base font-bold uppercase tracking-wide text-slate-800"
                   >
                     NO AAR Officers Yet
                   </h2>
                 </div>
                 <span
-                  class="text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full"
-                  style="background: #fef2f2; color: #ef4444"
+                  class="text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-red-50 text-red-600"
                 >
                   {{ officersWithoutAttendance.length }}
                 </span>
@@ -222,12 +186,10 @@
             <div class="p-4 sm:p-5 lg:p-6 max-h-80 sm:max-h-96 overflow-y-auto">
               <div v-if="officersWithoutAttendance.length === 0" class="text-center py-6 sm:py-8">
                 <div
-                  class="rounded-full p-3 sm:p-4 mx-auto w-fit mb-2 sm:mb-3"
-                  style="background: #f0fdf4"
+                  class="rounded-full p-3 sm:p-4 mx-auto w-fit mb-2 sm:mb-3 bg-emerald-50"
                 >
                   <svg
-                    class="w-10 h-10 sm:w-12 sm:h-12"
-                    style="color: #10b981"
+                    class="w-10 h-10 sm:w-12 sm:h-12 text-emerald-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -240,26 +202,24 @@
                     ></path>
                   </svg>
                 </div>
-                <p class="text-xs sm:text-sm font-bold" style="color: #10b981">
-                  Perfect Attendance!
+                <p class="text-xs sm:text-sm font-bold text-emerald-600">
+                  Perfect Submission!
                 </p>
-                <p class="text-xs sm:text-sm mt-1" style="color: #9ca3af">
-                  All officers have checked in today
+                <p class="text-xs sm:text-sm mt-1 text-slate-500">
+                  All officers have submitted their AAR today
                 </p>
               </div>
               <div v-else class="space-y-2 sm:space-y-3">
                 <div
                   v-for="officer in officersWithoutAttendance"
                   :key="officer.id"
-                  class="p-3 sm:p-4 rounded-lg border transition-all duration-200 hover:shadow-md"
-                  style="border-color: #fee2e2; background: #fefefe"
+                  class="p-3 sm:p-4 rounded-lg border border-slate-200 transition-all duration-200 hover:shadow-md bg-white"
                 >
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2 sm:gap-3">
-                      <div class="rounded-full p-1.5 sm:p-2" style="background: #fef2f2">
+                      <div class="rounded-full p-1.5 sm:p-2 bg-red-50">
                         <svg
-                          class="w-3 h-3 sm:w-4 sm:h-4"
-                          style="color: #ef4444"
+                          class="w-3 h-3 sm:w-4 sm:h-4 text-red-600"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -273,17 +233,16 @@
                         </svg>
                       </div>
                       <div>
-                        <p class="text-xs sm:text-sm font-bold" style="color: #002147">
+                        <p class="text-xs sm:text-sm font-bold text-slate-800">
                           {{ officer.rank_fullname }}
                         </p>
-                        <p class="text-xs sm:text-sm font-semibold" style="color: #9ca3af">
+                        <p class="text-xs sm:text-sm font-semibold text-slate-500">
                           No check-in today
                         </p>
                       </div>
                     </div>
                     <span
-                      class="text-xs sm:text-sm font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full"
-                      style="background: #fef2f2; color: #ef4444"
+                      class="text-xs sm:text-sm font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-red-50 text-red-600"
                     >
                       No AAR
                     </span>
@@ -294,13 +253,12 @@
           </div>
 
           <!-- Quick Stats & Summary -->
-          <div class="rounded-lg shadow-lg" style="background: #ffffff">
-            <div class="p-5 border-b" style="border-color: #e5e7eb">
+          <div class="rounded-lg shadow-sm bg-white border border-slate-200">
+            <div class="p-5 border-b border-slate-200">
               <div class="flex items-center gap-3">
-                <div class="rounded-lg p-2" style="background: #f0f9ff">
+                <div class="rounded-lg p-2 bg-blue-50">
                   <svg
-                    class="w-5 h-5"
-                    style="color: #004595"
+                    class="w-5 h-5 text-police-dark"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -313,39 +271,37 @@
                     ></path>
                   </svg>
                 </div>
-                <h2 class="text-base font-bold uppercase tracking-wide" style="color: #002147">
+                <h2 class="text-base font-bold uppercase tracking-wide text-police-dark">
                   Quick Summary
                 </h2>
               </div>
             </div>
             <div class="p-5 space-y-4">
-              <!-- Attendance Rate -->
+              <!-- Submission Rate -->
               <div
-                class="p-4 rounded-lg"
-                style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)"
+                class="p-4 rounded-lg bg-emerald-50"
               >
                 <div class="flex items-center justify-between mb-2">
-                  <p class="text-xs font-bold uppercase" style="color: #166534">Attendance Rate</p>
-                  <p class="text-2xl font-bold" style="color: #10b981">{{ attendanceRate }}%</p>
+                  <p class="text-xs font-bold uppercase text-emerald-700">Submission Rate</p>
+                  <p class="text-2xl font-bold text-emerald-600">{{ attendanceRate }}%</p>
                 </div>
-                <div class="w-full h-2 rounded-full overflow-hidden" style="background: #dcfce7">
+                <div class="w-full h-2 rounded-full overflow-hidden bg-emerald-100">
                   <div
-                    class="h-full rounded-full transition-all duration-500"
-                    :style="{ width: attendanceRate + '%', background: '#10b981' }"
+                    class="h-full rounded-full transition-all duration-500 bg-emerald-600"
+                    :style="{ width: attendanceRate + '%' }"
                   ></div>
                 </div>
-                <p class="text-xs font-semibold mt-2" style="color: #166534">
-                  {{ todayCheckIns }} out of {{ totalOfficers }} officers present
+                <p class="text-xs font-semibold mt-2 text-emerald-700">
+                  {{ todayCheckIns }} out of {{ totalOfficers }} officers submitted
                 </p>
               </div>
 
               <!-- Total Records -->
               <div
-                class="p-4 rounded-lg flex items-center justify-between"
-                style="background: #f8fafc; border: 2px solid #e2e8f0"
+                class="p-4 rounded-lg flex items-center justify-between bg-slate-50 border border-slate-200"
               >
                 <div class="flex items-center gap-3">
-                  <div class="rounded-lg p-2.5" style="background: #004595">
+                  <div class="rounded-lg p-2.5 bg-police-dark">
                     <svg
                       class="w-5 h-5 text-white"
                       fill="none"
@@ -361,36 +317,34 @@
                     </svg>
                   </div>
                   <div>
-                    <p class="text-xs font-bold uppercase mb-1" style="color: #64748b">
+                    <p class="text-xs font-bold uppercase mb-1 text-slate-600">
                       Total Records
                     </p>
-                    <p class="text-2xl font-bold" style="color: #002147">{{ totalAttendance }}</p>
+                    <p class="text-2xl font-bold text-police-dark">{{ totalAttendance }}</p>
                   </div>
                 </div>
               </div>
 
               <!-- System Status -->
               <div
-                class="p-4 rounded-lg"
-                style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)"
+                class="p-4 rounded-lg bg-slate-50 border border-slate-200"
               >
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-3">
-                    <div class="rounded-full p-2" style="background: #10b981">
+                    <div class="rounded-full p-2 bg-emerald-600">
                       <div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
                     </div>
                     <div>
-                      <p class="text-xs font-bold uppercase" style="color: #1e3a8a">
+                      <p class="text-xs font-bold uppercase text-police-dark">
                         System Status
                       </p>
-                      <p class="text-sm font-semibold mt-0.5" style="color: #10b981">
+                      <p class="text-sm font-semibold mt-0.5 text-emerald-600">
                         All Systems Operational
                       </p>
                     </div>
                   </div>
                   <svg
-                    class="w-6 h-6"
-                    style="color: #10b981"
+                    class="w-6 h-6 text-emerald-600"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
