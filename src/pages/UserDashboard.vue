@@ -1,6 +1,5 @@
 <template>
   <div
-<<<<<<< HEAD
     class="min-h-screen relative overflow-hidden bg-[radial-gradient(circle_at_20%_20%,#87CEEB_0%,#B0E0E6_45%,#ADD8E6_100%)]"
   >
     <div
@@ -10,14 +9,6 @@
       <!-- Header -->
       <div
         class="relative rounded-2xl p-5 md:p-6 mb-5 md:mb-6 text-white shadow-xl border border-white/20 bg-[linear-gradient(120deg,#001a3d_0%,#003f8c_55%,#0c66c6_100%)]"
-=======
-    class="min-h-screen relative overflow-hidden bg-police-cream"
-  >
-    <div class="relative max-w-[1600px] mx-auto px-4 md:px-8 py-4 md:py-6">
-      <!-- Header -->
-      <div
-        class="rounded-lg p-5 md:p-6 mb-5 md:mb-6 text-white shadow-sm border-l-4 border-police-dark bg-police-dark"
->>>>>>> 7416da1f03246f36a972d586b7835521e587ea64
       >
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
           <!-- Mobile: Back Arrow (Left) -->
@@ -52,13 +43,8 @@
                 <span class="w-1 h-1 rounded-full bg-white"></span>
                 <span>Station 1</span>
               </div>
-<<<<<<< HEAD
               <h1 class="text-2xl md:text-3xl font-extrabold uppercase mt-2">
                 AFTER ACTIVITY REPORT SUBMISSION PORTAL
-=======
-              <h1 class="text-2xl md:text-3xl font-bold uppercase mt-2">
-                AAR Submission
->>>>>>> 7416da1f03246f36a972d586b7835521e587ea64
               </h1>
               <p class="text-xs md:text-sm font-semibold mt-1 text-blue-100">
                 Philippine National Police · Police Station 1
@@ -68,11 +54,7 @@
           <!-- Desktop: Full Button -->
           <button
             @click="returnToLogin"
-<<<<<<< HEAD
             class="hidden md:flex text-white font-bold px-5 md:px-6 py-2.5 md:py-3 rounded-xl items-center gap-2 hover:opacity-90 transition justify-center shadow-lg shadow-black/20 bg-[linear-gradient(135deg,#f04444,#c91f1f)]"
-=======
-            class="text-white font-bold px-5 md:px-6 py-2.5 md:py-3 rounded-lg flex items-center gap-2 hover:bg-red-700 transition w-full md:w-auto justify-center shadow-sm bg-red-600"
->>>>>>> 7416da1f03246f36a972d586b7835521e587ea64
           >
             <svg
               class="w-4 h-4 md:w-5 md:h-5"
@@ -96,16 +78,11 @@
       <div class="grid grid-cols-2 gap-4 mb-0.5 md:mb-6">
         <!-- Current Date -->
         <div
-<<<<<<< HEAD
           class="rounded-2xl p-4 md:p-6 shadow-lg md:shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(232,238,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
-=======
-          class="rounded-lg p-5 md:p-6 shadow-sm border border-slate-200 bg-white"
->>>>>>> 7416da1f03246f36a972d586b7835521e587ea64
         >
           <div class="flex items-center justify-between gap-2">
             <div>
               <p
-<<<<<<< HEAD
                 class="text-[10px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
               >
                 Today's Date
@@ -117,19 +94,6 @@
             <div class="rounded-2xl p-2 md:p-3 bg-[rgba(16,185,129,0.15)] flex-shrink-0">
               <svg
                 class="w-5 h-5 md:w-7 md:h-7 text-[#10b981]"
-=======
-                class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-slate-600"
-              >
-                Today's Date
-              </p>
-              <p class="text-lg md:text-2xl font-bold mt-1 text-police-dark">
-                {{ currentDate }}
-              </p>
-            </div>
-            <div class="rounded-lg p-3 bg-emerald-50">
-              <svg
-                class="w-6 h-6 md:w-7 md:h-7 text-emerald-600"
->>>>>>> 7416da1f03246f36a972d586b7835521e587ea64
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -147,16 +111,11 @@
 
         <!-- Current Time -->
         <div
-<<<<<<< HEAD
           class="rounded-2xl p-4 md:p-6 shadow-lg md:shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(223,236,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
-=======
-          class="rounded-lg p-5 md:p-6 shadow-sm border border-slate-200 bg-white"
->>>>>>> 7416da1f03246f36a972d586b7835521e587ea64
         >
           <div class="flex items-center justify-between gap-2">
             <div>
               <p
-<<<<<<< HEAD
                 class="text-[10px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
               >
                 Current Time
@@ -168,19 +127,6 @@
             <div class="rounded-2xl p-2 md:p-3 bg-[rgba(251,191,36,0.18)] flex-shrink-0">
               <svg
                 class="w-5 h-5 md:w-7 md:h-7 text-[#fbbf24]"
-=======
-                class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-slate-600"
-              >
-                Current Time
-              </p>
-              <p class="text-2xl md:text-3xl font-bold mt-1 text-police-dark">
-                {{ currentTime }}
-              </p>
-            </div>
-            <div class="rounded-lg p-3 bg-amber-50">
-              <svg
-                class="w-6 h-6 md:w-7 md:h-7 text-amber-600"
->>>>>>> 7416da1f03246f36a972d586b7835521e587ea64
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -201,7 +147,6 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6">
         <!-- Left Column: Instructions -->
         <div class="lg:col-span-3 order-1 space-y-4">
-<<<<<<< HEAD
           <!-- Instructions Card - Submission Protocol Icon (Mobile) / Full Card (Desktop) -->
           <div class="relative">
             <!-- Mobile: Floating Icon Button (Top-Left) -->
@@ -210,14 +155,6 @@
               class="lg:hidden fixed top-20 left-4 z-30 rounded-full p-1.5 shadow-md border border-[#d4def8] bg-[linear-gradient(155deg,#ffffff_0%,#eef3ff_65%,#e3ecff_100%)] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center"
             >
               <div class="rounded p-1 bg-[#002147]">
-=======
-          <!-- Instructions Card -->
-          <div
-            class="rounded-lg p-5 shadow-sm border border-slate-200 bg-white"
-          >
-            <div class="flex items-center gap-3 mb-4">
-              <div class="rounded-lg p-2 bg-police-dark">
->>>>>>> 7416da1f03246f36a972d586b7835521e587ea64
                 <svg
                   class="w-4 h-4 text-white"
                   fill="none"
@@ -232,7 +169,6 @@
                   ></path>
                 </svg>
               </div>
-<<<<<<< HEAD
             </button>
 
             <!-- Mobile: Popup Info (appears when clicked) -->
@@ -365,79 +301,6 @@
                       {{ step.description }}
                     </p>
                   </div>
-=======
-              <div>
-                <h2 class="text-base md:text-lg font-bold text-police-dark">Submission Protocol</h2>
-                <p class="text-[11px] font-semibold tracking-wide uppercase text-slate-600">
-                  Follow each step carefully
-                </p>
-              </div>
-            </div>
-            <div class="space-y-3 border-l-2 border-police-light pl-4">
-              <div class="flex gap-3 items-start rounded-lg p-3">
-                <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-police-dark"
-                >
-                  1
-                </div>
-                <div>
-                  <p class="text-xs md:text-sm font-semibold text-slate-800">Select Officer</p>
-                  <p class="text-[11px] md:text-xs text-slate-600">
-                    Use the search field to pick your official rank and name from the roster.
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-3 items-start rounded-lg p-3">
-                <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
-                >
-                  2
-                </div>
-                <div>
-                  <p class="text-xs md:text-sm font-semibold text-slate-800">Describe Activity</p>
-                  <p class="text-[11px] md:text-xs text-slate-600">
-                    Complete the description box with your duty summary and accountability notes.
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-3 items-start rounded-lg p-3">
-                <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
-                >
-                  3
-                </div>
-                <div>
-                  <p class="text-xs md:text-sm font-semibold text-slate-800">Confirm Address</p>
-                  <p class="text-[11px] md:text-xs text-slate-600">
-                    Enter the exact deployment location, including barangay or landmark for clarity.
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-3 items-start rounded-lg p-3">
-                <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
-                >
-                  4
-                </div>
-                <div>
-                  <p class="text-xs md:text-sm font-semibold text-slate-800">Set Deployment Date</p>
-                  <p class="text-[11px] md:text-xs text-slate-600">
-                    Use the date picker to match the actual day of your field assignment.
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-3 items-start rounded-lg p-3">
-                <div
-                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-blue-600"
-                >
-                  5
-                </div>
-                <div>
-                  <p class="text-xs md:text-sm font-semibold text-slate-800">Attach Evidence</p>
-                  <p class="text-[11px] md:text-xs text-slate-600">
-                    Upload clear PNG/JPG screenshots (max 25MB each) that prove your deployment.
-                  </p>
->>>>>>> 7416da1f03246f36a972d586b7835521e587ea64
                 </div>
               </div>
             </div>
