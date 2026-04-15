@@ -27,32 +27,56 @@
         <router-link
           to="/admin-dashboard"
           class="block rounded-lg p-4 border-l-4 shadow-lg transition-all duration-200 cursor-pointer"
-          style="background: #004595; border-left-color: #ffffff"
+          :style="{
+            background: activeTab === 'dashboard' ? '#004595' : 'rgba(255, 255, 255, 0.05)',
+            borderLeftColor: activeTab === 'dashboard' ? '#ffffff' : 'transparent',
+          }"
         >
           <div class="flex items-center gap-3">
-            <div class="rounded-lg p-2" style="background: rgba(255, 255, 255, 0.1)">
+            <div
+              class="rounded-lg p-2 transition-all"
+              :style="{
+                background:
+                  activeTab === 'dashboard'
+                    ? 'rgba(255, 255, 255, 0.1)'
+                    : 'rgba(255, 255, 255, 0.05)',
+              }"
+            >
               <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
                 ></path>
               </svg>
             </div>
-            <span class="font-bold text-sm uppercase tracking-wider">Dashboard</span>
+            <span
+              class="font-bold text-sm uppercase tracking-wider transition-all"
+              :style="{ color: activeTab === 'dashboard' ? '#ffffff' : '#f3f1ee' }"
+              >Dashboard</span
+            >
           </div>
         </router-link>
 
         <router-link
           to="/records-view"
           class="block p-4 hover:bg-white/10 rounded-lg transition-all duration-200 cursor-pointer group"
+          :style="{
+            background: activeTab === 'records' ? '#004595' : 'transparent',
+            borderLeft: activeTab === 'records' ? '4px solid #ffffff' : 'none',
+          }"
         >
           <div class="flex items-center gap-3">
             <div
               class="rounded-lg p-2 group-hover:bg-white/10 transition"
-              style="background: rgba(255, 255, 255, 0.05)"
+              :style="{
+                background:
+                  activeTab === 'records'
+                    ? 'rgba(255, 255, 255, 0.1)'
+                    : 'rgba(255, 255, 255, 0.05)',
+              }"
             >
               <svg
                 class="w-5 h-5"
-                style="color: #f3f1ee"
+                :style="{ color: activeTab === 'records' ? '#ffffff' : '#f3f1ee' }"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -65,7 +89,9 @@
                 ></path>
               </svg>
             </div>
-            <span class="text-sm font-semibold uppercase tracking-wider" style="color: #f3f1ee"
+            <span
+              class="text-sm font-semibold uppercase tracking-wider transition-all"
+              :style="{ color: activeTab === 'records' ? '#ffffff' : '#f3f1ee' }"
               >Records</span
             >
           </div>
