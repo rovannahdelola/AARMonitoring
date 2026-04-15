@@ -1,25 +1,30 @@
 <template>
-  <div
-    class="min-h-screen relative overflow-hidden"
-    style="background: radial-gradient(circle at 20% 20%, #87ceeb 0%, #b0e0e6 45%, #add8e6 100%)"
-  >
+  <div class="min-h-screen relative overflow-hidden bg-slate-900">
+    <!-- Background Image -->
     <div
-      class="absolute inset-0 opacity-20 pointer-events-none"
-      style="
-        background: linear-gradient(
-          120deg,
-          rgba(255, 255, 255, 0.4) 0%,
-          rgba(135, 206, 235, 0.2) 45%,
-          rgba(255, 255, 255, 0.15) 100%
-        );
-      "
-    ></div>
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('/src/assets/landing.jpg')"
+    >
+      <!-- Dark overlay for better readability -->
+      <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"></div>
+    </div>
+
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div
+        class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"
+      ></div>
+      <div
+        class="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"
+        style="animation-delay: 700ms"
+      ></div>
+    </div>
 
     <!-- Navigation Component -->
     <NavigationPage sidebarTitle="Admin Dashboard" />
 
     <!-- Main Content -->
-    <div class="relative lg:ml-64 min-h-screen overflow-auto pb-20 lg:pb-0">
+    <div class="relative lg:ml-64 min-h-screen overflow-auto pb-20 lg:pb-0 z-10">
       <div class="p-4 sm:p-6 lg:p-8">
         <!-- Welcome Header -->
         <div
@@ -27,37 +32,49 @@
           style="background: linear-gradient(135deg, #001a3a 0%, #002147 50%, #004595 100%)"
         >
           <!-- Animated blobs -->
-          <div class="absolute -top-8 -right-8 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none"></div>
-          <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse pointer-events-none" style="animation-delay:700ms"></div>
+          <div
+            class="absolute -top-8 -right-8 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none"
+          ></div>
+          <div
+            class="absolute -bottom-8 -left-8 w-40 h-40 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse pointer-events-none"
+            style="animation-delay: 700ms"
+          ></div>
           <!-- Diagonal accent -->
-          <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%)"></div>
+          <div
+            class="absolute inset-0 pointer-events-none"
+            style="
+              background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+            "
+          ></div>
           <div class="relative p-5 sm:p-6 lg:p-8">
-          <div class="flex items-center gap-3 sm:gap-4">
-            <div class="rounded-xl p-2.5 sm:p-3 ring-2 ring-white/20 bg-white/10 backdrop-blur-sm shadow-lg">
-              <svg
-                class="w-6 h-6 sm:w-8 sm:h-8 text-blue-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            <div class="flex items-center gap-3 sm:gap-4">
+              <div
+                class="rounded-xl p-2.5 sm:p-3 ring-2 ring-white/20 bg-white/10 backdrop-blur-sm shadow-lg"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                ></path>
-              </svg>
+                <svg
+                  class="w-6 h-6 sm:w-8 sm:h-8 text-blue-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-white">
+                  Welcome Back, Administrator
+                </h1>
+                <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-transparent mb-1.5"></div>
+                <p class="text-xs sm:text-sm font-semibold text-blue-300">
+                  Today's AAR submissions overview and statistics
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-white">
-                Welcome Back, Administrator
-              </h1>
-              <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-transparent mb-1.5"></div>
-              <p class="text-xs sm:text-sm font-semibold text-blue-300">
-                Today's AAR submissions overview and statistics
-              </p>
-            </div>
-          </div>
           </div>
         </div>
 
@@ -65,28 +82,30 @@
         <div class="mb-6">
           <div class="flex items-center gap-3 mb-5">
             <div class="h-4 w-1 rounded-full bg-gradient-to-b from-blue-500 to-blue-800"></div>
-            <p class="text-sm font-bold uppercase tracking-wider text-slate-700">
-              Today's Statistics
-            </p>
+            <p class="text-sm font-bold uppercase tracking-wider text-white">Today's Statistics</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             <!-- Today's Attendance -->
             <div
-              class="rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group overflow-hidden relative bg-white border border-emerald-100"
+              class="rounded-2xl p-4 sm:p-5 lg:p-6 shadow-lg md:shadow-xl border border-slate-700 backdrop-blur-sm bg-slate-900/80 transition-all duration-300 cursor-pointer group overflow-hidden relative hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
             >
-              <div class="absolute -top-4 -right-4 w-24 h-24 bg-emerald-400 rounded-full opacity-10 pointer-events-none"></div>
-              <div class="absolute bottom-2 right-12 w-12 h-12 bg-emerald-300 rounded-full opacity-10 pointer-events-none"></div>
+              <div
+                class="absolute -top-4 -right-4 w-24 h-24 bg-emerald-400 rounded-full opacity-10 pointer-events-none"
+              ></div>
+              <div
+                class="absolute bottom-2 right-12 w-12 h-12 bg-emerald-300 rounded-full opacity-10 pointer-events-none"
+              ></div>
               <div class="flex items-center justify-between relative">
                 <div class="flex-1">
                   <p
-                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-emerald-700"
+                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-emerald-400"
                   >
                     AAR Submissions
                   </p>
-                  <p class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2 text-emerald-600">
+                  <p class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2 text-white">
                     {{ todayCheckIns }}
                   </p>
-                  <p class="text-xs sm:text-sm font-semibold text-slate-500">
+                  <p class="text-xs sm:text-sm font-semibold text-slate-400">
                     {{ currentDate }}
                   </p>
                 </div>
@@ -112,23 +131,27 @@
 
             <!-- Absent Officers -->
             <div
-              class="rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group overflow-hidden relative bg-white border border-red-100"
+              class="rounded-2xl p-4 sm:p-5 lg:p-6 shadow-lg md:shadow-xl border border-slate-700 backdrop-blur-sm bg-slate-900/80 transition-all duration-300 cursor-pointer group overflow-hidden relative hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
             >
-              <div class="absolute -top-4 -right-4 w-24 h-24 bg-red-400 rounded-full opacity-10 pointer-events-none"></div>
-              <div class="absolute bottom-2 right-12 w-12 h-12 bg-red-300 rounded-full opacity-10 pointer-events-none"></div>
+              <div
+                class="absolute -top-4 -right-4 w-24 h-24 bg-red-400 rounded-full opacity-10 pointer-events-none"
+              ></div>
+              <div
+                class="absolute bottom-2 right-12 w-12 h-12 bg-red-300 rounded-full opacity-10 pointer-events-none"
+              ></div>
               <div class="flex items-center justify-between relative">
                 <div class="flex-1">
-                  <p
-                    class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-red-700"
-                  >
+                  <p class="text-xs font-bold uppercase mb-2 sm:mb-3 tracking-wider text-red-400">
                     NO AAR
                   </p>
-                  <p class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2 text-red-600">
+                  <p class="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2 text-white">
                     {{ officersWithoutAttendance.length }}
                   </p>
-                  <p class="text-xs sm:text-sm font-semibold text-slate-500">Officers</p>
+                  <p class="text-xs sm:text-sm font-semibold text-slate-400">Officers</p>
                 </div>
-                <div class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br from-red-500 to-red-600">
+                <div
+                  class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br from-red-500 to-red-600"
+                >
                   <svg
                     class="w-7 h-7 sm:w-9 sm:h-9 text-white"
                     fill="none"
@@ -151,13 +174,13 @@
         <!-- Recent Activity & Absent Officers Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
           <!-- Absent Officers Today -->
-          <div class="rounded-lg shadow-sm bg-white border border-slate-200">
-            <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-200">
+          <div class="rounded-lg shadow-lg bg-slate-900/80 border border-slate-700">
+            <div class="p-4 sm:p-5 lg:p-6 border-b border-slate-700">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2 sm:gap-3">
-                  <div class="rounded-lg p-1.5 sm:p-2 bg-red-50">
+                  <div class="rounded-lg p-1.5 sm:p-2 bg-red-500/10">
                     <svg
-                      class="w-4 h-4 sm:w-5 sm:h-5 text-red-600"
+                      class="w-4 h-4 sm:w-5 sm:h-5 text-red-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -170,14 +193,12 @@
                       ></path>
                     </svg>
                   </div>
-                  <h2
-                    class="text-sm sm:text-base font-bold uppercase tracking-wide text-slate-800"
-                  >
+                  <h2 class="text-sm sm:text-base font-bold uppercase tracking-wide text-white">
                     NO AAR Officers Yet
                   </h2>
                 </div>
                 <span
-                  class="text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-red-50 text-red-600"
+                  class="text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-red-500/10 text-red-400"
                 >
                   {{ officersWithoutAttendance.length }}
                 </span>
@@ -185,11 +206,9 @@
             </div>
             <div class="p-4 sm:p-5 lg:p-6 max-h-80 sm:max-h-96 overflow-y-auto">
               <div v-if="officersWithoutAttendance.length === 0" class="text-center py-6 sm:py-8">
-                <div
-                  class="rounded-full p-3 sm:p-4 mx-auto w-fit mb-2 sm:mb-3 bg-emerald-50"
-                >
+                <div class="rounded-full p-3 sm:p-4 mx-auto w-fit mb-2 sm:mb-3 bg-emerald-500/10">
                   <svg
-                    class="w-10 h-10 sm:w-12 sm:h-12 text-emerald-600"
+                    class="w-10 h-10 sm:w-12 sm:h-12 text-emerald-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -202,10 +221,8 @@
                     ></path>
                   </svg>
                 </div>
-                <p class="text-xs sm:text-sm font-bold text-emerald-600">
-                  Perfect Submission!
-                </p>
-                <p class="text-xs sm:text-sm mt-1 text-slate-500">
+                <p class="text-xs sm:text-sm font-bold text-emerald-400">Perfect Submission!</p>
+                <p class="text-xs sm:text-sm mt-1 text-slate-400">
                   All officers have submitted their AAR today
                 </p>
               </div>
@@ -213,13 +230,13 @@
                 <div
                   v-for="officer in officersWithoutAttendance"
                   :key="officer.id"
-                  class="p-3 sm:p-4 rounded-lg border border-slate-200 transition-all duration-200 hover:shadow-md bg-white"
+                  class="p-3 sm:p-4 rounded-lg border border-slate-700 transition-all duration-200 hover:shadow-md bg-slate-800/50"
                 >
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2 sm:gap-3">
-                      <div class="rounded-full p-1.5 sm:p-2 bg-red-50">
+                      <div class="rounded-full p-1.5 sm:p-2 bg-red-500/10">
                         <svg
-                          class="w-3 h-3 sm:w-4 sm:h-4 text-red-600"
+                          class="w-3 h-3 sm:w-4 sm:h-4 text-red-400"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -233,16 +250,16 @@
                         </svg>
                       </div>
                       <div>
-                        <p class="text-xs sm:text-sm font-bold text-slate-800">
+                        <p class="text-xs sm:text-sm font-bold text-white">
                           {{ officer.rank_fullname }}
                         </p>
-                        <p class="text-xs sm:text-sm font-semibold text-slate-500">
+                        <p class="text-xs sm:text-sm font-semibold text-slate-400">
                           No check-in today
                         </p>
                       </div>
                     </div>
                     <span
-                      class="text-xs sm:text-sm font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-red-50 text-red-600"
+                      class="text-xs sm:text-sm font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-red-500/10 text-red-400"
                     >
                       No AAR
                     </span>
@@ -253,12 +270,12 @@
           </div>
 
           <!-- Quick Stats & Summary -->
-          <div class="rounded-lg shadow-sm bg-white border border-slate-200">
-            <div class="p-5 border-b border-slate-200">
+          <div class="rounded-lg shadow-lg bg-slate-900/80 border border-slate-700">
+            <div class="p-5 border-b border-slate-700">
               <div class="flex items-center gap-3">
-                <div class="rounded-lg p-2 bg-blue-50">
+                <div class="rounded-lg p-2 bg-blue-600">
                   <svg
-                    class="w-5 h-5 text-police-dark"
+                    class="w-5 h-5 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -271,37 +288,35 @@
                     ></path>
                   </svg>
                 </div>
-                <h2 class="text-base font-bold uppercase tracking-wide text-police-dark">
+                <h2 class="text-base font-bold uppercase tracking-wide text-white">
                   Quick Summary
                 </h2>
               </div>
             </div>
             <div class="p-5 space-y-4">
               <!-- Submission Rate -->
-              <div
-                class="p-4 rounded-lg bg-emerald-50"
-              >
+              <div class="p-4 rounded-lg bg-emerald-500/10">
                 <div class="flex items-center justify-between mb-2">
-                  <p class="text-xs font-bold uppercase text-emerald-700">Submission Rate</p>
-                  <p class="text-2xl font-bold text-emerald-600">{{ attendanceRate }}%</p>
+                  <p class="text-xs font-bold uppercase text-emerald-400">Submission Rate</p>
+                  <p class="text-2xl font-bold text-emerald-400">{{ attendanceRate }}%</p>
                 </div>
-                <div class="w-full h-2 rounded-full overflow-hidden bg-emerald-100">
+                <div class="w-full h-2 rounded-full overflow-hidden bg-emerald-500/20">
                   <div
-                    class="h-full rounded-full transition-all duration-500 bg-emerald-600"
+                    class="h-full rounded-full transition-all duration-500 bg-emerald-500"
                     :style="{ width: attendanceRate + '%' }"
                   ></div>
                 </div>
-                <p class="text-xs font-semibold mt-2 text-emerald-700">
+                <p class="text-xs font-semibold mt-2 text-emerald-400">
                   {{ todayCheckIns }} out of {{ totalOfficers }} officers submitted
                 </p>
               </div>
 
               <!-- Total Records -->
               <div
-                class="p-4 rounded-lg flex items-center justify-between bg-slate-50 border border-slate-200"
+                class="p-4 rounded-lg flex items-center justify-between bg-slate-800/50 border border-slate-700"
               >
                 <div class="flex items-center gap-3">
-                  <div class="rounded-lg p-2.5 bg-police-dark">
+                  <div class="rounded-lg p-2.5 bg-blue-600">
                     <svg
                       class="w-5 h-5 text-white"
                       fill="none"
@@ -317,37 +332,27 @@
                     </svg>
                   </div>
                   <div>
-                    <p class="text-xs font-bold uppercase mb-1 text-slate-600">
-                      Total Records
-                    </p>
-                    <p class="text-2xl font-bold text-police-dark">{{ totalAttendance }}</p>
+                    <p class="text-xs font-bold uppercase mb-1 text-slate-400">Total Records</p>
+                    <p class="text-2xl font-bold text-white">{{ totalAttendance }}</p>
                   </div>
                 </div>
               </div>
 
               <!-- System Status -->
-              <div
-                class="p-4 rounded-lg bg-slate-50 border border-slate-200"
-              >
+              <div class="p-4 rounded-lg bg-slate-800/50 border border-slate-700">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-3">
-                    <div class="rounded-full p-2 bg-emerald-600">
+                    <div class="rounded-full p-2 bg-emerald-500">
                       <div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
                     </div>
                     <div>
-                      <p class="text-xs font-bold uppercase text-police-dark">
-                        System Status
-                      </p>
-                      <p class="text-sm font-semibold mt-0.5 text-emerald-600">
+                      <p class="text-xs font-bold uppercase text-slate-400">System Status</p>
+                      <p class="text-sm font-semibold mt-0.5 text-emerald-400">
                         All Systems Operational
                       </p>
                     </div>
                   </div>
-                  <svg
-                    class="w-6 h-6 text-emerald-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
+                  <svg class="w-6 h-6 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fill-rule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"

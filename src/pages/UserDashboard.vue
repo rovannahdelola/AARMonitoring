@@ -1,11 +1,26 @@
 <template>
-  <div
-    class="min-h-screen relative overflow-hidden bg-[radial-gradient(circle_at_20%_20%,#87CEEB_0%,#B0E0E6_45%,#ADD8E6_100%)]"
-  >
+  <div class="min-h-screen relative overflow-hidden bg-slate-900">
+    <!-- Background Image -->
     <div
-      class="absolute inset-0 opacity-20 pointer-events-none bg-[linear-gradient(120deg,rgba(255,255,255,0.4)_0%,rgba(135,206,235,0.2)_45%,rgba(255,255,255,0.15)_100%)]"
-    ></div>
-    <div class="relative max-w-[1600px] mx-auto px-4 md:px-8 py-4 md:py-6">
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('/src/assets/landing.jpg')"
+    >
+      <!-- Dark overlay for better readability -->
+      <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"></div>
+    </div>
+
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div
+        class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"
+      ></div>
+      <div
+        class="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"
+        style="animation-delay: 700ms"
+      ></div>
+    </div>
+
+    <div class="relative max-w-[1600px] mx-auto px-4 md:px-8 py-4 md:py-6 z-10">
       <!-- Header -->
       <div
         class="relative rounded-2xl p-5 md:p-6 mb-5 md:mb-6 text-white shadow-xl border border-white/20 bg-[linear-gradient(120deg,#001a3d_0%,#003f8c_55%,#0c66c6_100%)]"
@@ -78,22 +93,22 @@
       <div class="grid grid-cols-2 gap-4 mb-0.5 md:mb-6">
         <!-- Current Date -->
         <div
-          class="rounded-2xl p-4 md:p-6 shadow-lg md:shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(232,238,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
+          class="rounded-2xl p-4 md:p-6 shadow-lg md:shadow-xl border border-slate-700 backdrop-blur-sm bg-slate-900/80 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
         >
           <div class="flex items-center justify-between gap-2">
             <div>
               <p
-                class="text-[10px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
+                class="text-[10px] md:text-xs font-semibold tracking-wide uppercase text-slate-400"
               >
                 Today's Date
               </p>
-              <p class="text-base md:text-2xl font-bold mt-1 text-[#002147]">
+              <p class="text-base md:text-2xl font-bold mt-1 text-white">
                 {{ currentDate }}
               </p>
             </div>
-            <div class="rounded-2xl p-2 md:p-3 bg-[rgba(16,185,129,0.15)] flex-shrink-0">
+            <div class="rounded-2xl p-2 md:p-3 bg-blue-600 flex-shrink-0">
               <svg
-                class="w-5 h-5 md:w-7 md:h-7 text-black"
+                class="w-5 h-5 md:w-7 md:h-7 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -111,22 +126,22 @@
 
         <!-- Current Time -->
         <div
-          class="rounded-2xl p-4 md:p-6 shadow-lg md:shadow-xl border border-white/60 backdrop-blur-sm bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(223,236,255,0.95))] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
+          class="rounded-2xl p-4 md:p-6 shadow-lg md:shadow-xl border border-slate-700 backdrop-blur-sm bg-slate-900/80 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-xl md:hover:shadow-2xl"
         >
           <div class="flex items-center justify-between gap-2">
             <div>
               <p
-                class="text-[10px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
+                class="text-[10px] md:text-xs font-semibold tracking-wide uppercase text-slate-400"
               >
                 Current Time
               </p>
-              <p class="text-base md:text-3xl font-bold mt-1 text-[#002147]">
+              <p class="text-base md:text-3xl font-bold mt-1 text-white">
                 {{ currentTime }}
               </p>
             </div>
-            <div class="rounded-2xl p-2 md:p-3 bg-[rgba(251,191,36,0.18)] flex-shrink-0">
+            <div class="rounded-2xl p-2 md:p-3 bg-blue-600 shrink-0">
               <svg
-                class="w-5 h-5 md:w-7 md:h-7 text-black"
+                class="w-5 h-5 md:w-7 md:h-7 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -308,11 +323,11 @@
 
           <!-- Important Notice (hidden on mobile) -->
           <div
-            class="hidden lg:block rounded-lg p-4 shadow-sm border-l-4 border-police-light bg-police-cream"
+            class="hidden lg:block rounded-lg p-4 shadow-sm border-l-4 border-blue-500 bg-blue-500/10"
           >
             <div class="flex items-start gap-3">
               <svg
-                class="w-6 h-6 flex-shrink-0 text-police-dark"
+                class="w-6 h-6 flex-shrink-0 text-blue-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -323,10 +338,8 @@
                 ></path>
               </svg>
               <div>
-                <h3 class="font-bold text-sm md:text-base mb-2 text-police-dark">
-                  Important Notice
-                </h3>
-                <p class="text-xs md:text-sm text-slate-700">
+                <h3 class="font-bold text-sm md:text-base mb-2 text-white">Important Notice</h3>
+                <p class="text-xs md:text-sm text-slate-300">
                   Ensure all information is accurate before submission. Screenshots must be clear
                   and readable.
                 </p>
@@ -335,20 +348,22 @@
           </div>
 
           <!-- System Information (hidden on mobile) -->
-          <div class="hidden lg:block bg-white rounded-lg p-4 shadow-sm border border-slate-200">
-            <h3 class="font-bold text-sm md:text-base mb-3 text-police-dark">System Information</h3>
+          <div
+            class="hidden lg:block bg-slate-900/80 rounded-lg p-4 shadow-sm border border-slate-700"
+          >
+            <h3 class="font-bold text-sm md:text-base mb-3 text-white">System Information</h3>
             <div class="space-y-2">
               <div class="flex justify-between text-xs md:text-sm">
-                <span class="text-slate-600">Status:</span>
-                <span class="font-bold text-emerald-600">● Active</span>
+                <span class="text-slate-400">Status:</span>
+                <span class="font-bold text-emerald-400">● Active</span>
               </div>
               <div class="flex justify-between text-xs md:text-sm">
-                <span class="text-slate-600">Registered Users:</span>
-                <span class="font-bold text-police-dark">{{ allUsers.length }}</span>
+                <span class="text-slate-400">Registered Users:</span>
+                <span class="font-bold text-white">{{ allUsers.length }}</span>
               </div>
               <div class="flex justify-between text-xs md:text-sm">
-                <span class="text-slate-600">Max File Size:</span>
-                <span class="font-bold text-police-dark">25 MB</span>
+                <span class="text-slate-400">Max File Size:</span>
+                <span class="font-bold text-white">25 MB</span>
               </div>
             </div>
           </div>
@@ -356,11 +371,11 @@
 
         <!-- Right Column: Form -->
         <div class="lg:col-span-9 order-2">
-          <div class="bg-white rounded-lg p-6 space-y-5 shadow-sm border border-slate-200">
+          <div class="bg-slate-900/80 rounded-lg p-6 space-y-5 shadow-sm border border-slate-700">
             <div
-              class="flex items-center gap-3 p-4 rounded-lg bg-police-cream border-l-4 border-police-dark"
+              class="flex items-center gap-3 p-4 rounded-lg bg-blue-500/10 border-l-4 border-blue-500"
             >
-              <div class="rounded-lg p-2 bg-police-dark">
+              <div class="rounded-lg p-2 bg-blue-600">
                 <svg
                   class="w-5 h-5 md:w-6 md:h-6 text-white"
                   fill="none"
@@ -376,15 +391,15 @@
                 </svg>
               </div>
               <div>
-                <p class="text-sm md:text-base font-bold text-police-dark">AAR Submission Form</p>
-                <p class="text-xs text-slate-600">Complete all required fields below</p>
+                <p class="text-sm md:text-base font-bold text-white">AAR Submission Form</p>
+                <p class="text-xs text-slate-300">Complete all required fields below</p>
               </div>
             </div>
 
             <!-- Error Message -->
             <div
               v-if="fetchError"
-              class="border-l-4 border-red-600 bg-red-50 p-4 rounded-lg text-xs md:text-sm font-bold text-red-700"
+              class="border-l-4 border-red-600 bg-red-500/10 p-4 rounded-lg text-xs md:text-sm font-bold text-red-400"
             >
               <div class="flex items-center gap-2">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -399,10 +414,10 @@
             </div>
 
             <!-- Searchable User Selection -->
-            <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm relative z-20">
-              <label
-                class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-slate-800"
-              >
+            <div
+              class="rounded-lg border border-slate-700 bg-slate-900/50 p-5 shadow-sm relative z-20"
+            >
+              <label class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-white">
                 <svg
                   class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
                   fill="none"
@@ -427,18 +442,18 @@
                   :disabled="isLoadingUsers"
                   type="text"
                   placeholder="Type to search or click to view all..."
-                  class="w-full px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-2 border-[#d1d5db] rounded-lg focus:outline-none focus:ring-2 focus:ring-police-light/30 transition font-medium text-police-dark"
+                  class="w-full px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-2 border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition font-medium text-white bg-slate-800/50 placeholder-slate-500"
                   autocomplete="off"
                 />
 
                 <!-- Dropdown List -->
                 <div
                   v-if="showDropdown && !isLoadingUsers"
-                  class="absolute z-40 w-full mt-2 bg-white border-2 border-[#d1d5db] rounded-lg max-h-64 overflow-y-auto shadow-lg"
+                  class="absolute z-40 w-full mt-2 bg-slate-900 border-2 border-slate-700 rounded-lg max-h-64 overflow-y-auto shadow-lg"
                 >
                   <div
                     v-if="filteredUsers.length === 0"
-                    class="px-3 md:px-4 py-2.5 md:py-3 text-gray-500 text-xs md:text-sm"
+                    class="px-3 md:px-4 py-2.5 md:py-3 text-slate-400 text-xs md:text-sm"
                   >
                     No users found
                   </div>
@@ -446,9 +461,9 @@
                     v-for="user in filteredUsers"
                     :key="user.id"
                     @mousedown.prevent="selectUser(user)"
-                    class="px-3 md:px-4 py-2.5 md:py-3 hover:bg-police-cream cursor-pointer text-xs md:text-sm border-b last:border-b-0 transition font-medium text-gray-700"
+                    class="px-3 md:px-4 py-2.5 md:py-3 hover:bg-blue-600/20 cursor-pointer text-xs md:text-sm border-b border-slate-700 last:border-b-0 transition font-medium text-slate-300"
                     :class="
-                      selectedUserId === user.id ? 'font-bold bg-police-cream text-police-dark' : ''
+                      selectedUserId === user.id ? 'font-bold bg-blue-600/30 text-blue-300' : ''
                     "
                   >
                     {{ user.rank_fullname }}
@@ -461,13 +476,13 @@
                   type="button"
                   @mousedown.prevent
                   @click="clearSelection"
-                  class="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#dc2626] bg-white border border-[#fecaca] px-3 py-1 rounded-md hover:bg-[#fee2e2] transition"
+                  class="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-red-400 bg-slate-800 border border-red-400/30 px-3 py-1 rounded-md hover:bg-red-400/10 transition"
                 >
                   Clear
                 </button>
                 <div v-else-if="isLoadingUsers" class="absolute right-3 top-2.5 md:top-3">
                   <svg
-                    class="animate-spin h-4 w-4 md:h-5 md:w-5 text-police-dark"
+                    class="animate-spin h-4 w-4 md:h-5 md:w-5 text-blue-400"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -489,7 +504,7 @@
                 </div>
               </div>
 
-              <p v-if="!isLoadingUsers && allUsers.length > 0" class="text-xs text-gray-500 mt-4">
+              <p v-if="!isLoadingUsers && allUsers.length > 0" class="text-xs text-slate-400 mt-4">
                 {{ filteredUsers.length }} of {{ allUsers.length }} users
               </p>
             </div>
@@ -497,13 +512,13 @@
             <!-- AAR History Section -->
             <div
               v-if="selectedUserId"
-              class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+              class="rounded-lg border border-slate-700 bg-slate-900/50 p-5 shadow-sm"
             >
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-2">
-                  <div class="rounded-lg p-2 bg-police-cream">
+                  <div class="rounded-lg p-2 bg-blue-500/10">
                     <svg
-                      class="w-5 h-5 text-police-dark"
+                      class="w-5 h-5 text-blue-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -517,13 +532,11 @@
                     </svg>
                   </div>
                   <div>
-                    <h3 class="text-sm md:text-base font-bold text-police-dark">AAR History</h3>
-                    <p class="text-xs text-slate-600">Previous submissions for this officer</p>
+                    <h3 class="text-sm md:text-base font-bold text-white">AAR History</h3>
+                    <p class="text-xs text-slate-400">Previous submissions for this officer</p>
                   </div>
                 </div>
-                <span
-                  class="text-xs font-bold px-3 py-1 rounded-full bg-police-cream text-police-dark"
-                >
+                <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-500/20 text-blue-300">
                   {{ aarHistory.length }} {{ aarHistory.length === 1 ? 'record' : 'records' }}
                 </span>
               </div>
@@ -531,7 +544,7 @@
               <!-- Loading State -->
               <div v-if="isLoadingHistory" class="text-center py-8">
                 <svg
-                  class="animate-spin h-8 w-8 mx-auto text-police-dark"
+                  class="animate-spin h-8 w-8 mx-auto text-blue-400"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -550,17 +563,17 @@
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   ></path>
                 </svg>
-                <p class="text-sm text-slate-600 mt-2">Loading history...</p>
+                <p class="text-sm text-slate-400 mt-2">Loading history...</p>
               </div>
 
               <!-- No Records -->
               <div
                 v-else-if="aarHistory.length === 0"
-                class="text-center py-8 border-2 border-dashed border-slate-200 rounded-lg"
+                class="text-center py-8 border-2 border-dashed border-slate-700 rounded-lg"
               >
-                <div class="rounded-full p-3 mx-auto w-fit mb-2 bg-slate-50">
+                <div class="rounded-full p-3 mx-auto w-fit mb-2 bg-slate-800">
                   <svg
-                    class="w-8 h-8 text-slate-400"
+                    class="w-8 h-8 text-slate-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -573,7 +586,7 @@
                     ></path>
                   </svg>
                 </div>
-                <p class="text-sm font-semibold text-slate-700">No AAR records found</p>
+                <p class="text-sm font-semibold text-slate-300">No AAR records found</p>
                 <p class="text-xs text-slate-500 mt-1">
                   This officer hasn't submitted any reports yet
                 </p>
@@ -584,13 +597,13 @@
                 <div
                   v-for="record in aarHistory"
                   :key="record.id"
-                  class="border border-slate-200 rounded-lg p-4 hover:shadow-md transition bg-slate-50"
+                  class="border border-slate-700 rounded-lg p-4 hover:shadow-md transition bg-slate-800/50"
                 >
                   <div class="flex items-start justify-between gap-3 mb-3">
                     <div class="flex items-center gap-2">
-                      <div class="rounded-lg p-1.5 bg-emerald-50">
+                      <div class="rounded-lg p-1.5 bg-emerald-500/10">
                         <svg
-                          class="w-4 h-4 text-emerald-600"
+                          class="w-4 h-4 text-emerald-400"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -603,7 +616,7 @@
                           ></path>
                         </svg>
                       </div>
-                      <span class="text-xs font-bold text-slate-800">
+                      <span class="text-xs font-bold text-slate-200">
                         {{
                           new Date(record.date).toLocaleDateString('en-US', {
                             year: 'numeric',
@@ -614,7 +627,7 @@
                       </span>
                     </div>
                     <span
-                      class="text-xs font-semibold px-2 py-1 rounded-full bg-emerald-100 text-emerald-700"
+                      class="text-xs font-semibold px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-400"
                     >
                       Submitted
                     </span>
@@ -622,22 +635,22 @@
 
                   <div class="space-y-2">
                     <div>
-                      <p class="text-xs font-semibold text-slate-600 mb-1">Description:</p>
-                      <p class="text-xs text-slate-700">{{ record.description }}</p>
+                      <p class="text-xs font-semibold text-slate-400 mb-1">Description:</p>
+                      <p class="text-xs text-slate-300">{{ record.description }}</p>
                     </div>
                     <div>
-                      <p class="text-xs font-semibold text-slate-600 mb-1">Address:</p>
-                      <p class="text-xs text-slate-700">{{ record.address }}</p>
+                      <p class="text-xs font-semibold text-slate-400 mb-1">Address:</p>
+                      <p class="text-xs text-slate-300">{{ record.address }}</p>
                     </div>
-                    <div v-if="record.screenshots" class="pt-2 border-t border-slate-200">
-                      <p class="text-xs font-semibold text-slate-600 mb-2">Screenshots:</p>
+                    <div v-if="record.screenshots" class="pt-2 border-t border-slate-700">
+                      <p class="text-xs font-semibold text-slate-400 mb-2">Screenshots:</p>
                       <div class="flex gap-2 overflow-x-auto pb-2">
                         <img
                           v-for="(screenshot, idx) in record.screenshots.split(',')"
                           :key="idx"
                           :src="screenshot"
                           @click="zoomImage(screenshot)"
-                          class="w-16 h-16 object-cover rounded border border-slate-300 cursor-zoom-in hover:opacity-80 transition"
+                          class="w-16 h-16 object-cover rounded border border-slate-600 cursor-zoom-in hover:opacity-80 transition"
                           alt="Screenshot"
                         />
                       </div>
@@ -649,15 +662,15 @@
 
             <!-- Additional Details -->
             <div
-              class="relative rounded-3xl border border-[#cdd8ff] bg-white/95 p-6 space-y-5 shadow-xl shadow-blue-50 overflow-hidden transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
+              class="relative rounded-3xl border border-slate-700 bg-slate-900/80 p-6 space-y-5 shadow-xl shadow-slate-900 overflow-hidden transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
             >
               <div
-                class="absolute inset-0 opacity-70 pointer-events-none bg-[linear-gradient(130deg,rgba(228,235,255,0.35)_0%,rgba(232,244,255,0.65)_60%,rgba(255,255,255,0.4)_100%)]"
+                class="absolute inset-0 opacity-10 pointer-events-none bg-[linear-gradient(130deg,rgba(59,130,246,0.2)_0%,rgba(99,102,241,0.1)_60%,rgba(79,70,229,0.05)_100%)]"
               ></div>
               <div class="relative flex items-center justify-between gap-3">
                 <div class="flex items-center gap-3">
                   <div
-                    class="rounded-2xl p-3 shadow-md bg-[linear-gradient(140deg,#002147,#0f63c7)]"
+                    class="rounded-2xl p-3 shadow-md bg-[linear-gradient(140deg,#1e40af,#2563eb)]"
                   >
                     <svg
                       class="w-5 h-5 text-white"
@@ -674,9 +687,9 @@
                     </svg>
                   </div>
                   <div>
-                    <p class="text-sm md:text-base font-bold text-[#001b44]">Operational Details</p>
+                    <p class="text-sm md:text-base font-bold text-white">Operational Details</p>
                     <p
-                      class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-[#5c6b93]"
+                      class="text-[11px] md:text-xs font-semibold tracking-wide uppercase text-slate-400"
                     >
                       Complete all accountability fields
                     </p>
@@ -684,81 +697,81 @@
                 </div>
                 <div class="flex flex-col items-end text-right">
                   <span
-                    class="text-[10px] font-bold tracking-wide px-3 py-1 rounded-full bg-[#e0e7ff] text-[#3730a3]"
+                    class="text-[10px] font-bold tracking-wide px-3 py-1 rounded-full bg-blue-500/20 text-blue-300"
                     >All fields required</span
                   >
-                  <span class="text-[10px] font-semibold mt-1 text-[#93a1d3]"
+                  <span class="text-[10px] font-semibold mt-1 text-slate-400"
                     >Reviewed before submission</span
                   >
                 </div>
               </div>
               <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <div
-                  class="rounded-2xl border border-[#d8e2ff] p-4 bg-white/90 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                  class="rounded-2xl border border-slate-700 p-4 bg-slate-900/50 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   <label
-                    class="text-sm md:text-base font-bold mb-2 flex items-center gap-2 text-[#002147]"
+                    class="text-sm md:text-base font-bold mb-2 flex items-center gap-2 text-white"
                   >
                     <span
-                      class="flex items-center justify-center w-7 h-7 rounded-full text-white text-xs shadow bg-[linear-gradient(135deg,#002147,#0f63c7)]"
+                      class="flex items-center justify-center w-7 h-7 rounded-full text-white text-xs shadow bg-[linear-gradient(135deg,#1e40af,#2563eb)]"
                       >2</span
                     >
-                    Description <span class="text-red-600">*</span>
+                    Description <span class="text-red-500">*</span>
                   </label>
                   <textarea
                     v-model="formData.description"
                     rows="4"
-                    class="w-full px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-2 border-[#d1dcfb] rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-200 transition font-medium text-[#001b44] bg-[#f8fbff]"
+                    class="w-full px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-2 border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition font-medium text-white bg-slate-800/50"
                     placeholder="Provide a brief description of your duty or activity"
                   ></textarea>
-                  <p class="text-[10px] text-gray-500 mt-2">
+                  <p class="text-[10px] text-slate-500 mt-2">
                     Example: Traffic monitoring along Aurora Blvd.
                   </p>
                 </div>
                 <div class="space-y-4">
                   <div
-                    class="rounded-2xl border border-[#d8e2ff] p-4 bg-white/90 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                    class="rounded-2xl border border-slate-700 p-4 bg-slate-900/50 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                   >
                     <label
-                      class="text-sm md:text-base font-bold mb-2 flex items-center gap-2 text-[#002147]"
+                      class="text-sm md:text-base font-bold mb-2 flex items-center gap-2 text-white"
                     >
                       <span
-                        class="flex items-center justify-center w-7 h-7 rounded-full text-white text-xs shadow bg-[linear-gradient(135deg,#002147,#0f63c7)]"
+                        class="flex items-center justify-center w-7 h-7 rounded-full text-white text-xs shadow bg-[linear-gradient(135deg,#1e40af,#2563eb)]"
                         >3</span
                       >
-                      Address <span class="text-red-600">*</span>
+                      Address <span class="text-red-500">*</span>
                     </label>
                     <input
                       v-model="formData.address"
                       type="text"
-                      class="w-full px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-2 border-[#d1dcfb] rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-200 transition font-medium text-[#001b44] bg-[#f8fbff]"
+                      class="w-full px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-2 border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition font-medium text-white bg-slate-800/50"
                       placeholder="Enter your current deployment address"
                     />
-                    <p class="text-[10px] text-gray-500 mt-2">
+                    <p class="text-[10px] text-slate-500 mt-2">
                       Include specific barangay or landmark when possible.
                     </p>
                   </div>
                   <div
-                    class="rounded-2xl border border-[#cfdfff] p-4 bg-[linear-gradient(135deg,#e9f2ff_0%,#dbeafe_100%)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                    class="rounded-2xl border border-slate-700 p-4 bg-slate-900/50 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                   >
                     <div class="flex items-center gap-2 mb-3">
                       <span
-                        class="flex items-center justify-center w-7 h-7 rounded-full text-white text-xs shadow bg-[linear-gradient(135deg,#002147,#0f63c7)]"
+                        class="flex items-center justify-center w-7 h-7 rounded-full text-white text-xs shadow bg-[linear-gradient(135deg,#1e40af,#2563eb)]"
                         >4</span
                       >
-                      <p class="text-sm md:text-base font-bold text-[#002147]">
-                        Date <span class="text-red-600">*</span>
+                      <p class="text-sm md:text-base font-bold text-white">
+                        Date <span class="text-red-500">*</span>
                       </p>
                     </div>
                     <div class="relative">
-                      <span class="text-[11px] font-semibold uppercase tracking-wide text-[#1e3a8a]"
+                      <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-400"
                         >Selected Date</span
                       >
                       <div
-                        class="mt-1 flex items-center gap-2 rounded-2xl border border-white/70 bg-white px-3 py-2.5 shadow-sm"
+                        class="mt-1 flex items-center gap-2 rounded-2xl border border-slate-700 bg-slate-800/50 px-3 py-2.5 shadow-sm"
                       >
                         <svg
-                          class="w-4 h-4 text-[#002147]"
+                          class="w-4 h-4 text-slate-400"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -773,10 +786,10 @@
                         <input
                           v-model="formData.date"
                           type="date"
-                          class="w-full bg-transparent text-xs md:text-sm font-semibold focus:outline-none text-[#002147]"
+                          class="w-full bg-transparent text-xs md:text-sm font-semibold focus:outline-none text-white"
                         />
                       </div>
-                      <p class="text-[11px] font-semibold mt-2 text-[#1e3a8a]">
+                      <p class="text-[11px] font-semibold mt-2 text-slate-400">
                         Use the date that matches your actual deployment.
                       </p>
                     </div>
@@ -787,9 +800,7 @@
 
             <!-- Screenshot Upload Field -->
             <div class="transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg">
-              <label
-                class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-[#002147]"
-              >
+              <label class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-white">
                 <svg
                   class="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
                   fill="none"
@@ -803,10 +814,10 @@
                     d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   ></path>
                 </svg>
-                5. Upload Screenshots <span class="text-red-600">*</span>
+                5. Upload Screenshots <span class="text-red-500">*</span>
               </label>
               <div
-                class="rounded-2xl border-2 border-dashed border-[#95b2ff] p-6 transition-all duration-200 shadow-inner bg-[linear-gradient(145deg,#f8fbff_0%,#eef3ff_100%)] hover:-translate-y-0.5 hover:shadow-xl"
+                class="rounded-2xl border-2 border-dashed border-slate-700 p-6 transition-all duration-200 shadow-inner bg-gradient-to-b from-slate-900/50 to-slate-800/50 hover:-translate-y-0.5 hover:shadow-xl"
               >
                 <input
                   ref="fileInput"
@@ -823,7 +834,7 @@
                   class="cursor-pointer text-center"
                 >
                   <div
-                    class="rounded-2xl p-4 mx-auto w-16 h-16 flex items-center justify-center mb-3 shadow bg-[linear-gradient(140deg,#002147,#0f63c7)]"
+                    class="rounded-2xl p-4 mx-auto w-16 h-16 flex items-center justify-center mb-3 shadow bg-[linear-gradient(140deg,#1e40af,#2563eb)]"
                   >
                     <svg
                       class="w-8 h-8 text-white"
@@ -839,8 +850,8 @@
                       ></path>
                     </svg>
                   </div>
-                  <p class="text-sm font-bold text-[#0f1f4b]">Click to upload</p>
-                  <p class="text-xs text-gray-500 mt-2">
+                  <p class="text-sm font-bold text-white">Click to upload</p>
+                  <p class="text-xs text-slate-400 mt-2">
                     PNG, JPG · Max 25MB per file · Minimum of 1 attachment
                   </p>
                 </div>
@@ -851,7 +862,7 @@
                     <div
                       v-for="(preview, index) in previewImages"
                       :key="index"
-                      class="relative shrink-0 bg-white rounded border border-[#e5e7eb] hover:border-gray-400 transition"
+                      class="relative shrink-0 bg-slate-800 rounded border border-slate-700 hover:border-slate-500 transition"
                     >
                       <div class="relative">
                         <img
@@ -862,7 +873,7 @@
                         />
                         <button
                           @click.stop="removeImage(index)"
-                          class="absolute -top-2 -right-2 text-white rounded-full p-1.5 transition hover:opacity-90 bg-[#dc2626]"
+                          class="absolute -top-2 -right-2 text-white rounded-full p-1.5 transition hover:opacity-90 bg-red-600"
                         >
                           <svg
                             class="w-4 h-4"
@@ -888,7 +899,7 @@
                   </div>
                   <button
                     @click="$refs.fileInput.click()"
-                    class="w-full text-white font-bold py-3 rounded-xl text-sm transition hover:opacity-90 flex items-center justify-center gap-2 shadow bg-[linear-gradient(135deg,#003c94,#0d63c6)]"
+                    class="w-full text-white font-bold py-3 rounded-xl text-sm transition hover:opacity-90 flex items-center justify-center gap-2 shadow bg-[linear-gradient(135deg,#1e40af,#2563eb)]"
                   >
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
@@ -902,15 +913,21 @@
                   </button>
                 </div>
                 <div
-                  class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] font-semibold text-[#0f1f4b]"
+                  class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] font-semibold text-slate-300"
                 >
-                  <div class="rounded-lg bg-white/80 border border-[#dfe7ff] px-3 py-2 text-center">
+                  <div
+                    class="rounded-lg bg-slate-800/50 border border-slate-700 px-3 py-2 text-center"
+                  >
                     Minimum 1 screenshot
                   </div>
-                  <div class="rounded-lg bg-white/80 border border-[#dfe7ff] px-3 py-2 text-center">
+                  <div
+                    class="rounded-lg bg-slate-800/50 border border-slate-700 px-3 py-2 text-center"
+                  >
                     PNG/JPG formats only
                   </div>
-                  <div class="rounded-lg bg-white/80 border border-[#dfe7ff] px-3 py-2 text-center">
+                  <div
+                    class="rounded-lg bg-slate-800/50 border border-slate-700 px-3 py-2 text-center"
+                  >
                     Max 25MB per file
                   </div>
                 </div>
@@ -922,7 +939,7 @@
               <button
                 @click="submitForm"
                 :disabled="!isFormValid || isSubmitting"
-                class="w-full py-4 text-white font-bold text-base rounded-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-transform duration-150 hover:-translate-y-0.5 hover:opacity-95 bg-[#002147]"
+                class="w-full py-4 text-white font-bold text-base rounded-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-transform duration-150 hover:-translate-y-0.5 hover:opacity-95 bg-[linear-gradient(135deg,#1e40af,#2563eb)]"
                 :class="{ 'cursor-not-allowed opacity-60': !isFormValid || isSubmitting }"
               >
                 <svg
@@ -957,9 +974,11 @@
                 <span v-if="isSubmitting">Uploading...</span>
                 <span v-else>Submit AAR</span>
               </button>
-              <div class="mt-4 p-3 rounded-lg text-center bg-[#fef3c7]">
-                <p class="text-xs md:text-sm font-bold text-[#92400e]">
-                  <span class="text-[#dc2626]">*</span> Required fields must be filled out before
+              <div
+                class="mt-4 p-3 rounded-lg text-center bg-yellow-500/10 border border-yellow-500/30"
+              >
+                <p class="text-xs md:text-sm font-bold text-yellow-300">
+                  <span class="text-red-500">*</span> Required fields must be filled out before
                   submitting
                 </p>
               </div>
@@ -970,10 +989,10 @@
         <!-- Bottom: Important Notice & System Info (visible on mobile only) -->
         <div class="lg:hidden lg:col-span-3 order-3 grid grid-cols-1 gap-4">
           <!-- Important Notice -->
-          <div class="bg-[#eaf0ff] rounded-2xl p-4 shadow-md border-l-4 border-[#0f63c7]">
+          <div class="bg-blue-500/10 rounded-2xl p-4 shadow-md border-l-4 border-blue-500">
             <div class="flex items-start gap-3">
               <svg
-                class="w-5 h-5 flex-shrink-0 text-[#0f63c7]"
+                class="w-5 h-5 flex-shrink-0 text-blue-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -984,8 +1003,8 @@
                 ></path>
               </svg>
               <div>
-                <h3 class="font-bold text-sm mb-1 text-[#10224b]">Important Notice</h3>
-                <p class="text-xs text-[#1f3b7b]">
+                <h3 class="font-bold text-sm mb-1 text-white">Important Notice</h3>
+                <p class="text-xs text-slate-300">
                   Ensure all information is accurate before submission. Screenshots must be clear
                   and readable.
                 </p>
@@ -994,20 +1013,20 @@
           </div>
 
           <!-- System Information -->
-          <div class="bg-white rounded-lg p-4 shadow-md">
-            <h3 class="font-bold text-sm mb-3 text-[#002147]">System Information</h3>
+          <div class="bg-slate-900/80 rounded-lg p-4 shadow-md border border-slate-700">
+            <h3 class="font-bold text-sm mb-3 text-white">System Information</h3>
             <div class="space-y-2">
               <div class="flex justify-between text-xs">
-                <span class="text-gray-600">Status:</span>
-                <span class="font-bold text-green-600">● Active</span>
+                <span class="text-slate-400">Status:</span>
+                <span class="font-bold text-emerald-400">● Active</span>
               </div>
               <div class="flex justify-between text-xs">
-                <span class="text-gray-600">Registered Users:</span>
-                <span class="font-bold text-[#002147]">{{ allUsers.length }}</span>
+                <span class="text-slate-400">Registered Users:</span>
+                <span class="font-bold text-white">{{ allUsers.length }}</span>
               </div>
               <div class="flex justify-between text-xs">
-                <span class="text-gray-600">Max File Size:</span>
-                <span class="font-bold text-[#002147]">25 MB</span>
+                <span class="text-slate-400">Max File Size:</span>
+                <span class="font-bold text-white">25 MB</span>
               </div>
             </div>
           </div>
@@ -1017,7 +1036,7 @@
       <!-- Success Message -->
       <div
         v-if="showSuccess"
-        class="fixed top-4 left-4 right-4 md:top-8 md:left-8 md:right-auto px-5 md:px-6 py-3 md:py-4 rounded-lg z-50 shadow-xl bg-[#10b981] border-2 border-[#059669]"
+        class="fixed top-4 left-4 right-4 md:top-8 md:left-8 md:right-auto px-5 md:px-6 py-3 md:py-4 rounded-lg z-50 shadow-xl bg-emerald-600 border-2 border-emerald-500"
       >
         <div class="flex items-center gap-2 md:gap-3">
           <svg
@@ -1074,12 +1093,12 @@
       >
         <div
           @click.stop
-          class="w-full sm:max-w-lg bg-white rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-300 max-h-[80vh] flex flex-col"
+          class="w-full sm:max-w-lg bg-slate-900 rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-300 max-h-[80vh] flex flex-col"
           :class="showStepModal ? 'scale-100 opacity-100' : 'scale-95 opacity-0'"
         >
           <!-- Modal Header -->
           <div
-            class="sticky top-0 bg-[linear-gradient(135deg,#002147_0%,#0f63c7_100%)] text-white p-5 flex items-center justify-between"
+            class="sticky top-0 bg-[linear-gradient(135deg,#1e40af_0%,#2563eb_100%)] text-white p-5 flex items-center justify-between"
           >
             <div class="flex items-center gap-3">
               <div
@@ -1110,11 +1129,11 @@
           </div>
 
           <!-- Modal Content -->
-          <div class="overflow-y-auto flex-1 p-5 space-y-4">
+          <div class="overflow-y-auto flex-1 p-5 space-y-4 bg-slate-800/50">
             <!-- Full Description -->
             <div class="space-y-2">
-              <h3 class="text-sm font-bold text-[#002147] flex items-center gap-2">
-                <svg class="w-5 h-5 text-[#0f63c7]" fill="currentColor" viewBox="0 0 20 20">
+              <h3 class="text-sm font-bold text-blue-300 flex items-center gap-2">
+                <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fill-rule="evenodd"
                     d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zm-11-1a1 1 0 11-2 0 1 1 0 012 0z"
@@ -1123,15 +1142,15 @@
                 </svg>
                 Details
               </h3>
-              <p class="text-xs text-gray-700 leading-relaxed">
+              <p class="text-xs text-slate-300 leading-relaxed">
                 {{ selectedStep?.fullDescription }}
               </p>
             </div>
 
             <!-- Helpful Tips -->
             <div class="space-y-2">
-              <h3 class="text-sm font-bold text-[#002147] flex items-center gap-2">
-                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <h3 class="text-sm font-bold text-green-300 flex items-center gap-2">
+                <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fill-rule="evenodd"
                     d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
@@ -1140,21 +1159,21 @@
                 </svg>
                 Tips
               </h3>
-              <ul class="text-xs text-gray-700 space-y-2">
+              <ul class="text-xs text-slate-300 space-y-2">
                 <li
                   v-for="(tip, index) in selectedStep?.tips"
                   :key="index"
                   class="flex gap-2 items-start"
                 >
-                  <span class="text-[#0f63c7] font-bold flex-shrink-0">•</span>
+                  <span class="text-blue-400 font-bold flex-shrink-0">•</span>
                   <span>{{ tip }}</span>
                 </li>
               </ul>
             </div>
 
             <!-- Important Notes -->
-            <div class="rounded-xl bg-[#fef3c7] border-l-4 border-[#f97316] p-3 space-y-2">
-              <h3 class="text-sm font-bold text-[#92400e] flex items-center gap-2">
+            <div class="rounded-xl bg-yellow-500/10 border-l-4 border-yellow-500 p-3 space-y-2">
+              <h3 class="text-sm font-bold text-yellow-300 flex items-center gap-2">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fill-rule="evenodd"
@@ -1164,24 +1183,24 @@
                 </svg>
                 Important
               </h3>
-              <p class="text-xs text-[#b45309]">{{ selectedStep?.important }}</p>
+              <p class="text-xs text-yellow-200">{{ selectedStep?.important }}</p>
             </div>
           </div>
 
           <!-- Modal Footer -->
-          <div class="sticky bottom-0 bg-gray-50 p-4 border-t border-gray-200 space-y-2">
+          <div class="sticky bottom-0 bg-slate-900 p-4 border-t border-slate-700 space-y-2">
             <div class="flex gap-2">
               <button
                 v-if="selectedStep?.id > 1"
                 @click="previousStep"
-                class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg border-2 border-[#002147] text-[#002147] hover:bg-gray-100 transition-colors"
+                class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg border-2 border-blue-500 text-blue-300 hover:bg-blue-500/10 transition-colors"
               >
                 ← Previous
               </button>
               <button
                 v-if="selectedStep?.id < 5"
                 @click="nextStep"
-                class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg bg-[#002147] text-white hover:opacity-90 transition-colors"
+                class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg bg-[linear-gradient(135deg,#1e40af,#2563eb)] text-white hover:opacity-90 transition-colors"
               >
                 Next →
               </button>
@@ -1321,9 +1340,10 @@ const currentDate = ref('')
 const currentTime = ref('')
 
 const isFormValid = computed(() => {
+  const hasName = (selectedUserId.value !== null && selectedUserId.value !== '') || (searchQuery.value && searchQuery.value.trim() !== '')
+  
   return (
-    selectedUserId.value !== null &&
-    selectedUserId.value !== '' &&
+    hasName &&
     formData.value.description.trim() !== '' &&
     formData.value.address.trim() !== '' &&
     formData.value.date !== '' &&
@@ -1450,7 +1470,69 @@ const fetchAARHistory = async (userId) => {
   }
 }
 
+const validateUserName = async () => {
+  // If selectedUserId exists, user was selected from dropdown (already validated)
+  if (selectedUserId.value) {
+    return true
+  }
+
+  // If no search query, no user selected
+  if (!searchQuery.value || searchQuery.value.trim() === '') {
+    alert('Please select a name from the dropdown or type a valid name')
+    return false
+  }
+
+  // Check if manually typed name exists in database
+  try {
+    const { data: existingUsers, error: checkError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('rank_fullname', searchQuery.value.trim())
+
+    if (checkError) {
+      console.error('Error checking user:', checkError)
+      throw checkError
+    }
+
+    if (existingUsers && existingUsers.length > 0) {
+      // User exists, set the ID and proceed
+      selectedUserId.value = existingUsers[0].id
+      return true
+    } else {
+      // User doesn't exist, add them to the database
+      const { data: newUser, error: insertError } = await supabase
+        .from('users')
+        .insert({
+          rank_fullname: searchQuery.value.trim(),
+        })
+        .select()
+
+      if (insertError) {
+        console.error('Error adding new user:', insertError)
+        alert(`Failed to add new user: ${insertError.message}`)
+        return false
+      }
+
+      if (newUser && newUser.length > 0) {
+        selectedUserId.value = newUser[0].id
+        console.log('New user created successfully:', newUser[0])
+        return true
+      }
+    }
+  } catch (err) {
+    console.error('Error in validateUserName:', err)
+    alert('Error validating user name')
+    return false
+  }
+}
+
 const submitForm = async () => {
+  // Validate user selection first
+  const isUserValid = await validateUserName()
+  if (!isUserValid || !selectedUserId.value) {
+    return
+  }
+
   if (!isFormValid.value || isSubmitting.value) return
 
   isSubmitting.value = true
