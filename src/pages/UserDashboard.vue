@@ -20,7 +20,7 @@
       ></div>
     </div>
 
-    <div class="relative max-w-[1600px] mx-auto px-4 md:px-8 py-4 md:py-6 z-10">
+    <div class="relative max-w-400 mx-auto px-4 md:px-8 py-4 md:py-6 z-10">
       <!-- Header -->
       <div
         class="relative rounded-2xl p-5 md:p-6 mb-5 md:mb-6 text-white shadow-xl border border-white/20 bg-[linear-gradient(120deg,#001a3d_0%,#003f8c_55%,#0c66c6_100%)]"
@@ -47,7 +47,7 @@
               <img
                 src="../assets/BCPO1.png"
                 alt="Police Station 1"
-                class="w-16 h-16 md:w-20 md:h-20 object-contain bg-white rounded-lg p-2"
+                class="w-16 h-16 md:w-24 md:h-24 object-contain rounded-lg border-0 border-slate-700 bg-white/20 shadow-md transition group-hover:shadow-lg"
               />
             </div>
             <div class="text-center md:text-left md:ml-2">
@@ -106,7 +106,7 @@
                 {{ currentDate }}
               </p>
             </div>
-            <div class="rounded-2xl p-2 md:p-3 bg-blue-600 flex-shrink-0">
+            <div class="rounded-2xl p-2 md:p-3 bg-blue-600 shrink-0">
               <svg
                 class="w-5 h-5 md:w-7 md:h-7 text-white"
                 fill="none"
@@ -245,7 +245,7 @@
                     class="flex gap-3 items-start rounded-xl p-3 cursor-pointer transition-all duration-200 hover:bg-blue-100 active:scale-95"
                   >
                     <div
-                      class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                      class="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
                     >
                       {{ step.id }}
                     </div>
@@ -254,7 +254,7 @@
                       <p class="text-[10px] text-gray-600">{{ step.description }}</p>
                     </div>
                     <svg
-                      class="w-4 h-4 text-[#0f63c7] flex-shrink-0 mt-0.5"
+                      class="w-4 h-4 text-[#0f63c7] shrink-0 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -306,7 +306,7 @@
                   class="flex gap-3 items-start rounded-xl p-3 cursor-pointer transition-all duration-200 hover:bg-blue-100 active:scale-95"
                 >
                   <div
-                    class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
+                    class="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold bg-[#002147]"
                   >
                     {{ step.id }}
                   </div>
@@ -327,7 +327,7 @@
           >
             <div class="flex items-start gap-3">
               <svg
-                class="w-6 h-6 flex-shrink-0 text-blue-400"
+                class="w-6 h-6 shrink-0 text-blue-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -419,7 +419,7 @@
             >
               <label class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-white">
                 <svg
-                  class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+                  class="w-4 h-4 md:w-5 md:h-5 shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -820,6 +820,7 @@
                 class="rounded-2xl border-2 border-dashed border-slate-700 p-6 transition-all duration-200 shadow-inner bg-gradient-to-b from-slate-900/50 to-slate-800/50 hover:-translate-y-0.5 hover:shadow-xl"
               >
                 <input
+                  id="gallery-upload-input"
                   ref="fileInput"
                   type="file"
                   accept="image/*"
@@ -827,11 +828,19 @@
                   @change="handleFileUpload"
                   class="hidden"
                 />
+                <input
+                  id="camera-capture-input"
+                  ref="cameraInput"
+                  type="file"
+                  accept="image/*"
+                  capture="environment"
+                  @change="handleFileUpload"
+                  class="hidden"
+                />
 
                 <div
                   v-if="previewImages.length === 0"
-                  @click="$refs.fileInput.click()"
-                  class="cursor-pointer text-center"
+                  class="text-center"
                 >
                   <div
                     class="rounded-2xl p-4 mx-auto w-16 h-16 flex items-center justify-center mb-3 shadow bg-[linear-gradient(140deg,#1e40af,#2563eb)]"
@@ -850,10 +859,40 @@
                       ></path>
                     </svg>
                   </div>
-                  <p class="text-sm font-bold text-white">Click to upload</p>
                   <p class="text-xs text-slate-400 mt-2">
                     PNG, JPG · Max 25MB per file · Minimum of 1 attachment
                   </p>
+                  <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <label
+                      for="gallery-upload-input"
+                      class="w-full text-white font-bold py-2.5 rounded-lg text-xs md:text-sm transition hover:opacity-90 flex items-center justify-center gap-2 shadow bg-[linear-gradient(135deg,#1e40af,#2563eb)]"
+                    >
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 7h4l2-2h6l2 2h4v12H3V7zm9 3a4 4 0 100 8 4 4 0 000-8z"
+                        ></path>
+                      </svg>
+                      Upload from Gallery
+                    </label>
+                    <button
+                      @click="openCamera"
+                      type="button"
+                      class="w-full text-white font-bold py-2.5 rounded-lg text-xs md:text-sm transition hover:opacity-90 flex items-center justify-center gap-2 shadow bg-[linear-gradient(135deg,#0f766e,#0d9488)]"
+                    >
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 7h4l2-2h6l2 2h4v12H3V7zm9 3a4 4 0 100 8 4 4 0 000-8z"
+                        ></path>
+                      </svg>
+                      Use Camera
+                    </button>
+                  </div>
                 </div>
 
                 <div v-else class="space-y-4">
@@ -897,20 +936,37 @@
                       </div>
                     </div>
                   </div>
-                  <button
-                    @click="$refs.fileInput.click()"
-                    class="w-full text-white font-bold py-3 rounded-xl text-sm transition hover:opacity-90 flex items-center justify-center gap-2 shadow bg-[linear-gradient(135deg,#1e40af,#2563eb)]"
-                  >
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 4v16m8-8H4"
-                      ></path>
-                    </svg>
-                    Add More Screenshots
-                  </button>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <label
+                      for="gallery-upload-input"
+                      class="w-full text-white font-bold py-3 rounded-xl text-sm transition hover:opacity-90 flex items-center justify-center gap-2 shadow bg-[linear-gradient(135deg,#1e40af,#2563eb)]"
+                    >
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 4v16m8-8H4"
+                        ></path>
+                      </svg>
+                      Add from Gallery
+                    </label>
+                    <button
+                      @click="openCamera"
+                      type="button"
+                      class="w-full text-white font-bold py-3 rounded-xl text-sm transition hover:opacity-90 flex items-center justify-center gap-2 shadow bg-[linear-gradient(135deg,#0f766e,#0d9488)]"
+                    >
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 7h4l2-2h6l2 2h4v12H3V7zm9 3a4 4 0 100 8 4 4 0 000-8z"
+                        ></path>
+                      </svg>
+                      Add using Camera
+                    </button>
+                  </div>
                 </div>
                 <div
                   class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] font-semibold text-slate-300"
@@ -1084,6 +1140,84 @@
         />
       </div>
 
+      <!-- Camera Modal -->
+      <div
+        v-if="showCameraModal"
+        class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+        @click="closeCamera"
+      >
+        <div
+          class="w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-4"
+          @click.stop
+        >
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-white font-bold text-sm md:text-base">Capture Photo</h3>
+            <button
+              @click="closeCamera"
+              type="button"
+              class="text-white rounded p-1.5 bg-red-600 hover:opacity-90"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="rounded-xl overflow-hidden bg-black border border-slate-700">
+            <video ref="cameraVideo" autoplay playsinline class="w-full h-72 object-cover"></video>
+          </div>
+
+          <p v-if="cameraError" class="mt-2 text-xs text-red-400">{{ cameraError }}</p>
+
+          <div class="mt-3 grid grid-cols-2 gap-2">
+            <button
+              @click="switchCamera('environment')"
+              type="button"
+              class="w-full text-white font-semibold py-2 rounded-lg text-xs transition"
+              :class="
+                cameraFacingMode === 'environment'
+                  ? 'bg-blue-600'
+                  : 'bg-slate-700 hover:bg-slate-600'
+              "
+            >
+              Back Camera
+            </button>
+            <button
+              @click="switchCamera('user')"
+              type="button"
+              class="w-full text-white font-semibold py-2 rounded-lg text-xs transition"
+              :class="cameraFacingMode === 'user' ? 'bg-blue-600' : 'bg-slate-700 hover:bg-slate-600'"
+            >
+              Front Camera
+            </button>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <button
+              @click="capturePhotoFromCamera"
+              type="button"
+              :disabled="isCapturing || isSwitchingCamera"
+              class="w-full text-white font-bold py-2.5 rounded-lg text-sm transition hover:opacity-90 disabled:opacity-60 bg-[linear-gradient(135deg,#0f766e,#0d9488)]"
+            >
+              {{ isCapturing ? 'Capturing...' : 'Capture' }}
+            </button>
+            <button
+              @click="closeCamera"
+              type="button"
+              class="w-full text-white font-bold py-2.5 rounded-lg text-sm transition hover:opacity-90 bg-[linear-gradient(135deg,#334155,#475569)]"
+            >
+              Cancel
+            </button>
+          </div>
+          <canvas ref="cameraCanvas" class="hidden"></canvas>
+        </div>
+      </div>
+
       <!-- Step Details Modal -->
       <div
         v-if="showStepModal"
@@ -1220,7 +1354,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { supabase } from '@/lib/supabase.js'
 
@@ -1331,9 +1465,18 @@ const formData = ref({
 
 const previewImages = ref([])
 const fileInput = ref(null)
+const cameraInput = ref(null)
 const showSuccess = ref(false)
 const showZoomModal = ref(false)
 const zoomedImage = ref(null)
+const showCameraModal = ref(false)
+const cameraVideo = ref(null)
+const cameraCanvas = ref(null)
+const cameraStream = ref(null)
+const cameraError = ref('')
+const isCapturing = ref(false)
+const cameraFacingMode = ref('environment')
+const isSwitchingCamera = ref(false)
 const isSubmitting = ref(false)
 const MAX_FILE_SIZE = 25 * 1024 * 1024 // 25MB in bytes
 const currentDate = ref('')
@@ -1421,15 +1564,177 @@ const handleFileUpload = (event) => {
     reader.readAsDataURL(file)
   })
 
-  // Reset file input
+  // Reset both inputs so selecting the same file/photo again still triggers change
+  if (event.target) {
+    event.target.value = ''
+  }
   if (fileInput.value) {
     fileInput.value.value = ''
+  }
+  if (cameraInput.value) {
+    cameraInput.value.value = ''
   }
 }
 
 const removeImage = (index) => {
   formData.value.screenshots.splice(index, 1)
   previewImages.value.splice(index, 1)
+}
+
+const stopCameraStream = () => {
+  if (cameraStream.value) {
+    cameraStream.value.getTracks().forEach((track) => track.stop())
+    cameraStream.value = null
+  }
+
+  if (cameraVideo.value) {
+    cameraVideo.value.srcObject = null
+  }
+}
+
+const startCameraStream = async (mode = cameraFacingMode.value) => {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    throw new Error('Camera API not supported')
+  }
+
+  isSwitchingCamera.value = true
+  cameraError.value = ''
+  stopCameraStream()
+
+  const constraintsList = [
+    { video: { facingMode: { exact: mode } }, audio: false },
+    { video: { facingMode: mode }, audio: false },
+    { video: { facingMode: { ideal: mode } }, audio: false },
+    { video: true, audio: false },
+  ]
+
+  let stream = null
+  let lastError = null
+
+  for (const constraints of constraintsList) {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia(constraints)
+      break
+    } catch (error) {
+      lastError = error
+    }
+  }
+
+  if (!stream) {
+    isSwitchingCamera.value = false
+    throw lastError || new Error('Unable to access camera')
+  }
+
+  cameraStream.value = stream
+  await nextTick()
+
+  if (cameraVideo.value) {
+    cameraVideo.value.srcObject = stream
+    await cameraVideo.value.play()
+  }
+
+  isSwitchingCamera.value = false
+}
+
+const openCamera = async () => {
+  cameraError.value = ''
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    if (cameraInput.value) {
+      cameraInput.value.click()
+    }
+    return
+  }
+
+  try {
+    showCameraModal.value = true
+    await startCameraStream(cameraFacingMode.value)
+  } catch (error) {
+    cameraError.value = 'Unable to open camera. Check camera permission and try again.'
+    if (cameraInput.value) {
+      cameraInput.value.click()
+    }
+  }
+}
+
+const switchCamera = async (mode) => {
+  if (cameraFacingMode.value === mode && cameraStream.value) {
+    return
+  }
+
+  cameraFacingMode.value = mode
+
+  if (!showCameraModal.value) {
+    return
+  }
+
+  try {
+    await startCameraStream(mode)
+  } catch (error) {
+    cameraError.value = `Unable to switch to ${mode === 'user' ? 'front' : 'back'} camera.`
+    isSwitchingCamera.value = false
+  }
+}
+
+const closeCamera = () => {
+  stopCameraStream()
+
+  showCameraModal.value = false
+  isCapturing.value = false
+  isSwitchingCamera.value = false
+}
+
+const capturePhotoFromCamera = async () => {
+  if (!cameraVideo.value || !cameraCanvas.value) {
+    return
+  }
+
+  isCapturing.value = true
+
+  const video = cameraVideo.value
+  const canvas = cameraCanvas.value
+  const width = video.videoWidth || 1280
+  const height = video.videoHeight || 720
+
+  canvas.width = width
+  canvas.height = height
+
+  const context = canvas.getContext('2d')
+  if (!context) {
+    isCapturing.value = false
+    return
+  }
+
+  context.drawImage(video, 0, 0, width, height)
+
+  canvas.toBlob(
+    (blob) => {
+      if (!blob) {
+        isCapturing.value = false
+        return
+      }
+
+      if (blob.size > MAX_FILE_SIZE) {
+        alert('Captured image is too large. Maximum size is 25MB.')
+        isCapturing.value = false
+        return
+      }
+
+      const fileName = `camera_${Date.now()}.jpg`
+      const file = new File([blob], fileName, { type: 'image/jpeg' })
+
+      formData.value.screenshots.push(file)
+      previewImages.value.push({
+        url: URL.createObjectURL(file),
+        name: file.name,
+        size: file.size,
+      })
+
+      closeCamera()
+    },
+    'image/jpeg',
+    0.92,
+  )
 }
 
 const zoomImage = (imageUrl) => {
@@ -1688,6 +1993,10 @@ onMounted(async () => {
   } finally {
     isLoadingUsers.value = false
   }
+})
+
+onUnmounted(() => {
+  closeCamera()
 })
 </script>
 
