@@ -57,6 +57,47 @@
         </router-link>
 
         <router-link
+          to="/officers"
+          class="block p-4 hover:bg-white/10 rounded-lg transition-all duration-200 cursor-pointer group"
+          :style="{
+            background: activeTab === 'officers' ? '#004595' : 'transparent',
+            borderLeft: activeTab === 'officers' ? '4px solid #ffffff' : 'none',
+          }"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="rounded-lg p-2 group-hover:bg-white/10 transition"
+              :style="{
+                background:
+                  activeTab === 'officers'
+                    ? 'rgba(255, 255, 255, 0.1)'
+                    : 'rgba(255, 255, 255, 0.05)',
+              }"
+            >
+              <svg
+                class="w-5 h-5"
+                :style="{ color: activeTab === 'officers' ? '#ffffff' : '#f3f1ee' }"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </div>
+            <span
+              class="text-xs font-semibold uppercase tracking-wider transition-all"
+              :style="{ color: activeTab === 'officers' ? '#ffffff' : '#f3f1ee' }"
+              >Officers/Personnel</span
+            >
+          </div>
+        </router-link>
+
+        <router-link
           to="/records-view"
           class="block p-4 hover:bg-white/10 rounded-lg transition-all duration-200 cursor-pointer group"
           :style="{
@@ -164,7 +205,7 @@
         <!-- Modal Body -->
         <div class="px-8 py-6">
           <div class="flex items-start gap-4 mb-6">
-            <div class="flex-shrink-0">
+            <div class="shrink-0">
               <div class="rounded-full p-3" style="background: #fef2f2">
                 <svg
                   class="h-7 w-7"
@@ -263,7 +304,7 @@
         style="background: linear-gradient(90deg, #002147 0%, #004595 50%, #002147 100%)"
       ></div>
 
-      <div class="grid grid-cols-3 h-20" style="background: #ffffff">
+      <div class="grid grid-cols-4 h-20" style="background: #ffffff">
         <!-- Dashboard -->
         <router-link
           to="/admin-dashboard"
@@ -294,6 +335,43 @@
             class="text-xs font-bold relative z-10 tracking-wide"
             :style="{ color: activeTab === 'dashboard' ? '#003d82' : '#6b7280' }"
             >Dashboard</span
+          >
+        </router-link>
+
+        <!-- Officers -->
+        <router-link
+          to="/officers"
+          class="relative flex flex-col items-center justify-center overflow-hidden border-t-4 transition-all duration-300"
+          :style="{
+            borderColor: activeTab === 'officers' ? '#004595' : 'transparent',
+            background:
+              activeTab === 'officers'
+                ? 'linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%)'
+                : 'transparent',
+          }"
+        >
+          <div
+            class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+            :style="{ background: activeTab === 'officers' ? '' : '#f8f8f8' }"
+          ></div>
+          <svg
+            class="w-6 h-6 mb-0.5 relative z-10 transform hover:scale-110 transition-transform duration-300"
+            :style="{ color: activeTab === 'officers' ? '#004595' : '#6b7280' }"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+            ></path>
+          </svg>
+          <span
+            class="text-xs font-bold relative z-10 tracking-wide"
+            :style="{ color: activeTab === 'officers' ? '#003d82' : '#6b7280' }"
+            >Officers</span
           >
         </router-link>
 
@@ -381,6 +459,8 @@ watch(
   (newPath) => {
     if (newPath === '/records-view') {
       activeTab.value = 'records'
+    } else if (newPath === '/officers') {
+      activeTab.value = 'officers'
     } else if (newPath === '/admin-dashboard') {
       activeTab.value = 'dashboard'
     }
