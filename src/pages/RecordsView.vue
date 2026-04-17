@@ -176,7 +176,7 @@
               <input
                 v-model="selectedDate"
                 type="date"
-                class="px-4 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 text-sm font-medium text-slate-700 bg-slate-50"
+                class="date-slate-icon px-4 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 text-sm font-medium text-slate-700 bg-slate-50"
                 @change="filterRecords"
               />
               <button

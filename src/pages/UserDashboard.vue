@@ -431,7 +431,7 @@
                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                   ></path>
                 </svg>
-                1. Select Your Name <span class="text-red-600">*</span>
+                1. Select Your Name or Enter your Name if not found<span class="text-red-600">*</span>
               </label>
               <div class="relative">
                 <input
@@ -770,23 +770,10 @@
                       <div
                         class="mt-1 flex items-center gap-2 rounded-2xl border border-slate-700 bg-slate-800/50 px-3 py-2.5 shadow-sm"
                       >
-                        <svg
-                          class="w-4 h-4 text-slate-400"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
                         <input
                           v-model="formData.date"
                           type="date"
-                          class="w-full bg-transparent text-xs md:text-sm font-semibold focus:outline-none text-white"
+                          class="date-slate-icon w-full bg-transparent text-xs md:text-sm font-semibold focus:outline-none text-white"
                         />
                       </div>
                       <p class="text-[11px] font-semibold mt-2 text-slate-400">

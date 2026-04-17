@@ -3,7 +3,9 @@
 @import 'tailwindcss/utilities' layer(utilities);
 
 /* Global Formal Font */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
@@ -17,21 +19,55 @@
 }
 
 /* Custom Police Theme Classes */
-.bg-police-dark { background-color: var(--police-dark); }
-.bg-police-medium { background-color: var(--police-medium); }
-.bg-police-light { background-color: var(--police-light); }
-.bg-police-cream { background-color: var(--police-cream); }
+.bg-police-dark {
+  background-color: var(--police-dark);
+}
+.bg-police-medium {
+  background-color: var(--police-medium);
+}
+.bg-police-light {
+  background-color: var(--police-light);
+}
+.bg-police-cream {
+  background-color: var(--police-cream);
+}
 
-.text-police-dark { color: var(--police-dark); }
-.text-police-medium { color: var(--police-medium); }
-.text-police-light { color: var(--police-light); }
+.text-police-dark {
+  color: var(--police-dark);
+}
+.text-police-medium {
+  color: var(--police-medium);
+}
+.text-police-light {
+  color: var(--police-light);
+}
 
-.border-police-dark { border-color: var(--police-dark); }
-.border-police-medium { border-color: var(--police-medium); }
-.border-police-light { border-color: var(--police-light); }
+.border-police-dark {
+  border-color: var(--police-dark);
+}
+.border-police-medium {
+  border-color: var(--police-medium);
+}
+.border-police-light {
+  border-color: var(--police-light);
+}
 
-.hover\:bg-police-medium:hover { background-color: var(--police-medium); }
-.hover\:bg-police-light:hover { background-color: var(--police-light); }
+.hover\:bg-police-medium:hover {
+  background-color: var(--police-medium);
+}
+.hover\:bg-police-light:hover {
+  background-color: var(--police-light);
+}
 
-.focus\:border-police-light:focus { border-color: var(--police-light); }
-.focus\:ring-police-light:focus { --tw-ring-color: var(--police-light); }
+.focus\:border-police-light:focus {
+  border-color: var(--police-light);
+}
+.focus\:ring-police-light:focus {
+  --tw-ring-color: var(--police-light);
+}
+
+.date-slate-icon::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  filter: invert(72%) sepia(9%) saturate(420%) hue-rotate(177deg) brightness(92%) contrast(89%);
+  cursor: pointer;
+}
