@@ -69,7 +69,7 @@
                 <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-white">
                   Welcome Back, Administrator
                 </h1>
-                <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-transparent mb-1.5"></div>
+                <div class="w-16 h-0.5 bg-linear-to-r from-blue-400 to-transparent mb-1.5"></div>
                 <p class="text-xs sm:text-sm font-semibold text-blue-300">
                   Today's AAR submissions overview and statistics
                 </p>
@@ -81,7 +81,7 @@
         <!-- Today's Statistics -->
         <div class="mb-6">
           <div class="flex items-center gap-3 mb-5">
-            <div class="h-4 w-1 rounded-full bg-gradient-to-b from-blue-500 to-blue-800"></div>
+            <div class="h-4 w-1 rounded-full bg-linear-to-b from-blue-500 to-blue-800"></div>
             <p class="text-sm font-bold uppercase tracking-wider text-white">Today's Statistics</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">

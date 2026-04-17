@@ -149,39 +149,6 @@
                   >{{ officersWithoutAttendance.length }}</span
                 >
               </button>
-              <button
-                @click="activeTab = 'history'"
-                :class="
-                  activeTab === 'history'
-                    ? 'text-white shadow-md bg-emerald-600'
-                    : 'bg-slate-800 border border-slate-700 text-slate-300 hover:bg-slate-700'
-                "
-                class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase flex items-center gap-2 transition-all duration-200"
-              >
-                <svg
-                  class="w-4 h-4 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                History
-                <span
-                  class="px-2 py-0.5 rounded-full text-xs font-bold"
-                  :class="
-                    activeTab === 'history'
-                      ? 'bg-white/20 text-white'
-                      : 'bg-slate-700 text-slate-300'
-                  "
-                  >{{ aarHistory.length }}</span
-                >
-              </button>
             </div>
 
             <!-- Date Filter -->
@@ -316,7 +283,7 @@
                       Absent
                     </span>
                   </td>
-                  <td class="px-3 sm:px-4 py-2.5 sm:py-3">
+                  <td class="px-3 sm:px-4 py-1 sm:py-3">
                     <div class="flex flex-col sm:flex-row gap-2">
                       <button
                         @click="previewReport(record)"
@@ -535,299 +502,7 @@
           </div>
         </div>
 
-        <!-- History Tab -->
-        <div
-          v-if="activeTab === 'history'"
-          class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200"
-        >
-          <div
-            class="p-4 sm:p-5 lg:p-6 border-b border-slate-200 bg-gradient-to-r from-emerald-800 to-emerald-600"
-          >
-            <h2 class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3 text-white">
-              <svg
-                class="w-4 h-4 sm:w-5 sm:h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              Officer AAR History
-            </h2>
-            <p class="text-xs sm:text-sm mt-1 text-emerald-100">
-              Search for an officer to view their AAR submission history
-            </p>
-          </div>
 
-          <div class="p-4 sm:p-5 lg:p-6 space-y-5">
-            <!-- Officer Search -->
-            <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm relative z-20">
-              <label
-                class="text-sm md:text-base font-bold mb-3 flex items-center gap-2 text-police-dark"
-              >
-                <svg
-                  class="w-5 h-5 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  ></path>
-                </svg>
-                Search Officer
-              </label>
-              <div class="relative">
-                <input
-                  v-model="searchQuery"
-                  @focus="showDropdown = true"
-                  @blur="hideDropdown"
-                  type="text"
-                  placeholder="Type to search officer name..."
-                  class="w-full px-4 py-3 text-sm border-2 border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-police-light/30 transition font-medium text-slate-800"
-                  autocomplete="off"
-                />
-
-                <!-- Dropdown List -->
-                <div
-                  v-if="showDropdown && filteredOfficers.length > 0"
-                  class="absolute z-40 w-full mt-2 bg-white border-2 border-slate-300 rounded-lg max-h-64 overflow-y-auto shadow-lg"
-                >
-                  <div
-                    v-for="user in filteredOfficers"
-                    :key="user.id"
-                    @mousedown.prevent="selectOfficer(user)"
-                    class="px-4 py-3 hover:bg-police-cream cursor-pointer text-sm border-b last:border-b-0 transition font-medium text-gray-700"
-                    :class="
-                      selectedOfficer?.id === user.id
-                        ? 'font-bold bg-police-cream text-police-dark'
-                        : ''
-                    "
-                  >
-                    {{ user.rank_fullname }}
-                  </div>
-                </div>
-
-                <!-- Clear button -->
-                <button
-                  v-if="selectedOfficer"
-                  type="button"
-                  @mousedown.prevent
-                  @click="clearOfficerSelection"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-red-600 bg-white border border-red-200 px-3 py-1 rounded-md hover:bg-red-50 transition"
-                >
-                  Clear
-                </button>
-              </div>
-
-              <p v-if="allUsers.length > 0" class="text-xs text-gray-500 mt-3">
-                {{ filteredOfficers.length }} of {{ allUsers.length }} officers
-              </p>
-            </div>
-
-            <!-- AAR History Results -->
-            <div
-              v-if="selectedOfficer"
-              class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
-            >
-              <div class="flex items-center justify-between mb-4">
-                <div class="flex items-center gap-2">
-                  <div class="rounded-lg p-2 bg-emerald-50">
-                    <svg
-                      class="w-5 h-5 text-emerald-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="text-sm md:text-base font-bold text-police-dark">
-                      {{ selectedOfficer.rank_fullname }}
-                    </h3>
-                    <p class="text-xs text-slate-600">AAR Submission History</p>
-                  </div>
-                </div>
-                <span
-                  class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-600"
-                >
-                  {{ aarHistory.length }} {{ aarHistory.length === 1 ? 'record' : 'records' }}
-                </span>
-              </div>
-
-              <!-- Loading State -->
-              <div v-if="isLoadingHistory" class="text-center py-8">
-                <svg
-                  class="animate-spin h-8 w-8 mx-auto text-emerald-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    class="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    stroke-width="4"
-                  ></circle>
-                  <path
-                    class="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                <p class="text-sm text-slate-600 mt-2">Loading history...</p>
-              </div>
-
-              <!-- No Records -->
-              <div
-                v-else-if="aarHistory.length === 0"
-                class="text-center py-8 border-2 border-dashed border-slate-200 rounded-lg"
-              >
-                <div class="rounded-full p-3 mx-auto w-fit mb-2 bg-slate-50">
-                  <svg
-                    class="w-8 h-8 text-slate-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    ></path>
-                  </svg>
-                </div>
-                <p class="text-sm font-semibold text-slate-700">No AAR records found</p>
-                <p class="text-xs text-slate-500 mt-1">
-                  This officer hasn't submitted any reports yet
-                </p>
-              </div>
-
-              <!-- History Records Table -->
-              <div v-else class="overflow-x-auto">
-                <table class="w-full min-w-[720px]">
-                  <thead class="text-white bg-emerald-700">
-                    <tr>
-                      <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">
-                        Date
-                      </th>
-                      <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">
-                        Description
-                      </th>
-                      <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">
-                        Address
-                      </th>
-                      <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">
-                        Status
-                      </th>
-                      <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wider">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody class="bg-white divide-y divide-slate-100">
-                    <tr
-                      v-for="record in aarHistory"
-                      :key="record.id"
-                      class="hover:bg-slate-50 transition"
-                    >
-                      <td class="px-4 py-4">
-                        <div class="flex items-center gap-2">
-                          <svg
-                            class="w-4 h-4 text-emerald-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            ></path>
-                          </svg>
-                          <span class="text-xs font-semibold text-slate-800">
-                            {{
-                              new Date(record.date).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'short',
-                                day: 'numeric',
-                              })
-                            }}
-                          </span>
-                        </div>
-                      </td>
-                      <td class="px-4 py-4">
-                        <p class="text-xs text-slate-700 line-clamp-2">{{ record.description }}</p>
-                      </td>
-                      <td class="px-4 py-4">
-                        <p class="text-xs text-slate-700 line-clamp-1">{{ record.address }}</p>
-                      </td>
-                      <td class="px-4 py-4">
-                        <span
-                          class="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700"
-                        >
-                          Submitted
-                        </span>
-                      </td>
-                      <td class="px-4 py-4 text-center">
-                        <button
-                          @click="viewHistoryDetails(record)"
-                          class="text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-blue-700 transition bg-blue-600"
-                        >
-                          View Details
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- No Officer Selected State -->
-            <div
-              v-else
-              class="text-center py-12 border-2 border-dashed border-slate-200 rounded-lg bg-slate-50"
-            >
-              <div class="rounded-full p-4 mx-auto w-fit mb-3 bg-white">
-                <svg
-                  class="w-12 h-12 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text-base font-semibold text-slate-700">Search for an Officer</p>
-              <p class="text-sm text-slate-500 mt-1">
-                Use the search field above to find and view an officer's AAR history
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -872,42 +547,61 @@
               Document Preview
             </h2>
           </div>
-          <button
-            @click="closePreview"
-            class="rounded-full p-1.5 sm:p-2 hover:bg-gray-100 transition"
-          >
-            <svg
-              class="w-5 h-5 sm:w-6 sm:h-6"
-              style="color: #002147"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div class="flex items-center gap-2">
+            <button
+              @click="closePreview"
+              class="rounded-full p-1.5 sm:p-2 hover:bg-gray-100 transition"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-          </button>
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6"
+                style="color: #002147"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
         </div>
 
         <!-- Preview Content -->
-        <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8" style="background: #f3f1ee">
-          <div class="bg-white p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg">
-            <div v-html="previewContent"></div>
+        <div  class="flex-1 overflow-auto p-4 sm:p-6 md:p-8" style="background: #ffffff">
+          <div class="flex flex-col items-center" style="background: transparent; gap: 4px;">
+            <div v-if="previewContentPage1" class="preview-page">
+              <div
+                ref="editablePage1El"
+                class="editable-preview"
+                contenteditable="true"
+                spellcheck="false"
+                v-html="previewContentPage1"
+              ></div>
+            </div>
+            <div v-if="previewContentPage2" class="preview-page">
+              <div
+                ref="editablePage2El"
+                class="editable-preview"
+                contenteditable="true"
+                spellcheck="false"
+                v-html="previewContentPage2"
+              ></div>
+            </div>
           </div>
         </div>
 
         <!-- Modal Footer -->
         <div
-          class="sticky bottom-0 bg-white border-t-2 p-4 sm:p-5 lg:p-6 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3"
+          class="sticky bottom-0 bg-white border-t-2 p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3"
           style="border-color: #004595"
         >
           <button
             @click="downloadFromPreview"
-            class="px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2"
+            class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2"
             style="background: #004595; color: #ffffff"
           >
             <svg
@@ -923,11 +617,11 @@
                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
               ></path>
             </svg>
-            Download Report
+            Download Original
           </button>
           <button
             @click="closePreview"
-            class="px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2"
+            class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2"
             style="background: #6b7280; color: #ffffff"
           >
             <svg
@@ -952,7 +646,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { supabase } from '@/lib/supabase.js'
 import { saveAs } from 'file-saver'
@@ -973,27 +667,163 @@ const filteredRecords = ref([])
 const absenceRecords = ref([])
 const filteredAbsenceRecords = ref([])
 
-// History search
-const allUsers = ref([])
-const selectedOfficer = ref(null)
-const aarHistory = ref([])
-const isLoadingHistory = ref(false)
-const searchQuery = ref('')
-const showDropdown = ref(false)
+
 
 // Preview modal state
 const showPreviewModal = ref(false)
 const previewContent = ref('')
+const previewContentPage1 = ref('')
+const previewContentPage2 = ref('')
 const previewRecord = ref(null)
 const isWithoutAttendancePreview = ref(false)
 const headerImageData = ref({ pnp: '', bcpo: '' })
 
+const editablePage1El = ref(null)
+const editablePage2El = ref(null)
+
+const escapeHtml = (value) => {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;')
+}
+
+const getEditedPreviewHtml = () => {
+  const page1Html = editablePage1El.value?.innerHTML || previewContentPage1.value || ''
+  const page2Html = editablePage2El.value?.innerHTML || previewContentPage2.value || ''
+  return { page1Html, page2Html }
+}
+
+const buildPhotosPagesHtml = (screenshotUrls) => {
+  return screenshotUrls.length
+    ? screenshotUrls
+        .map(
+          (url, index) => `
+              <div class="a4-page" style="width: 210mm; min-height: 297mm; background: #ffffff; color: #0f172a; padding: 22mm 20mm; font-family: Arial; font-size: 12pt; box-sizing: border-box; ${index < screenshotUrls.length - 1 ? 'page-break-after: always;' : ''}">
+                <div class="avoid-break" style="text-align: center; margin: 0 0 14px 0; page-break-inside: avoid; break-inside: avoid;">
+                  <h1 style="font-size: 18pt; letter-spacing: 1px; margin: 0; text-align: center; text-transform: uppercase; font-weight: bold;">ACTUAL PHOTO</h1>
+                </div>
+                <div class="avoid-break" style="width: 100%; text-align: center; page-break-inside: avoid; break-inside: avoid;">
+                  <img src="${url}" alt="Attendance Photo" style="width: 14cm; max-width: 14cm; height: auto; max-height: 18.5cm; object-fit: contain; display: block; margin: 0 auto; page-break-inside: avoid; break-inside: avoid;">
+                </div>
+              </div>
+            `,
+        )
+        .join('')
+    : `
+        <div class="a4-page" style="width: 210mm; min-height: 297mm; background: #ffffff; color: #0f172a; padding: 22mm 20mm; font-family: Arial; font-size: 12pt; box-sizing: border-box;">
+          <div class="avoid-break" style="text-align: center; margin: 0 0 14px 0; page-break-inside: avoid; break-inside: avoid;">
+            <h1 style="font-size: 18pt; letter-spacing: 1px; margin: 0; text-align: center; text-transform: uppercase; font-weight: bold;">ACTUAL PHOTO</h1>
+          </div>
+          <div class="avoid-break" style="margin-top: 22px; padding: 16px; border: 1px dashed #cbd5f5; border-radius: 10px; text-align: center; font-size: 12px; color: #64748b; background: #f8fafc; page-break-inside: avoid; break-inside: avoid;">
+            No photographic evidence was attached for this report.
+          </div>
+        </div>
+      `
+}
+
+const buildPreviewPage1Html = (record) => {
+  const subjectText = record.description || ''
+  const narrativeText = record.description || 'No activity narrative provided.'
+  const locationLine = record.address ? record.address : 'No deployment address submitted.'
+  const safeSubject = escapeHtml(subjectText)
+  const safeNarrative = escapeHtml(narrativeText)
+  const subjectHtml = safeSubject || '&nbsp;'
+  const narrativeHtml = safeNarrative || '&nbsp;'
+
+  return `
+        <div class="a4-page" style="width: 210mm; min-height: 297mm; background: #ffffff; color: #0f172a; padding: 20mm 18mm; padding-top: 10mm; font-family: Arial; font-size: 12pt; box-sizing: border-box; page-break-after: always;">
+          <div style="margin-bottom: 10px; page-break-after: avoid;">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+              <tr>
+                <td style="width: 70px; text-align: left; vertical-align: middle;">
+                  <img src="${pnpSeal}" alt="PNP Seal" width="65" height="75" style="display: block; margin: 0 auto 0 0; width: 65px; height: 75px; object-fit: contain;">
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 0 3px; letter-spacing: 0.4px;">
+                  <p style="margin: 0 0 1px 0; font-size: 10pt;">Republic of the Philippines</p>
+                  <p style="margin: 0 0 1px 0; font-size: 10pt;">National Police Commission</p>
+                  <p style="margin: 1px 0; font-size: 11pt; font-weight: bold;">PHILIPPINE NATIONAL POLICE, POLICE REGIONAL OFFICE 13</p>
+                  <p style="margin: 1px 0; font-size: 11pt;">BUTUAN CITY POLICE OFFICE</p>
+                  <p style="margin: 1px 0; font-size: 11pt; font-weight: bold;">BUTUAN CITY POLICE STATION 1</p>
+                  <p style="margin: 1px 0; font-size: 11pt;">AD Curato St., cor. JC Aquino Avenue, Butuan City</p>
+                </td>
+                <td style="width: 70px; text-align: right; vertical-align: middle;">
+                  <img src="${bcpoSeal}" alt="BCPO Seal" width="65" height="65" style="display: block; margin: 0 0 0 auto; width: 65px; height: 65px; object-fit: contain;">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div style="text-align: left; margin-bottom: 10px; page-break-after: avoid;">
+            <h1 style="margin: 0; font-size: 11pt; letter-spacing: 3px; font-weight: bold;">MEMORANDUM</h1>
+          </div>
+          <table style="width: 100%; border: none; font-size: 11pt; margin-bottom: 10px; page-break-after: avoid;">
+            <tr>
+              <td style="width: 60px; padding: 3px 0;">FOR</td>
+              <td style="padding: 3px 0;">: City Director, BCPO </td>
+            </tr>
+            <tr>
+              <td style="padding: 3px 0;">FROM</td>
+              <td style="padding: 3px 0;">: ${record.fullRankName || record.name || 'Acting Station Commander, BCPS1'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 3px 0;">SUBJECT</td>
+              <td style="padding: 3px 0; font-weight: bold;">: ${subjectHtml}</td>
+            </tr>
+            <tr>
+              <td style="padding: 3px 0;">DATE</td>
+              <td style="padding: 3px 0;">: ${record.reportDate || record.date || 'N/A'}</td>
+            </tr>
+          </table>
+          <div style="width: 100%; margin: 4pt 0 10pt 0; line-height: 1px; font-size: 1px; page-break-after: avoid;">
+            <div style="border-top: 1.5pt solid #0f172a; width: 100%; height: 1px;">&nbsp;</div>
+          </div>
+          <div style="color: #0f172a; margin-left: 18pt;">
+            <div style="margin-bottom: 10px; font-size: 11pt; color: #1e293b;">
+              <p style="margin: 0 0 4px 0;">1. References:</p>
+              <ol style="margin: 0 0 0 16px; padding: 0;">
+                <li style="margin: 0 0 2px 0;">PNP Master Plan TAGATAGUYOD</li>
+                <li style="margin: 0;">Latest station directive covering operations at ${locationLine}</li>
+              </ol>
+            </div>
+            <div style="position: relative; color: #0f172a; font-size: 11pt; margin-bottom: 12px;">
+              <p style="margin: 0 0 4px 0; text-align: justify; margin-left: 0;">2. Personnel of BCPS1 ${record.fullRankName}, ${narrativeHtml} under the supervision of <strong>PCPT NAMRA P ARIMAO JR, Acting Station Commander</strong> conduct establishment visit, police presence/visibility and ${record.address} on ${record.reportDate} at time. Said activity is conducted to ensure public safety and security thereat</p>
+              <p style="margin: 0; font-size: 11pt;">3. For information.</p>
+            </div>
+          </div>
+          <div class="avoid-break" style="margin: 0; margin-top: 10mm; page-break-inside: avoid; break-inside: avoid;">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed; page-break-inside: avoid; break-inside: avoid;">
+              <tr class="avoid-break" style="page-break-inside: avoid; break-inside: avoid;">
+                <td style="width: 60%;"></td>
+                <td style="width: 40%; text-align: right; vertical-align: top;">
+                  <div class="avoid-break" style="display: inline-block; text-align: center; width: 6.5cm; page-break-inside: avoid; break-inside: avoid;">
+                    <img src="${signature}" alt="Signature" width="120" height="60" style="display: block; margin: 0 auto 2px auto; width: 120px; height: 60px; object-fit: contain; page-break-inside: avoid; break-inside: avoid;">
+                    <div style="line-height: 1.2;">
+                      <div style="font-weight: bold; font-size: 11pt; margin: 0;">NAMRA P ARIMAO JR</div>
+                      <div style="font-size: 11pt; margin: 0;">Police Captain</div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      `
+}
+
+
 // Officers without attendance
 const officersWithoutAttendance = computed(() => filteredAbsenceRecords.value)
 
-// Date filter starts blank so all records appear initially
+const toDateInputValue = (date) => {
+  const tzOffsetMs = date.getTimezoneOffset() * 60_000
+  return new Date(date.getTime() - tzOffsetMs).toISOString().slice(0, 10)
+}
+
+// Date filter defaults to today's date
 const setDefaultDate = () => {
-  selectedDate.value = ''
+  selectedDate.value = toDateInputValue(new Date())
 }
 
 const toDataUrl = async (url) => {
@@ -1228,11 +1058,72 @@ const buildDocHtml = (
       .doc-wrapper { background: #ffffff; }
       img { max-width: 100%; height: auto; }
       table { border-collapse: collapse; width: 100%; }
+      .avoid-break { page-break-inside: avoid; break-inside: avoid; }
+      tr.avoid-break, td.avoid-break { page-break-inside: avoid; break-inside: avoid; }
       .signature-block { width: 100%; text-align: right; margin: 20px 0 12px 0; color: #0f172a; font-size: 12pt; }
       .signature-inner { display: inline-block; position: relative; text-align: center; font-size: 12pt; padding-top: 70px; }
       .signature-image { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 140px; height: 70px; object-fit: contain; opacity: 0.95; z-index: 0; pointer-events: none; }
       .signature-text { position: relative; z-index: 1; }
     </style></head><body><div class="doc-wrapper">${bodyContent}</div></body></html>`
+
+const normalizeHtmlForDocx = (html) => {
+  if (!html) return ''
+  if (typeof window === 'undefined' || typeof DOMParser === 'undefined') return html
+
+  try {
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(`<div>${html}</div>`, 'text/html')
+    const root = doc.body?.firstElementChild
+    if (!root) return html
+
+    const images = Array.from(root.querySelectorAll('img'))
+    images.forEach((img) => {
+      const existingStyleRaw = (img.getAttribute('style') || '').trim()
+      const existingStyle = existingStyleRaw.toLowerCase()
+      const isAbsolutelyPositioned = existingStyle.includes('position: absolute')
+      const insideTable = !!img.closest('table')
+
+      const hasWidth = /(^|;)\s*width\s*:/i.test(existingStyleRaw)
+      const hasMaxWidth = /(^|;)\s*max-width\s*:/i.test(existingStyleRaw)
+      const hasHeight = /(^|;)\s*height\s*:/i.test(existingStyleRaw)
+      const hasMaxHeight = /(^|;)\s*max-height\s*:/i.test(existingStyleRaw)
+
+      const safePatchParts = ['page-break-inside: avoid', 'break-inside: avoid']
+
+      if (!hasWidth && !hasMaxWidth) safePatchParts.push('max-width: 100%')
+      if (!hasHeight && !hasMaxHeight) safePatchParts.push('height: auto')
+
+      const safePatch = `${safePatchParts.join('; ')};`
+      const flowPatch =
+        'display: block; margin-left: auto; margin-right: auto; page-break-inside: avoid; break-inside: avoid;'
+
+      const patchStyle = isAbsolutelyPositioned
+        ? safePatch
+        : insideTable
+          ? safePatch
+          : `${safePatch}; ${flowPatch}`
+
+      img.setAttribute('style', existingStyleRaw ? `${existingStyleRaw}; ${patchStyle}` : patchStyle)
+
+      // Only wrap images that are in normal flow (not absolutely positioned) and not inside tables
+      if (!isAbsolutelyPositioned && !insideTable) {
+        const parent = img.parentElement
+        const alreadyWrapped = parent?.classList?.contains('avoid-break')
+        if (!alreadyWrapped && parent) {
+          const wrapper = doc.createElement('div')
+          wrapper.className = 'avoid-break'
+          wrapper.setAttribute('style', 'page-break-inside: avoid; break-inside: avoid;')
+          parent.insertBefore(wrapper, img)
+          wrapper.appendChild(img)
+        }
+      }
+    })
+
+    return root.innerHTML
+  } catch {
+    return html
+  }
+}
 
 const downloadFromPreview = async () => {
   if (isWithoutAttendancePreview.value) {
@@ -1240,7 +1131,16 @@ const downloadFromPreview = async () => {
     return
   }
 
-  if (!previewContent.value) {
+  const { page1Html, page2Html } = getEditedPreviewHtml()
+  previewContentPage1.value = page1Html
+  previewContentPage2.value = page2Html
+  previewContent.value = `${page1Html}${page2Html}`
+
+  const page1ToDownload = previewContentPage1.value
+  const page2ToDownload = previewContentPage2.value
+  const contentToDownload = normalizeHtmlForDocx(`${page1ToDownload || ''}${page2ToDownload || ''}`)
+
+  if (!contentToDownload) {
     alert('No preview available to download.')
     return
   }
@@ -1249,7 +1149,7 @@ const downloadFromPreview = async () => {
     ? `AAR_Report_${previewRecord.value.reportDate.replace(/[^a-z0-9]+/gi, '_')}.docx`
     : 'report.docx'
 
-  const htmlWithInlineHeaders = inlineHeaderImages(previewContent.value)
+  const htmlWithInlineHeaders = inlineHeaderImages(contentToDownload)
   const fullyInlinedHtml = await inlineAllImages(htmlWithInlineHeaders)
   await downloadWordReport(fullyInlinedHtml, filename)
 }
@@ -1268,115 +1168,13 @@ const previewReport = async (record) => {
           .filter((url) => url)
       : []
 
-    const narrativeDescription = record.description || 'No activity narrative provided.'
-    const locationLine = record.address ? record.address : 'No deployment address submitted.'
+    previewContentPage1.value = buildPreviewPage1Html(record)
+    previewContentPage2.value = buildPhotosPagesHtml(screenshotUrls)
+    previewContent.value = `${previewContentPage1.value}${previewContentPage2.value}`
 
-    const imagesHTML =
-      screenshotUrls.length > 0
-        ? `
-        <div style="margin-top: 0; padding-top: 30px; color: #0f172a; max-width: 190mm; margin-left: auto; margin-right: auto;">
-          <div style="display: flex; align-items: center; justify-content: center;">
-            <h3 style="font-size: 20px; letter-spacing: 1px; margin: 0; text-align: center; text-transform: uppercase; font-weight: bold;">Actual Photos</h3>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 14px;">
-            ${screenshotUrls
-              .map(
-                (url) => `
-                <div style="width: 100%; padding: 12px 0; page-break-inside: avoid;">
-                  <div style="overflow: hidden; background: #f8fafc; text-align: center; height: 320px; display: flex; align-items: center; justify-content: center;">
-                    <img src="${url}" alt="Attendance Photo" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: 0 auto;">
-                  </div>
-                </div>
-              `,
-              )
-              .join('')}
-          </div>
-        </div>
-      `
-        : '<div style="margin-top: 22px; padding: 16px; border: 1px dashed #cbd5f5; border-radius: 10px; text-align: center; font-size: 12px; color: #64748b; background: #f8fafc;">No photographic evidence was attached for this report.</div>'
-
-    const previewHTML = `
-      <div style="background: #e5e7eb; padding: 24px 10px; display: flex; justify-content: center; font-family: Arial; font-size: 12pt; color: #0f172a;">
-        <div style="width: 210mm; min-height: 297mm; background: #ffffff; color: #0f172a; padding: 30mm 25mm; box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18); font-size: 12pt;">
-          <div style="margin-bottom: 18px;">
-            <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
-              <tr>
-                <td style="width: 100px; text-align: left; vertical-align: middle;">
-                  <img src="${pnpSeal}" alt="PNP Seal" width="85" height="95" style="display: block; margin: 0 auto 0 0; width: 85px; height: 95px; object-fit: contain;">
-                </td>
-                <td style="text-align: center; vertical-align: middle; padding: 0 6px; letter-spacing: 0.8px; font-size: 12pt;">
-                  <p style="margin: 0; font-size: 10pt;">Republic of the Philippines</p>
-                  <p style="margin: 2px 0; font-size: 10pt;">National Police Commission</p>
-                  <p style="margin: 2px 0; font-size: 11pt;">PHILIPPINE NATIONAL POLICE, POLICE REGIONAL OFFICE 13</p>
-                  <p style="margin: 2px 0; font-size: 11pt;">BUTUAN CITY POLICE OFFICE</p>
-                  <p style="margin: 2px 0; font-size: 11pt; font-weight: bold;">BUTUAN CITY POLICE STATION 1</p>
-                  <p style"margin: 2px 0; font-size: 10pt;">AD Curato St., cor. JC Aquino Avenue, Butuan City</p>
-                </td>
-                <td style="width: 100px; text-align: right; vertical-align: middle;">
-                  <img src="${bcpoSeal}" alt="BCPO Seal" width="85" height="85" style="display: block; margin: 0 0 0 auto; width: 85px; height: 85px; object-fit: contain;">
-                </td>
-              </tr>
-            </table>
-          </div>
-          <div style="text-align: left; margin-bottom: 14px;">
-            <h1 style="margin: 0; font-size: 12pt; letter-spacing: 4px; font-weight: bold;">MEMORANDUM</h1>
-          </div>
-          <table style="width: 100%; border: none; font-size: 12pt; margin-bottom: 18px;">
-            <tr>
-              <td style="width: 70px; padding: 6px 0;">FOR</td>
-              <td style="padding: 6px 0;">: City Director, BCPO <span style="opacity: 0.8;">: (Attention: CAD Branch)</span></td>
-            </tr>
-            <tr>
-              <td style="padding: 6px 0;">FROM</td>
-              <td style="padding: 6px 0;">: ${record.fullRankName || record.name || 'Acting Station Commander, BCPS1'}</td>
-            </tr>
-            <tr>
-              <td style="padding: 6px 0;">SUBJECT</td>
-              <td style="padding: 6px 0;font-weight: bold; ">: After Activity Report on Police Visibility</td>
-            </tr>
-            <tr>
-              <td style="padding: 6px 0;">DATE</td>
-              <td style="padding: 6px 0;">: ${record.reportDate || record.date || 'N/A'}</td>
-            </tr>
-          </table>
-          <div style="width: 100%; margin: 6pt 0 18pt 0; line-height: 1px; font-size: 1px;">
-            <div style="border-top: 2pt solid #0f172a; width: 100%; height: 1px;">&nbsp;</div>
-          </div>
-          <div style="color: #0f172a; margin-left: 25pt; margin-bottom: 18px;">
-          <div style="margin-bottom: 18px; font-size: 12pt; color: #1e293b;">
-            <p style="margin: 0 0 6px 0;">1. References:</p>
-            <ol style="margin: 0 0 0 18px; padding: 0;">
-              <li>1. PNP Master Plan TAGATAGUYOD</li>
-              <li>2. Latest station directive covering operations at ${locationLine}</li>
-            </ol>
-          </div>
-          <div style="color: #0f172a; font-size: 12pt; margin-bottom: 40px;">
-            <p style="margin: 0 0 12px 0; text-align: justify; font-size: 12pt;">2. Personnel of BCPS1 ${record.fullRankName}, ${narrativeDescription} under the supervision of <strong>PCPT NAMRA P ARIMAO JR, Acting Station Commander</strong> conduct establishment visit, police presence/visibility and
-                ${record.address} on ${record.reportDate} at time. Said activity is conducted to ensure public safety and security thereat</p>
-            <p style="margin: 0; font-size: 12pt;">3. For information.</p>
-          </div>
-          </div>
-          <table style="width: 100%; border-collapse: collapse; margin: 25px 0 0 0; color: #0f172a; font-size: 12pt; page-break-after: always;">
-            <tr>
-              <td style="width: 55%;"></td>
-              <td style="width: 45%; text-align: right; padding-top: 70px; position: relative;">
-                <div style="display: inline-block; position: relative; text-align: right; font-size: 12pt; min-width: 220px;">
-                  <img src="${signature}" alt="Signature" width="140" height="70" style="position: absolute; top: -70px; left: 50%; transform: translateX(-50%); width: 140px; height: 70px; object-fit: contain; z-index: 0; pointer-events: none;">
-                  <div style="position: relative; z-index: 1; text-align: right; line-height: 1.2;">
-                    <div style="font-weight: bold; font-size: 12pt; text-align: right; margin: 0 0 2px 0;">NAMRA P ARIMAO JR</div>
-                    <div style="font-size: 12pt; text-align: right; margin: 0 0 2px 0;">Police Captain</div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
-          ${imagesHTML}
-        </div>
-      </div>
-      `
-
-    previewContent.value = previewHTML
     showPreviewModal.value = true
+
+    await nextTick()
   } catch (error) {
     console.error('Error generating preview:', error)
     alert('Error generating preview. Please try again.')
@@ -1497,12 +1295,19 @@ const downloadWithoutAttendanceReport = async () => {
   }
 }
 
+
 const closePreview = () => {
   showPreviewModal.value = false
   previewContent.value = ''
+  previewContentPage1.value = ''
+  previewContentPage2.value = ''
   previewRecord.value = null
   isWithoutAttendancePreview.value = false
+  editablePage1El.value = null
+  editablePage2El.value = null
 }
+
+// (Edit mode removed) Keep preview modal view-only
 
 // Initialize
 onMounted(async () => {
@@ -1518,26 +1323,9 @@ onMounted(async () => {
   setDefaultDate()
   await preloadHeaderImages()
   await fetchRecords()
-  await fetchUsers()
 })
 
-const fetchUsers = async () => {
-  try {
-    const { data, error } = await supabase
-      .from('users')
-      .select('*')
-      .order('rank_fullname', { ascending: true })
 
-    if (error) {
-      console.error('Error fetching users:', error)
-      return
-    }
-
-    allUsers.value = data || []
-  } catch (err) {
-    console.error('Exception fetching users:', err)
-  }
-}
 </script>
 
 <style scoped>
@@ -1567,5 +1355,24 @@ const fetchUsers = async () => {
 
 .animate-scale-in {
   animation: scale-in 0.3s ease-out;
+}
+
+.preview-page {
+  background: transparent;
+  zoom: 0.75;
+  width: 100%;
+}
+
+.preview-page :deep(.a4-page) {
+  margin: 0 auto;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
+}
+
+.editable-preview {
+  width: 100%;
+}
+
+.editable-preview:focus {
+  outline: none;
 }
 </style>
