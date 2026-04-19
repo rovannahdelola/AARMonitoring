@@ -28,52 +28,42 @@
       <div class="p-4 sm:p-6 lg:p-8 max-w-screen-2xl mx-auto">
         <!-- Page Header -->
         <div
-          class="mb-6 lg:mb-8 rounded-2xl shadow-xl overflow-hidden relative"
-          style="background: linear-gradient(135deg, #001a3a 0%, #002147 50%, #004595 100%)"
+          class="mb-6 lg:mb-8 relative overflow-hidden"
         >
-          <!-- Geometric background blobs -->
-          <div
-            class="absolute -top-8 -right-8 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse pointer-events-none"
-          ></div>
-          <div
-            class="absolute -bottom-8 -left-8 w-40 h-40 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse pointer-events-none"
-            style="animation-delay: 700ms"
-          ></div>
-          <!-- Diagonal accent -->
-          <div
-            class="absolute inset-0 pointer-events-none"
-            style="
-              background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
-            "
-          ></div>
-          <div class="relative p-5 sm:p-6 lg:p-8">
-            <div class="flex items-center gap-3 sm:gap-4">
-              <div
-                class="rounded-xl p-2.5 sm:p-3 ring-2 ring-white/20 bg-white/10 backdrop-blur-sm shadow-lg"
+          <!-- Glowing background blobs -->
+          <div class="absolute -top-20 -right-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse pointer-events-none"></div>
+          <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-indigo-500 rounded-full mix-blend-screen filter blur-3xl opacity-15 animate-pulse pointer-events-none" style="animation-delay: 700ms"></div>
+          
+          <!-- Transparent background with left accent border -->
+          <div class="relative flex items-start gap-4 p-6 sm:p-8 rounded-lg border-l-4 border-b-0 border-t-0 border-r-0"
+            style="border-color: #004595; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(8px)"
+          >
+            <div
+              class="rounded-lg p-3 flex-shrink-0"
+              style="background: rgba(0, 69, 149, 0.15)"
+            >
+              <svg
+                class="w-6 h-6 sm:w-7 sm:h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                style="color: #004595"
               >
-                <svg
-                  class="w-6 h-6 sm:w-8 sm:h-8 text-blue-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                  ></path>
-                </svg>
-              </div>
-              <div>
-                <h1 class="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-white">
-                  AAR Records
-                </h1>
-                <div class="w-16 h-0.5 bg-gradient-to-r from-blue-400 to-transparent mb-1.5"></div>
-                <p class="text-xs sm:text-sm font-semibold text-blue-300">
-                  Filter and view AAR records by date
-                </p>
-              </div>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+                AAR Records
+              </h1>
+              <p class="text-sm sm:text-base text-slate-400 mt-1.5 font-medium">
+                Filter and view AAR records by date
+              </p>
             </div>
           </div>
         </div>
@@ -93,7 +83,7 @@
                 class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase flex items-center gap-2 transition-all duration-200"
               >
                 <svg
-                  class="w-4 h-4 flex-shrink-0"
+                  class="w-4 h-4 shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -126,7 +116,7 @@
                 class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase flex items-center gap-2 transition-all duration-200"
               >
                 <svg
-                  class="w-4 h-4 flex-shrink-0"
+                  class="w-4 h-4 shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -151,14 +141,101 @@
               </button>
             </div>
 
-            <!-- Date Filter -->
-            <div class="flex flex-wrap items-center gap-2">
-              <label
-                class="text-sm text-white font-bold uppercase flex items-center gap-2 text-slate-800"
-              >
-                <div class="rounded-lg p-1.5 bg-blue-50">
+        </div>
+
+        <!-- Tab Content -->
+        <!-- Submitted Tab -->
+        <div
+          v-if="activeTab === 'with-attendance'"
+          class="bg-slate-900/80 rounded-2xl overflow-hidden shadow-md border border-slate-700 p-4 sm:p-5 lg:p-6 mt-4 mb-4"
+        >
+          <div
+            class="p-4 sm:p-5 lg:p-6 rounded-t-2xl border-b border-slate-700 bg-gradient-to-r from-slate-800 to-blue-900 flex flex-col gap-4"
+          >
+            <!-- Title and Download -->
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+              <div>
+                <h2 class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3 text-white">
                   <svg
-                    class="w-4 h-4 text-blue-600"
+                    class="w-4 h-4 sm:w-5 sm:h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    ></path>
+                  </svg>
+                  Submitted Reports
+                </h2>
+                <p class="text-xs sm:text-sm mt-1 text-blue-200">
+                  Showing {{ filteredRecords.length }} records
+                </p>
+              </div>
+              <div
+                v-if="filteredRecords.length > 0"
+                class="flex flex-col sm:flex-row gap-2 w-full lg:w-auto shrink-0"
+              >
+                <button
+                  @click="downloadAllCompliedReports"
+                  class="bg-white text-[#004595] px-3 sm:px-4 py-2 sm:py-2.5 rounded font-bold text-xs sm:text-sm uppercase flex items-center justify-center gap-2 hover:opacity-90"
+                >
+                  <svg
+                    class="w-3 h-3 sm:w-4 sm:h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    ></path>
+                  </svg>
+                  Download
+                </button>
+              </div>
+            </div>
+
+            <!-- Search and Date Filter -->
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-3 flex-wrap">
+              <label
+                class="text-xs sm:text-sm text-white font-bold uppercase flex items-center gap-2 shrink-0"
+              >
+                <div class="rounded-lg p-1 bg-blue-50">
+                  <svg
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                </div>
+                Search
+              </label>
+              <input
+                v-model="searchName"
+                type="text"
+                placeholder="Enter name..."
+                class="px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs sm:text-sm font-medium text-slate-700 bg-slate-50 grow md:grow-0"
+                @input="filterRecords"
+              />
+              <label
+                class="text-xs sm:text-sm text-white font-bold uppercase flex items-center gap-2 shrink-0"
+              >
+                <div class="rounded-lg p-1 bg-blue-50">
+                  <svg
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -171,19 +248,19 @@
                     ></path>
                   </svg>
                 </div>
-                Select Date
+                Date
               </label>
               <input
                 v-model="selectedDate"
                 type="date"
-                class="date-slate-icon px-4 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 text-sm font-medium text-slate-700 bg-slate-50"
+                class="date-slate-icon px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 text-xs sm:text-sm font-medium text-slate-700 bg-slate-50"
                 @change="filterRecords"
               />
               <button
                 @click="resetFilters"
-                class="text-white px-4 py-2.5 rounded-xl font-bold text-sm uppercase flex items-center gap-2 transition bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
+                class="text-white px-3 py-2 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center gap-1.5 transition bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
               >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -195,39 +272,8 @@
               </button>
             </div>
           </div>
-        </div>
-
-        <!-- Tab Content -->
-        <!-- Submitted Tab -->
-        <div
-          v-if="activeTab === 'with-attendance'"
-          class="bg-slate-900/80 rounded-2xl overflow-hidden shadow-md border border-slate-700"
-        >
-          <div
-            class="p-4 sm:p-5 lg:p-6 border-b border-slate-700 bg-gradient-to-r from-slate-800 to-blue-900"
-          >
-            <h2 class="text-sm sm:text-base font-bold flex items-center gap-2 sm:gap-3 text-white">
-              <svg
-                class="w-4 h-4 sm:w-5 sm:h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                ></path>
-              </svg>
-              Submitted Reports
-            </h2>
-            <p class="text-xs sm:text-sm mt-1 text-blue-200">
-              Showing {{ filteredRecords.length }} records
-            </p>
-          </div>
           <div class="overflow-x-auto">
-            <table class="w-full min-w-[720px] sm:min-w-[840px]">
+            <table class="w-full min-w-180 sm:min-w-210">
               <thead
                 class="text-white"
                 style="background: linear-gradient(90deg, #002147 0%, #004595 100%)"
@@ -271,16 +317,16 @@
                   </td>
                   <td class="px-3 sm:px-4 py-2.5 sm:py-3">
                     <span
-                      v-if="record.status === true"
+                      v-if="record.status === 'complied'"
                       class="px-2.5 sm:px-3 py-1 inline-flex text-xs sm:text-sm font-bold rounded-full bg-emerald-500/10 text-emerald-400"
                     >
-                      Present
+                      {{ record.status }}
                     </span>
                     <span
                       v-else
                       class="px-2.5 sm:px-3 py-1 inline-flex text-xs sm:text-sm font-bold rounded-full bg-red-500/10 text-red-400"
                     >
-                      Absent
+                      {{ record.status }}
                     </span>
                   </td>
                   <td class="px-3 sm:px-4 py-1 sm:py-3">
@@ -348,7 +394,7 @@
         <!-- Not Submitted Tab -->
         <div
           v-if="activeTab === 'without-attendance'"
-          class="bg-slate-900/80 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md border border-slate-700"
+          class="bg-slate-900/80 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md border border-slate-700 mt-4 mb-4"
         >
           <div
             class="mb-4 sm:mb-5 lg:mb-6 rounded-xl p-4 sm:p-5 lg:p-6 text-white overflow-hidden relative"
@@ -434,21 +480,92 @@
                 </button>
               </div>
             </div>
+
+            <!-- Search and Date Filter -->
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-3 flex-wrap mt-4">
+              <label
+                class="text-xs sm:text-sm text-white font-bold uppercase flex items-center gap-2 shrink-0"
+              >
+                <div class="rounded-lg p-1 bg-red-50">
+                  <svg
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-red-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                </div>
+                Search
+              </label>
+              <input
+                v-model="searchAbsenceName"
+                type="text"
+                placeholder="Enter name..."
+                class="px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300 text-xs sm:text-sm font-medium text-slate-700 bg-slate-50 grow md:grow-0"
+                @input="filterAbsenceRecords"
+              />
+              <label
+                class="text-xs sm:text-sm text-white font-bold uppercase flex items-center gap-2 shrink-0"
+              >
+                <div class="rounded-lg p-1 bg-red-50">
+                  <svg
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-red-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                </div>
+                Date
+              </label>
+              <input
+                v-model="selectedAbsenceDate"
+                type="date"
+                class="date-slate-icon px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300 text-xs sm:text-sm font-medium text-slate-700 bg-slate-50"
+                @change="filterAbsenceRecords"
+              />
+              <button
+                @click="resetAbsenceFilters"
+                class="text-white px-3 py-2 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center gap-1.5 transition bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
+              >
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+                Clear
+              </button>
+            </div>
           </div>
 
-          <div v-if="officersWithoutAttendance.length > 0">
+          <div v-if="officersWithoutAttendance.length > 0" class="bg-slate-900/80 p-4 sm:p-5 lg:p-6" style="border-top: 1px solid rgba(220, 38, 38, 0.3)">
             <div
               class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"
             >
               <div
-                v-for="officer in officersWithoutAttendance"
+                v-for="officer in filteredAbsenceRecords"
                 :key="officer.id"
-                class="rounded p-3 sm:p-4 border border-red-500 bg-red-50"
+                class="rounded p-3 sm:p-4 border border-red-500/30 bg-red-500/10"
               >
                 <div class="flex items-center gap-3">
-                  <div class="rounded p-2" style="background: #ef4444">
+                  <div class="rounded p-2 bg-red-500/20">
                     <svg
-                      class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                      class="w-5 h-5 sm:w-6 sm:h-6 text-red-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -462,7 +579,7 @@
                     </svg>
                   </div>
                   <div class="flex-1">
-                    <p class="font-bold text-gray-900 text-xs sm:text-sm">
+                    <p class="font-bold text-white text-xs sm:text-sm">
                       {{ officer.rank_fullname }}
                     </p>
                   </div>
@@ -509,20 +626,20 @@
     <!-- Preview Modal -->
     <div
       v-if="showPreviewModal"
-      class="fixed inset-0 flex items-center justify-center z-50 p-3 sm:p-4"
+      class="fixed inset-0 z-50 grid place-items-center p-3 sm:p-4 overflow-y-auto "
       style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px)"
       @click.self="closePreview"
     >
       <div
-        class="bg-white rounded-lg max-w-6xl w-full max-h-[85vh] overflow-hidden shadow-2xl flex flex-col"
+        class="bg-white rounded-lg max-w-6xl w-full max-h-[85vh] overflow-hidden shadow-2xl flex flex-col ml-auto mr-10"
       >
         <!-- Modal Header -->
         <div
           class="sticky top-0 bg-white border-b-2 p-4 sm:p-5 lg:p-6 flex justify-between items-center z-10"
-          style="border-color: #004595"
+          :style="isWithoutAttendancePreview ? 'border-color: #dc2626' : 'border-color: #004595'"
         >
           <div class="flex items-center gap-2 sm:gap-3">
-            <div class="rounded-lg p-1.5 sm:p-2" style="background: #004595">
+            <div class="rounded-lg p-1.5 sm:p-2" :style="{ background: isWithoutAttendancePreview ? '#dc2626' : '#004595' }">
               <svg
                 class="w-5 h-5 sm:w-6 sm:h-6 text-white"
                 fill="none"
@@ -530,12 +647,21 @@
                 viewBox="0 0 24 24"
               >
                 <path
+                  v-if="isWithoutAttendancePreview"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4v2m0 5v1m0-9a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+                <path
+                  v-else
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                 ></path>
                 <path
+                  v-if="!isWithoutAttendancePreview"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
@@ -543,9 +669,14 @@
                 ></path>
               </svg>
             </div>
-            <h2 class="text-lg sm:text-xl lg:text-2xl font-bold" style="color: #002147">
-              Document Preview
-            </h2>
+            <div>
+              <h2 class="text-lg sm:text-xl lg:text-2xl font-bold" :style="{ color: isWithoutAttendancePreview ? '#dc2626' : '#002147' }">
+                {{ isWithoutAttendancePreview ? 'Not Submitted Reports' : 'Document Preview' }}
+              </h2>
+              <p v-if="!isWithoutAttendancePreview && previewRecord?.fullRankName" class="text-xs sm:text-sm text-slate-600 mt-0.5">
+                {{ previewRecord.fullRankName }}
+              </p>
+            </div>
           </div>
           <div class="flex items-center gap-2">
             <button
@@ -554,7 +685,7 @@
             >
               <svg
                 class="w-5 h-5 sm:w-6 sm:h-6"
-                style="color: #002147"
+                :style="{ color: isWithoutAttendancePreview ? '#dc2626' : '#002147' }"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -571,8 +702,17 @@
         </div>
 
         <!-- Preview Content -->
-        <div  class="flex-1 overflow-auto p-4 sm:p-6 md:p-8" style="background: #ffffff">
-          <div class="flex flex-col items-center" style="background: transparent; gap: 4px;">
+        <div  class="flex-1 overflow-auto p-4 sm:p-6 md:p-8 ml-10" style="background: #ffffff">
+          <div
+            v-if="isWithoutAttendancePreview || isCompliedReportsPreview"
+            class="max-w-6xl mx-auto"
+            v-html="previewContent"
+          ></div>
+          <div
+            v-else
+            class="flex flex-col items-center justify-center"
+            style="background: transparent; gap: 4px;"
+          >
             <div v-if="previewContentPage1" class="preview-page">
               <div
                 ref="editablePage1El"
@@ -597,12 +737,12 @@
         <!-- Modal Footer -->
         <div
           class="sticky bottom-0 bg-white border-t-2 p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3"
-          style="border-color: #004595"
+          :style="isWithoutAttendancePreview ? 'border-color: #dc2626' : 'border-color: #004595'"
         >
           <button
             @click="downloadFromPreview"
-            class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2"
-            style="background: #004595; color: #ffffff"
+            class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2 text-white"
+            :style="{ background: isWithoutAttendancePreview ? '#dc2626' : '#004595' }"
           >
             <svg
               class="w-3 h-3 sm:w-4 sm:h-4"
@@ -617,7 +757,7 @@
                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
               ></path>
             </svg>
-            Download Original
+            Download
           </button>
           <button
             @click="closePreview"
@@ -643,6 +783,7 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script setup>
@@ -659,7 +800,12 @@ const router = useRouter()
 
 // Filter date
 const selectedDate = ref('')
+const searchName = ref('')
 const activeTab = ref('with-attendance')
+
+// Not Submitted filters (separate)
+const selectedAbsenceDate = ref('')
+const searchAbsenceName = ref('')
 
 // All records
 const allRecords = ref([])
@@ -676,6 +822,7 @@ const previewContentPage1 = ref('')
 const previewContentPage2 = ref('')
 const previewRecord = ref(null)
 const isWithoutAttendancePreview = ref(false)
+const isCompliedReportsPreview = ref(false)
 const headerImageData = ref({ pnp: '', bcpo: '' })
 
 const editablePage1El = ref(null)
@@ -706,7 +853,7 @@ const buildPhotosPagesHtml = (screenshotUrls) => {
                   <h1 style="font-size: 18pt; letter-spacing: 1px; margin: 0; text-align: center; text-transform: uppercase; font-weight: bold;">ACTUAL PHOTO</h1>
                 </div>
                 <div class="avoid-break" style="width: 100%; text-align: center; page-break-inside: avoid; break-inside: avoid;">
-                  <img src="${url}" alt="Attendance Photo" style="width: 14cm; max-width: 14cm; height: auto; max-height: 18.5cm; object-fit: contain; display: block; margin: 0 auto; page-break-inside: avoid; break-inside: avoid;">
+                  <img src="${url}" alt="Attendance Photo" style="width: 10cm; max-width: 10cm; height: auto; max-height: 18.5cm; object-fit: contain; display: block; margin: 0 auto; page-break-inside: avoid; break-inside: avoid;">
                 </div>
               </div>
             `,
@@ -735,7 +882,7 @@ const buildPreviewPage1Html = (record) => {
 
   return `
         <div class="a4-page" style="width: 210mm; min-height: 297mm; background: #ffffff; color: #0f172a; padding: 20mm 18mm; padding-top: 10mm; font-family: Arial; font-size: 12pt; box-sizing: border-box; page-break-after: always;">
-          <div style="margin-bottom: 10px; page-break-after: avoid;">
+          <div style="margin-bottom: 20px; page-break-after: avoid;">
             <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
               <tr>
                 <td style="width: 70px; text-align: left; vertical-align: middle;">
@@ -750,7 +897,7 @@ const buildPreviewPage1Html = (record) => {
                   <p style="margin: 1px 0; font-size: 11pt;">AD Curato St., cor. JC Aquino Avenue, Butuan City</p>
                 </td>
                 <td style="width: 70px; text-align: right; vertical-align: middle;">
-                  <img src="${bcpoSeal}" alt="BCPO Seal" width="65" height="65" style="display: block; margin: 0 0 0 auto; width: 65px; height: 65px; object-fit: contain;">
+                  <img src="${bcpoSeal}" alt="BCPO Seal" width="65" height="65" style="display: block; margin: 0 0 0 auto; object-fit: contain;">
                 </td>
               </tr>
             </table>
@@ -776,10 +923,10 @@ const buildPreviewPage1Html = (record) => {
               <td style="padding: 3px 0;">: ${record.reportDate || record.date || 'N/A'}</td>
             </tr>
           </table>
-          <div style="width: 100%; margin: 4pt 0 10pt 0; line-height: 1px; font-size: 1px; page-break-after: avoid;">
-            <div style="border-top: 1.5pt solid #0f172a; width: 100%; height: 1px;">&nbsp;</div>
+          <div style="width: 100%; margin: 4pt 0 0 0; line-height: 1px; font-size: 1px; page-break-after: avoid;">
+            <div style="border-top: 1.5pt solid #0f172a; width: 100%; height: 1px;"></div>
           </div>
-          <div style="color: #0f172a; margin-left: 18pt;">
+          <div style="color: #0f172a; margin-left: 18pt; margin-top: 10px;">
             <div style="margin-bottom: 10px; font-size: 11pt; color: #1e293b;">
               <p style="margin: 0 0 4px 0;">1. References:</p>
               <ol style="margin: 0 0 0 16px; padding: 0;">
@@ -787,9 +934,11 @@ const buildPreviewPage1Html = (record) => {
                 <li style="margin: 0;">Latest station directive covering operations at ${locationLine}</li>
               </ol>
             </div>
-            <div style="position: relative; color: #0f172a; font-size: 11pt; margin-bottom: 12px;">
-              <p style="margin: 0 0 4px 0; text-align: justify; margin-left: 0;">2. Personnel of BCPS1 ${record.fullRankName}, ${narrativeHtml} under the supervision of <strong>PCPT NAMRA P ARIMAO JR, Acting Station Commander</strong> conduct establishment visit, police presence/visibility and ${record.address} on ${record.reportDate} at time. Said activity is conducted to ensure public safety and security thereat</p>
-              <p style="margin: 0; font-size: 11pt;">3. For information.</p>
+            <div style="color: #0f172a; font-size: 11pt; margin-bottom: 12px;">
+              <p style="margin: 0 0 4px 0; text-align: justify; margin-left: 0; padding-left: 18pt; text-indent: -18pt;">2. Personnel of BCPS1 ${record.fullRankName}, ${narrativeHtml} under the supervision of <strong>PCPT NAMRA P ARIMAO JR, Acting Station Commander</strong> conduct establishment visit, police presence/visibility and ${record.address} on ${record.reportDate} at time. Said activity is conducted to ensure public safety and security thereat</p>
+            </div>
+            <div style="margin-bottom: 10px; font-size: 11pt; color: #1e293b;">
+            <p style="margin: 0; font-size: 11pt;">3. For information.</p>
             </div>
           </div>
           <div class="avoid-break" style="margin: 0; margin-top: 10mm; page-break-inside: avoid; break-inside: avoid;">
@@ -824,6 +973,7 @@ const toDateInputValue = (date) => {
 // Date filter defaults to today's date
 const setDefaultDate = () => {
   selectedDate.value = toDateInputValue(new Date())
+  selectedAbsenceDate.value = toDateInputValue(new Date())
 }
 
 const toDataUrl = async (url) => {
@@ -877,11 +1027,9 @@ const loadHtmlDocx = async () => {
 // Fetch all attendance records
 const fetchRecords = async () => {
   try {
-    // Fetch all AAR reports
+    // Fetch submitted AAR reports via RPC with "complied" status
     const { data: attendance, error } = await supabase
-      .from('aar_reports_with_screenshots1')
-      .select('*')
-      .order('date', { ascending: false })
+      .rpc('get_reports_by_status', { p_status: 'complied' })
 
     console.log('Fetched AAR records:', attendance)
 
@@ -918,7 +1066,7 @@ const fetchRecords = async () => {
         name: fullRankName,
         fullRankName,
         userId: record.user_id,
-        status: record.status !== false,
+        status: record.status,
         screenshots: record.screenshots || '',
         description: record.description || '',
         address: record.address || '',
@@ -926,82 +1074,96 @@ const fetchRecords = async () => {
       }
     })
 
-    // Fetch records not submitted
-    const { data: absenceData, error: absenceError } = await supabase
-      .from('aar_reports_with_screenshots')
-      .select('*')
-      .order('date', { ascending: false })
-
-    if (absenceError) throw absenceError
-
-    absenceRecords.value = (absenceData || []).map((record) => {
-      const rawDateValue = record.date || record.created_at
-      const dateObj = rawDateValue ? new Date(rawDateValue) : null
-      const formattedDate = dateObj
-        ? dateObj.toLocaleString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true,
-          })
-        : 'N/A'
-
-      return {
-        id: record.id,
-        date: formattedDate,
-        dateObj,
-        userId: record.user_id,
-        description: record.description || '',
-        address: record.address || '',
-        screenshots: record.screenshots || '',
-        rank_fullname: record.rank_fullname || 'Unknown',
-        badge_number: record.badge_number || 'N/A',
-      }
-    })
-
     filterRecords()
+    filterAbsenceRecords()
   } catch (error) {
     console.error('Error fetching records:', error)
     alert(`Unable to fetch AAR data. Details: ${error?.message || error}`)
   }
 }
 
-// Filter records by selected date
+// Filter records by selected date and name
 const filterRecords = () => {
-  if (!selectedDate.value) {
-    filteredRecords.value = allRecords.value
-    filteredAbsenceRecords.value = absenceRecords.value
-    return
+  let filtered = allRecords.value
+
+  // Filter by name if search is provided
+  if (searchName.value.trim()) {
+    const searchLower = searchName.value.toLowerCase().trim()
+    filtered = filtered.filter((record) =>
+      record.name.toLowerCase().includes(searchLower)
+    )
   }
 
-  const selected = new Date(selectedDate.value)
-  selected.setHours(0, 0, 0, 0)
+  // Filter by date if selected
+  if (selectedDate.value) {
+    const selected = new Date(selectedDate.value)
+    selected.setHours(0, 0, 0, 0)
 
-  const endOfDay = new Date(selected)
-  endOfDay.setHours(23, 59, 59, 999)
+    const endOfDay = new Date(selected)
+    endOfDay.setHours(23, 59, 59, 999)
 
-  filteredRecords.value = allRecords.value.filter((record) => {
-    if (!record.dateObj) {
-      return false
-    }
-    return record.dateObj >= selected && record.dateObj <= endOfDay
-  })
+    filtered = filtered.filter((record) => {
+      if (!record.dateObj) {
+        return false
+      }
+      return record.dateObj >= selected && record.dateObj <= endOfDay
+    })
+  }
 
-  filteredAbsenceRecords.value = absenceRecords.value.filter((record) => {
-    if (!record.dateObj) {
-      return false
-    }
-    return record.dateObj >= selected && record.dateObj <= endOfDay
-  })
+  filteredRecords.value = filtered
 }
 
 // Reset filters
 const resetFilters = () => {
   selectedDate.value = ''
+  searchName.value = ''
   filteredRecords.value = allRecords.value
-  filteredAbsenceRecords.value = absenceRecords.value
+}
+
+// Filter absence records separately by name and date
+const filterAbsenceRecords = async () => {
+  try {
+    // Always fetch from get_no_aar with current date
+    const { data: absenceData, error: absenceError } = await supabase
+      .rpc('get_no_aar', { p_status: 'complied', p_date: selectedAbsenceDate.value })
+
+    if (absenceError) throw absenceError
+
+    absenceRecords.value = (absenceData || []).map((record) => {
+      return {
+        id: record.id,
+        date: 'N/A',
+        dateObj: null,
+        userId: record.id,
+        badge_number: record.badge_number || 'N/A',
+        description: record.description || '',
+        address: record.address || '',
+        screenshots: record.screenshots || '',
+        rank_fullname: record.rank_fullname || 'Unknown',
+      }
+    })
+
+    let filtered = absenceRecords.value
+
+    // Filter by name if search is provided
+    if (searchAbsenceName.value.trim()) {
+      const searchLower = searchAbsenceName.value.toLowerCase().trim()
+      filtered = filtered.filter((record) =>
+        record.rank_fullname.toLowerCase().includes(searchLower)
+      )
+    }
+
+    filteredAbsenceRecords.value = filtered
+  } catch (error) {
+    console.error('Error filtering absence records:', error)
+  }
+}
+
+// Reset absence filters
+const resetAbsenceFilters = () => {
+  selectedAbsenceDate.value = toDateInputValue(new Date())
+  searchAbsenceName.value = ''
+  filterAbsenceRecords()
 }
 
 // Download from preview modal
@@ -1126,6 +1288,11 @@ const normalizeHtmlForDocx = (html) => {
 }
 
 const downloadFromPreview = async () => {
+  if (isCompliedReportsPreview.value) {
+    await downloadAllCompliedReports()
+    return
+  }
+
   if (isWithoutAttendancePreview.value) {
     await downloadWithoutAttendanceReport()
     return
@@ -1159,6 +1326,7 @@ const previewReport = async (record) => {
   try {
     previewRecord.value = record
     isWithoutAttendancePreview.value = false
+    isCompliedReportsPreview.value = false
 
     // Parse screenshots URLs (comma-separated)
     const screenshotUrls = record.screenshots
@@ -1200,6 +1368,9 @@ const previewWithoutAttendanceReport = () => {
   try {
     previewRecord.value = null
     isWithoutAttendancePreview.value = true
+    isCompliedReportsPreview.value = false
+    previewContentPage1.value = ''
+    previewContentPage2.value = ''
 
     const officersHTML = officersWithoutAttendance.value
       .map(
@@ -1207,7 +1378,7 @@ const previewWithoutAttendanceReport = () => {
             <tr style="${index % 2 === 0 ? 'background: #f9fafb;' : 'background: #ffffff;'}">
                 <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center; font-weight: 600; color: #374151; font-size: 11px;">${index + 1}</td>
                 <td style="padding: 8px; border: 1px solid #e5e7eb; color: #1f2937; font-weight: 500; font-size: 11px;">${officer.rank_fullname || 'N/A'}</td>
-                <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center; color: #6b7280; font-size: 11px;">${officer.badge_number || 'N/A'}</td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center; font-weight: 500; color: #1f2937; font-size: 11px;">${officer.badge_number || 'N/A'}</td>
                 <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center;">
                     <span style="display: inline-block; padding: 3px 8px; border-radius: 3px; font-weight: bold; font-size: 10px; background: #fee2e2; color: #991b1b; border: 1.5px solid #ef4444;">✗ Absent</span>
                 </td>
@@ -1227,7 +1398,7 @@ const previewWithoutAttendanceReport = () => {
 
                 <div style="border: 2px solid #ef4444; border-radius: 6px; padding: 10px; margin-bottom: 15px; background: linear-gradient(to right, #fee2e2 0%, #fef2f2 100%); box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);">
                     <div style="display: flex; align-items: center; gap: 10px;">
-                        <div style="background: #dc2626; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div style="background: #dc2626; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; shrink: 0;">
                             <span style="color: #ffffff; font-size: 16px; font-weight: bold;">⚠️</span>
                         </div>
                         <div>
@@ -1244,7 +1415,7 @@ const previewWithoutAttendanceReport = () => {
                 <div style="background: #ffffff; border-radius: 8px; overflow: hidden; border: 2px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                     <table style="width: 100%; border-collapse: collapse;">
                         <thead>
-                            <tr style="background: linear-gradient(135deg, #002147 0%, #004595 100%);">
+                            <tr style="background: linear-gradient(135deg, #002147 0%, #004595 100%);" >
                                 <th style="padding: 8px; border: 1px solid #004595; text-align: center; width: 50px; color: #ffffff; font-weight: bold; font-size: 11px;">#</th>
                                 <th style="padding: 8px; border: 1px solid #004595; text-align: left; color: #ffffff; font-weight: bold; font-size: 11px;">RANK & FULL NAME</th>
                                 <th style="padding: 8px; border: 1px solid #004595; text-align: center; width: 120px; color: #ffffff; font-weight: bold; font-size: 11px;">BADGE NUMBER</th>
@@ -1295,6 +1466,175 @@ const downloadWithoutAttendanceReport = async () => {
   }
 }
 
+// Preview all complied reports
+const previewAllCompliedReports = () => {
+  try {
+    if (filteredRecords.value.length === 0) {
+      alert('No records to preview.')
+      return
+    }
+
+    previewRecord.value = null
+    isWithoutAttendancePreview.value = false
+    isCompliedReportsPreview.value = true
+
+    const reportTableHtml = filteredRecords.value
+      .map(
+        (record, index) => `
+          <tr style="${index % 2 === 0 ? 'background: #f9fafb;' : 'background: #ffffff;'}">
+            <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center; font-weight: 600; color: #374151; font-size: 11px;">${index + 1}</td>
+            <td style="padding: 8px; border: 1px solid #e5e7eb; color: #1f2937; font-weight: 500; font-size: 11px;">${record.date}</td>
+            <td style="padding: 8px; border: 1px solid #e5e7eb; color: #1f2937; font-weight: 500; font-size: 11px;">${record.name}</td>
+            <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center;">
+              <span style="display: inline-block; padding: 3px 8px; border-radius: 3px; font-weight: bold; font-size: 10px; background: #d1fae5; color: #065f46; border: 1.5px solid #10b981;">✓ ${record.status}</span>
+            </td>
+          </tr>
+        `,
+      )
+      .join('')
+
+    const previewHTML = `
+      <div style="font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 15px; background: linear-linear(135deg, #002147 0%, #004595 100%); padding: 12px; border-radius: 6px;">
+          <h1 style="color: #ffffff; font-size: 16px; margin-bottom: 4px; font-weight: bold;">PHILIPPINE NATIONAL POLICE</h1>
+          <h2 style="color: #bfdbfe; font-size: 13px; margin-bottom: 2px; font-weight: bold;">Complied Reports Summary</h2>
+          <p style="color: #dbeafe; font-size: 10px;">Date: ${selectedDate.value ? new Date(selectedDate.value).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'All Dates'}</p>
+          <p style="color: #dbeafe; font-size: 10px;">Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        </div>
+
+        <div style="border: 2px solid #10b981; border-radius: 6px; padding: 10px; margin-bottom: 15px; background: linear-linear(to right, #d1fae5 0%, #ecfdf5 100%); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="background: #059669; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; shrink: 0;">
+              <span style="color: #ffffff; font-size: 16px; font-weight: bold;">✓</span>
+            </div>
+            <div>
+              <p style="color: #065f46; font-weight: bold; font-size: 12px; margin: 0;">
+                Total Complied Reports: ${filteredRecords.value.length}
+              </p>
+              <p style="color: #047857; font-size: 10px; margin: 2px 0 0 0;">
+                All officers who have submitted their AAR for the selected date
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 8px; overflow: hidden; border: 2px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="background: linear-linear(135deg, #002147 0%, #004595 100%);">
+                <th style="padding: 8px; border: 1px solid #004595; text-align: center; width: 50px; color: #ffffff; font-weight: bold; font-size: 11px;">#</th>
+                <th style="padding: 8px; border: 1px solid #004595; text-align: left; color: #ffffff; font-weight: bold; font-size: 11px;">Date & Time</th>
+                <th style="padding: 8px; border: 1px solid #004595; text-align: left; color: #ffffff; font-weight: bold; font-size: 11px;">Rank & Full Name</th>
+                <th style="padding: 8px; border: 1px solid #004595; text-align: center; width: 100px; color: #ffffff; font-weight: bold; font-size: 11px;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${reportTableHtml}
+            </tbody>
+          </table>
+        </div>
+
+        <div style="text-align: center; padding-top: 15px; border-top: 2px solid #e5e7eb; margin-top: 25px;">
+          <p style="color: #6b7280; font-size: 11px; font-weight: 500;">This is an official document from the PNP Attendance Monitoring System</p>
+          <p style="color: #9ca3af; font-size: 10px; margin-top: 3px;">For official use only</p>
+        </div>
+      </div>
+    `
+
+    previewContent.value = previewHTML
+    showPreviewModal.value = true
+  } catch (error) {
+    console.error('Error generating preview:', error)
+    alert('Error generating preview. Please try again.')
+  }
+}
+
+// Download all complied reports as Word document with table
+const downloadAllCompliedReports = async () => {
+  try {
+    if (filteredRecords.value.length === 0) {
+      alert('No records to download.')
+      return
+    }
+
+    const reportTableHtml = filteredRecords.value
+      .map(
+        (record, index) => `
+          <tr style="${index % 2 === 0 ? 'background: #f9fafb;' : 'background: #ffffff;'}">
+            <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center; font-weight: 600; color: #374151; font-size: 11px;">${index + 1}</td>
+            <td style="padding: 8px; border: 1px solid #e5e7eb; color: #1f2937; font-weight: 500; font-size: 11px;">${record.date}</td>
+            <td style="padding: 8px; border: 1px solid #e5e7eb; color: #1f2937; font-weight: 500; font-size: 11px;">${record.name}</td>
+            <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center;">
+              <span style="display: inline-block; padding: 3px 8px; border-radius: 3px; font-weight: bold; font-size: 10px; background: #d1fae5; color: #065f46; border: 1.5px solid #10b981;">✓ ${record.status}</span>
+            </td>
+          </tr>
+        `,
+      )
+      .join('')
+
+    const allReportsHTML = `
+      <div style="font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 15px; background: linear-linear(135deg, #002147 0%, #004595 100%); padding: 12px; border-radius: 6px;">
+          <h1 style="color: #ffffff; font-size: 16px; margin-bottom: 4px; font-weight: bold;">PHILIPPINE NATIONAL POLICE</h1>
+          <h2 style="color: #bfdbfe; font-size: 13px; margin-bottom: 2px; font-weight: bold;">Complied Reports Summary</h2>
+          <p style="color: #dbeafe; font-size: 10px;">Date: ${selectedDate.value ? new Date(selectedDate.value).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'All Dates'}</p>
+          <p style="color: #dbeafe; font-size: 10px;">Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        </div>
+
+        <div style="border: 2px solid #10b981; border-radius: 6px; padding: 10px; margin-bottom: 15px; background: linear-linear(to right, #d1fae5 0%, #ecfdf5 100%); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="background: #059669; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; shrink: 0;">
+              <span style="color: #ffffff; font-size: 16px; font-weight: bold;">✓</span>
+            </div>
+            <div>
+              <p style="color: #065f46; font-weight: bold; font-size: 12px; margin: 0;">
+                Total Complied Reports: ${filteredRecords.value.length}
+              </p>
+              <p style="color: #047857; font-size: 10px; margin: 2px 0 0 0;">
+                All officers who have submitted their AAR for the selected date
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 8px; overflow: hidden; border: 2px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="background: linear-linear(135deg, #002147 0%, #004595 100%);">
+                <th style="padding: 8px; border: 1px solid #004595; text-align: center; width: 50px; color: #ffffff; font-weight: bold; font-size: 11px;">#</th>
+                <th style="padding: 8px; border: 1px solid #004595; text-align: left; color: #ffffff; font-weight: bold; font-size: 11px;">Date & Time</th>
+                <th style="padding: 8px; border: 1px solid #004595; text-align: left; color: #ffffff; font-weight: bold; font-size: 11px;">Rank & Full Name</th>
+                <th style="padding: 8px; border: 1px solid #004595; text-align: center; width: 100px; color: #ffffff; font-weight: bold; font-size: 11px;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${reportTableHtml}
+            </tbody>
+          </table>
+        </div>
+
+        <div style="text-align: center; padding-top: 15px; border-top: 2px solid #e5e7eb; margin-top: 25px;">
+          <p style="color: #6b7280; font-size: 11px; font-weight: 500;">This is an official document from the PNP Attendance Monitoring System</p>
+          <p style="color: #9ca3af; font-size: 10px; margin-top: 3px;">For official use only</p>
+        </div>
+      </div>
+    `
+
+    const htmlDocx = await loadHtmlDocx()
+    const htmlTemplate = buildDocHtml(allReportsHTML)
+    const filename = selectedDate.value
+      ? `Complied_Reports_${new Date(selectedDate.value)
+          .toLocaleDateString('en-US')
+          .replace(/[^a-z0-9]+/gi, '_')}.docx`
+      : 'Complied_Reports.docx'
+
+    const docBlob = htmlDocx.asBlob(htmlTemplate)
+    saveAs(docBlob, filename)
+  } catch (error) {
+    console.error('Error downloading complied reports:', error)
+    alert('Error downloading complied reports. Please try again.')
+  }
+}
 
 const closePreview = () => {
   showPreviewModal.value = false
@@ -1303,6 +1643,7 @@ const closePreview = () => {
   previewContentPage2.value = ''
   previewRecord.value = null
   isWithoutAttendancePreview.value = false
+  isCompliedReportsPreview.value = false
   editablePage1El.value = null
   editablePage2El.value = null
 }
@@ -1359,13 +1700,16 @@ onMounted(async () => {
 
 .preview-page {
   background: transparent;
-  zoom: 0.75;
   width: 100%;
+  max-width: 210mm;
+  margin: 0 auto;
 }
 
 .preview-page :deep(.a4-page) {
   margin: 0 auto;
   box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
+  width: 210mm;
+  page-break-after: always;
 }
 
 .editable-preview {

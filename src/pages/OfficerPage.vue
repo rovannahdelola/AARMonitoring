@@ -130,6 +130,151 @@
       </div>
     </div>
 
+    <!-- View Records Modal -->
+    <div
+      v-if="viewModalOpen"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      @click.self="closeViewModal"
+    >
+      <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+      <div
+        class="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-slate-700 bg-slate-900/90 shadow-xl"
+      >
+        <div class="sticky top-0 p-5 border-b border-slate-700 bg-linear-to-r from-slate-800 to-blue-900 flex items-center justify-between">
+          <h3 class="text-sm sm:text-base font-bold text-white">
+            {{ userReports?.rank_fullname || 'Officer Reports' }}
+          </h3>
+          <button
+            class="text-slate-400 hover:text-white transition"
+            type="button"
+            @click="closeViewModal"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="p-5">
+          <div v-if="loadingReports" class="text-sm font-semibold text-slate-300">
+            Loading reports...
+          </div>
+
+          <div v-else-if="userReports && userReports.totalreport > 0">
+            <!-- Total Reports Count -->
+            <div class="mb-4 bg-slate-800 rounded-xl p-3 border border-slate-700">
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Reports: <span class="text-blue-300">{{ userReports.totalreport }}</span></p>
+            </div>
+
+            <!-- Reports Table -->
+            <div class="overflow-x-auto border border-slate-700 rounded-xl">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-slate-800 border-b border-slate-700">
+                    <th class="px-4 py-3 text-left font-bold text-slate-300">Description</th>
+                    <th class="px-4 py-3 text-left font-bold text-slate-300">Date</th>
+                    <th class="px-4 py-3 text-left font-bold text-slate-300">Address</th>
+                    <th class="px-4 py-3 text-center font-bold text-slate-300">Screenshot</th>
+                    <th class="px-4 py-3 text-center font-bold text-slate-300 w-24">View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(desc, idx) in userReports.descriptions?.split('; ') || []"
+                    :key="idx"
+                    class="border-b border-slate-700 hover:bg-slate-800/40 transition"
+                  >
+                    <td class="px-4 py-3 text-slate-200">{{ desc }}</td>
+                    <td class="px-4 py-3 text-slate-200">
+                      {{ userReports.dates?.split('; ')[idx] || 'N/A' }}
+                    </td>
+                    <td class="px-4 py-3 text-slate-200">
+                      {{ userReports.addresses?.split('; ')[idx] || 'N/A' }}
+                    </td>
+                    <td class="px-4 py-3 text-center">
+                      <img
+                        v-if="userReports.screenshots?.split('; ')[idx]"
+                        :src="userReports.screenshots?.split('; ')[idx]"
+                        :alt="desc"
+                        class="h-16 w-16 object-cover rounded cursor-pointer hover:opacity-80 transition"
+                        @click="viewImage(idx)"
+                        title="Click to view full image"
+                      />
+                      <span v-else class="text-slate-400 text-xs">N/A</span>
+                    </td>
+                    <td class="px-4 py-3 text-center">
+                      <button
+                        v-if="userReports.screenshots?.split('; ')[idx]"
+                        class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-slate-700 hover:bg-blue-500/20 text-blue-300 hover:text-blue-200 transition text-xs font-semibold"
+                        type="button"
+                        @click="viewImage(idx)"
+                      >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                      </button>
+                      <span v-else class="text-slate-400 text-xs">-</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-5 flex items-center justify-end">
+              <button
+                class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 bg-slate-700 hover:bg-slate-600 text-white"
+                type="button"
+                @click="closeViewModal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+
+          <div v-else class="text-center py-6">
+            <p class="text-sm font-semibold text-slate-300">No reports found for this officer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image View Modal -->
+    <div
+      v-if="imageModalOpen"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      @click.self="imageModalOpen = false"
+    >
+      <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+      <div
+        class="relative max-w-4xl max-h-[90vh] rounded-2xl border border-slate-700 bg-slate-900/90 shadow-xl overflow-hidden flex flex-col"
+      >
+        <div class="flex items-center justify-between p-4 border-b border-slate-700 bg-slate-800">
+          <h3 class="text-sm font-bold text-white">Screenshot</h3>
+          <button
+            class="text-slate-400 hover:text-white transition"
+            type="button"
+            @click="imageModalOpen = false"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="flex-1 overflow-auto flex items-center justify-center p-4">
+          <img
+            v-if="selectedImage"
+            :src="selectedImage"
+            :alt="selectedImage"
+            class="max-w-full max-h-full object-contain rounded-lg"
+          />
+        </div>
+      </div>
+    </div>
+
     <!-- Main Content -->
     <div
       class="hide-scrollbar relative lg:ml-64 min-h-screen overflow-y-scroll overflow-x-hidden pb-20 lg:pb-0 z-10"
@@ -290,14 +435,9 @@
                     Officer Name
                   </th>
                   <th
-                    class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-slate-300 w-40"
-                  >
-                    Badge No.
-                  </th>
-                  <th
                     class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-slate-300 w-16"
                   >
-                    
+                    Action
                   </th>
                 </tr>
               </thead>
@@ -310,10 +450,34 @@
                   <td class="px-4 py-3 text-sm font-semibold text-white">
                     {{ officer.rank_fullname || 'N/A' }}
                   </td>
-                  <td class="px-4 py-3 text-sm font-semibold text-slate-200 text-center">
-                    {{ officer.badge_number || 'N/A' }}
-                  </td>
-                  <td class="px-4 py-3 text-center">
+                  <td class="px-4 py-3 text-center flex items-center justify-center gap-2">
+                    <button
+                      class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg transition bg-slate-800 hover:bg-blue-500/20 text-blue-300 hover:text-blue-200 text-xs font-semibold uppercase"
+                      type="button"
+                      title="View Record"
+                      @click.stop="viewRecord(officer)"
+                    >
+                      <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        ></path>
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        ></path>
+                      </svg>
+                      View
+                    </button>
                     <button
                       class="inline-flex items-center justify-center w-9 h-9 rounded-lg transition bg-slate-800 hover:bg-red-500/20 text-red-300 hover:text-red-200"
                       type="button"
@@ -342,7 +506,7 @@
                 <tr v-if="officers.length === 0" class="border-t border-slate-700">
                   <td
                     class="px-4 py-8 text-center text-sm font-semibold text-slate-300"
-                    colspan="3"
+                    colspan="2"
                   >
                     No officers found.
                   </td>
@@ -373,6 +537,12 @@ const deletingId = ref(null)
 
 const deleteModalOpen = ref(false)
 const officerToDelete = ref(null)
+
+const viewModalOpen = ref(false)
+const userReports = ref(null)
+const loadingReports = ref(false)
+const imageModalOpen = ref(false)
+const selectedImage = ref(null)
 
 const toast = ref({ visible: false, type: 'success', message: '' })
 let toastTimer = null
@@ -493,6 +663,46 @@ const deleteOfficer = async (officer) => {
     showToast('error', errorMessage.value)
   } finally {
     deletingId.value = null
+  }
+}
+
+const viewRecord = (officer) => {
+  if (!officer?.id) return
+  fetchUserReports(officer.id)
+}
+
+const fetchUserReports = async (userId) => {
+  loadingReports.value = true
+  try {
+    const { data, error } = await supabase.rpc('get_user_reports', { p_user_id: userId })
+    
+    if (error) {
+      console.error('Error fetching user reports:', error)
+      showToast('error', `Failed to load reports: ${error.message}`)
+      return
+    }
+    
+    userReports.value = data && data.length > 0 ? data[0] : null
+    viewModalOpen.value = true
+  } catch (err) {
+    console.error('Exception fetching user reports:', err)
+    showToast('error', 'Error loading reports.')
+  } finally {
+    loadingReports.value = false
+  }
+}
+
+const closeViewModal = () => {
+  viewModalOpen.value = false
+  userReports.value = null
+}
+
+const viewImage = (idx) => {
+  // This will be used when you have screenshot URLs from the database
+  const screenshot = userReports.value?.screenshots?.split('; ')[idx]
+  if (screenshot) {
+    selectedImage.value = screenshot
+    imageModalOpen.value = true
   }
 }
 

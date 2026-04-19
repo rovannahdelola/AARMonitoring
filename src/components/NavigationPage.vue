@@ -16,7 +16,7 @@
               {{ sidebarTitle || 'Admin Dashboard' }}
             </h1>
             <p class="text-xs mt-2 font-semibold" style="color: #f3f1ee">
-              Police Attendance System
+              AFTER ACTVITY REPORT (AAR) PORTAL
             </p>
           </div>
         </div>

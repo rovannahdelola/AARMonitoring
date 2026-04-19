@@ -1880,7 +1880,7 @@ const submitForm = async () => {
         address: formData.value.address.trim(),
         date: dateForStorage,
         screenshots: screenshotLinks,
-        status: true,
+        status: 'complied',
       })
       .select()
 
