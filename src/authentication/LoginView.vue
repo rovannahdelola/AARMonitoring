@@ -1,8 +1,8 @@
 <template>
     <div class="h-screen flex items-center justify-center relative overflow-hidden">
         <!-- Background Image -->
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
-             style="background-image: url('/src/assets/landing.jpg');">
+        <div class="absolute inset-0">
+            <img src="../assets/landing.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover" />
             <!-- Dark overlay for better readability -->
             <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"></div>
         </div>
