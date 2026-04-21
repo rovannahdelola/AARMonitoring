@@ -251,7 +251,7 @@
                     </div>
                     <div>
                       <p class="text-xs font-semibold text-[#0f1f4b]">{{ step.title }}</p>
-                      <p class="text-[10px] text-gray-600">{{ step.description }}</p>
+                      <p class="text-[10px] text-gray-600">{{ step.subject }}</p>
                     </div>
                     <svg
                       class="w-4 h-4 text-[#0f63c7] shrink-0 mt-0.5"
@@ -313,7 +313,7 @@
                   <div>
                     <p class="text-xs md:text-sm font-semibold text-[#0f1f4b]">{{ step.title }}</p>
                     <p class="text-[11px] md:text-xs text-gray-600">
-                      {{ step.description }}
+                      {{ step.subject }}
                     </p>
                   </div>
                 </div>
@@ -635,8 +635,8 @@
 
                   <div class="space-y-2">
                     <div>
-                      <p class="text-xs font-semibold text-slate-400 mb-1">Description:</p>
-                      <p class="text-xs text-slate-300">{{ record.description }}</p>
+                      <p class="text-xs font-semibold text-slate-400 mb-1">Subject:</p>
+                      <p class="text-xs text-slate-300">{{ record.subject }}</p>
                     </div>
                     <div>
                       <p class="text-xs font-semibold text-slate-400 mb-1">Address:</p>
@@ -716,13 +716,13 @@
                       class="flex items-center justify-center w-7 h-7 rounded-full text-white text-xs shadow bg-[linear-gradient(135deg,#1e40af,#2563eb)]"
                       >2</span
                     >
-                    Description <span class="text-red-500">*</span>
+                    Subject <span class="text-red-500">*</span>
                   </label>
                   <textarea
-                    v-model="formData.description"
+                    v-model="formData.subject"
                     rows="4"
                     class="w-full px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm border-2 border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition font-medium text-white bg-slate-800/50"
-                    placeholder="Provide a brief description of your duty or activity"
+                    placeholder="Provide a brief subject of your duty or activity"
                   ></textarea>
                   <p class="text-[10px] text-slate-500 mt-2">
                     Example: Traffic monitoring along Aurora Blvd.
@@ -1251,7 +1251,7 @@
 
           <!-- Modal Content -->
           <div class="overflow-y-auto flex-1 p-5 space-y-4 bg-slate-800/50">
-            <!-- Full Description -->
+            <!-- Step Details -->
             <div class="space-y-2">
               <h3 class="text-sm font-bold text-blue-300 flex items-center gap-2">
                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
@@ -1366,8 +1366,8 @@ const submissionSteps = ref([
   {
     id: 1,
     title: 'Select Officer',
-    description: 'Use the search field to pick your official rank and name from the roster.',
-    fullDescription:
+    subject: 'Use the search field to pick your official rank and name from the roster.',
+    fullDetails:
       'Search for and select your full name with your official rank from the roster. This ensures proper attribution of the attendance report to the correct personnel.',
     tips: [
       'Type the first few letters of your name to quickly filter results',
@@ -1380,17 +1380,17 @@ const submissionSteps = ref([
   {
     id: 2,
     title: 'Describe Activity',
-    description: 'Complete the description box with your duty summary and accountability notes.',
+    description: 'Complete the subject field with your duty summary and accountability notes.',
     fullDescription:
-      'Provide a clear and concise description of your daily activities, duties performed, and accountability notes. This should summarize what you accomplished during your shift.',
+      'Provide a clear and concise subject and details of your daily activities, duties performed, and accountability notes. This should summarize what you accomplished during your shift.',
     tips: [
       'Be specific about the activities performed',
       'Include location details if applicable',
       'Mention any incidents or notable occurrences',
-      'Keep the description clear and professional',
+      'Keep the subject clear and professional',
     ],
     important:
-      'The description must be detailed enough for supervisors to understand your contributions. Vague descriptions may be rejected.',
+      'The subject and details must be detailed enough for supervisors to understand your contributions. Vague submissions may be rejected.',
   },
   {
     id: 3,
@@ -1444,7 +1444,7 @@ const submissionSteps = ref([
 const getTodayString = () => new Date().toISOString().split('T')[0]
 
 const formData = ref({
-  description: '',
+  subject: '',
   address: '',
   date: '',
   screenshots: [],
@@ -1476,7 +1476,7 @@ const isFormValid = computed(() => {
 
   return (
     hasName &&
-    formData.value.description.trim() !== '' &&
+    formData.value.subject.trim() !== '' &&
     formData.value.address.trim() !== '' &&
     formData.value.date !== '' &&
     formData.value.screenshots.length > 0
@@ -1876,7 +1876,7 @@ const submitForm = async () => {
       .from('aar_report')
       .insert({
         user_id: selectedUserId.value,
-        description: formData.value.description.trim(),
+        subject: formData.value.subject.trim(),
         address: formData.value.address.trim(),
         date: dateForStorage,
         screenshots: screenshotLinks,
@@ -1902,7 +1902,7 @@ const submitForm = async () => {
       selectedUserId.value = null
       searchQuery.value = ''
       formData.value = {
-        description: '',
+        subject: '',
         address: '',
         date: getTodayString(),
         screenshots: [],

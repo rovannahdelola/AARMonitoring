@@ -258,7 +258,7 @@
               />
               <button
                 @click="resetFilters"
-                class="text-white px-3 py-2 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center gap-1.5 transition bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
+                class="text-white px-3 py-2 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center gap-1.5 transition bg-linear-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
               >
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -301,7 +301,7 @@
                   </th>
                 </tr>
               </thead>
-              <tbody class="bg-slate-800/50 divide-y divide-slate-700">
+              <tbody class="bg-slate-800/50 divide-y divide-slate-700 max-h-96 overflow-y-auto">
                 <tr
                   v-for="record in filteredRecords"
                   :key="record.id"
@@ -872,12 +872,12 @@ const buildPhotosPagesHtml = (screenshotUrls) => {
 }
 
 const buildPreviewPage1Html = (record) => {
-  const subjectText = record.description || ''
-  const narrativeText = record.description || 'No activity narrative provided.'
+  const subjectText = record.subject || ''
+  const narrativeText = record.subject || 'No activity narrative provided.'
   const locationLine = record.address ? record.address : 'No deployment address submitted.'
   const safeSubject = escapeHtml(subjectText)
   const safeNarrative = escapeHtml(narrativeText)
-  const subjectHtml = safeSubject || '&nbsp;'
+  const subjectHtml = (safeSubject || '&nbsp;').toUpperCase()
   const narrativeHtml = safeNarrative || '&nbsp;'
 
   return `
@@ -923,9 +923,11 @@ const buildPreviewPage1Html = (record) => {
               <td style="padding: 3px 0;">: ${record.reportDate || record.date || 'N/A'}</td>
             </tr>
           </table>
-          <div style="width: 100%; margin: 4pt 0 0 0; line-height: 1px; font-size: 1px; page-break-after: avoid;">
-            <div style="border-top: 1.5pt solid #0f172a; width: 100%; height: 1px;"></div>
-          </div>
+          <table style="width: 100%; border-collapse: collapse; margin: 8pt 0; page-break-after: avoid;">
+            <tr>
+              <td style="border-top: 2pt solid #0f172a; padding: 0; height: 0; line-height: 0;"></td>
+            </tr>
+          </table>
           <div style="color: #0f172a; margin-left: 18pt; margin-top: 10px;">
             <div style="margin-bottom: 10px; font-size: 11pt; color: #1e293b;">
               <p style="margin: 0 0 4px 0;">1. References:</p>
@@ -1068,7 +1070,7 @@ const fetchRecords = async () => {
         userId: record.user_id,
         status: record.status,
         screenshots: record.screenshots || '',
-        description: record.description || '',
+        subject: record.subject || '',
         address: record.address || '',
         reportDate: narrativeDate,
       }
@@ -1136,7 +1138,7 @@ const filterAbsenceRecords = async () => {
         dateObj: null,
         userId: record.id,
         badge_number: record.badge_number || 'N/A',
-        description: record.description || '',
+        subject: record.subject || '',
         address: record.address || '',
         screenshots: record.screenshots || '',
         rank_fullname: record.rank_fullname || 'Unknown',
@@ -1496,10 +1498,10 @@ const previewAllCompliedReports = () => {
     const previewHTML = `
       <div style="font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto;">
         <div style="text-align: center; margin-bottom: 15px; background: linear-linear(135deg, #002147 0%, #004595 100%); padding: 12px; border-radius: 6px;">
-          <h1 style="color: #ffffff; font-size: 16px; margin-bottom: 4px; font-weight: bold;">PHILIPPINE NATIONAL POLICE</h1>
-          <h2 style="color: #bfdbfe; font-size: 13px; margin-bottom: 2px; font-weight: bold;">Complied Reports Summary</h2>
-          <p style="color: #dbeafe; font-size: 10px;">Date: ${selectedDate.value ? new Date(selectedDate.value).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'All Dates'}</p>
-          <p style="color: #dbeafe; font-size: 10px;">Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <h1 style="color: #1A1953; font-size: 16px; margin-bottom: 4px; font-weight: bold;">PHILIPPINE NATIONAL POLICE</h1>
+          <h2 style="color: #1A1953; font-size: 13px; margin-bottom: 2px; font-weight: bold;">Complied Reports Summary</h2>
+          <p style="color: #1A1953; font-size: 10px;">Date: ${selectedDate.value ? new Date(selectedDate.value).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'All Dates'}</p>
+          <p style="color: #1A1953; font-size: 10px;">Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
         </div>
 
         <div style="border: 2px solid #10b981; border-radius: 6px; padding: 10px; margin-bottom: 15px; background: linear-linear(to right, #d1fae5 0%, #ecfdf5 100%); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);">
@@ -1575,10 +1577,10 @@ const downloadAllCompliedReports = async () => {
     const allReportsHTML = `
       <div style="font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto;">
         <div style="text-align: center; margin-bottom: 15px; background: linear-linear(135deg, #002147 0%, #004595 100%); padding: 12px; border-radius: 6px;">
-          <h1 style="color: #ffffff; font-size: 16px; margin-bottom: 4px; font-weight: bold;">PHILIPPINE NATIONAL POLICE</h1>
-          <h2 style="color: #bfdbfe; font-size: 13px; margin-bottom: 2px; font-weight: bold;">Complied Reports Summary</h2>
-          <p style="color: #dbeafe; font-size: 10px;">Date: ${selectedDate.value ? new Date(selectedDate.value).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'All Dates'}</p>
-          <p style="color: #dbeafe; font-size: 10px;">Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <h1 style="color: #1A1953; font-size: 16px; margin-bottom: 4px; font-weight: bold;">PHILIPPINE NATIONAL POLICE</h1>
+          <h2 style="color: #1A1953; font-size: 13px; margin-bottom: 2px; font-weight: bold;">Complied Reports Summary</h2>
+          <p style="color: #1A1953; font-size: 10px;">Date: ${selectedDate.value ? new Date(selectedDate.value).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'All Dates'}</p>
+          <p style="color: #1A1953; font-size: 10px;">Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
         </div>
 
         <div style="border: 2px solid #10b981; border-radius: 6px; padding: 10px; margin-bottom: 15px; background: linear-linear(to right, #d1fae5 0%, #ecfdf5 100%); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);">

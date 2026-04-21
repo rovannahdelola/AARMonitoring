@@ -173,20 +173,20 @@
               <table class="w-full text-sm">
                 <thead>
                   <tr class="bg-slate-800 border-b border-slate-700">
-                    <th class="px-4 py-3 text-left font-bold text-slate-300">Description</th>
+                    <th class="px-4 py-3 text-left font-bold text-slate-300">Subject</th>
                     <th class="px-4 py-3 text-left font-bold text-slate-300">Date</th>
                     <th class="px-4 py-3 text-left font-bold text-slate-300">Address</th>
-                    <th class="px-4 py-3 text-center font-bold text-slate-300">Screenshot</th>
+                    <th class="px-4 py-3 text-center font-bold text-slate-300">Files</th>
                     <th class="px-4 py-3 text-center font-bold text-slate-300 w-24">View</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr
-                    v-for="(desc, idx) in userReports.descriptions?.split('; ') || []"
+                    v-for="(subject, idx) in userReports.subject?.split('; ') || []"
                     :key="idx"
                     class="border-b border-slate-700 hover:bg-slate-800/40 transition"
                   >
-                    <td class="px-4 py-3 text-slate-200">{{ desc }}</td>
+                    <td class="px-4 py-3 text-slate-200">{{ subject }}</td>
                     <td class="px-4 py-3 text-slate-200">
                       {{ userReports.dates?.split('; ')[idx] || 'N/A' }}
                     </td>
@@ -194,15 +194,18 @@
                       {{ userReports.addresses?.split('; ')[idx] || 'N/A' }}
                     </td>
                     <td class="px-4 py-3 text-center">
-                      <img
-                        v-if="userReports.screenshots?.split('; ')[idx]"
-                        :src="userReports.screenshots?.split('; ')[idx]"
-                        :alt="desc"
-                        class="h-16 w-16 object-cover rounded cursor-pointer hover:opacity-80 transition"
-                        @click="viewImage(idx)"
-                        title="Click to view full image"
-                      />
-                      <span v-else class="text-slate-400 text-xs">N/A</span>
+                      <button
+                        v-if="isFirstFileOccurrence(idx)"
+                        class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-slate-700 hover:bg-purple-500/20 text-purple-300 hover:text-purple-200 transition text-xs font-semibold"
+                        type="button"
+                        @click="viewFiles(idx)"
+                        title="View Files"
+                      >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                      </button>
+                      <span v-else class="text-slate-400 text-xs">-</span>
                     </td>
                     <td class="px-4 py-3 text-center">
                       <button
@@ -210,6 +213,7 @@
                         class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-slate-700 hover:bg-blue-500/20 text-blue-300 hover:text-blue-200 transition text-xs font-semibold"
                         type="button"
                         @click="viewImage(idx)"
+                        title="View Screenshot"
                       >
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -409,7 +413,7 @@
         </div>
 
         <!-- Results -->
-        <div class="bg-slate-900/80 rounded-2xl overflow-hidden shadow-md border border-slate-700">
+        <div class="bg-slate-900/80 rounded-2xlshadow-md border border-slate-700">
           <div
             class="p-4 sm:p-5 border-b border-slate-700 bg-linear-to-r from-slate-800 to-blue-900"
           >
@@ -425,7 +429,7 @@
             Loading officers...
           </div>
 
-          <div v-else class="overflow-x-auto">
+          <div v-else class="max-h-96 overflow-y-auto">
             <table class="min-w-full">
               <thead>
                 <tr class="bg-slate-800/60">
@@ -543,6 +547,7 @@ const userReports = ref(null)
 const loadingReports = ref(false)
 const imageModalOpen = ref(false)
 const selectedImage = ref(null)
+const selectedFiles = ref(null)
 
 const toast = ref({ visible: false, type: 'success', message: '' })
 let toastTimer = null
@@ -681,6 +686,8 @@ const fetchUserReports = async (userId) => {
       showToast('error', `Failed to load reports: ${error.message}`)
       return
     }
+
+    console.log('Fetched user reports:', data)
     
     userReports.value = data && data.length > 0 ? data[0] : null
     viewModalOpen.value = true
@@ -705,6 +712,34 @@ const viewImage = (idx) => {
     imageModalOpen.value = true
   }
 }
+
+const viewFiles = (idx) => {
+  // Get unique files by deduplicating
+  const allFiles = userReports.value?.files?.split('; ') || []
+  const uniqueFiles = [...new Set(allFiles)]
+  const files = uniqueFiles[idx]
+  
+  if (files) {
+    // If it's a URL, open in new tab
+    if (files.startsWith('http://') || files.startsWith('https://')) {
+      window.open(files, '_blank')
+    } else {
+      // Otherwise, download or display as needed
+      selectedFiles.value = files
+      imageModalOpen.value = true
+    }
+  }
+}
+
+const isFirstFileOccurrence = (idx) => {
+  const allFiles = userReports.value?.files?.split('; ') || []
+  if (allFiles.length === 0) return false
+  
+  const currentFile = allFiles[idx]
+  // Check if this is the first occurrence of this file
+  return allFiles.indexOf(currentFile) === idx
+}
+
 
 onMounted(async () => {
   const {
