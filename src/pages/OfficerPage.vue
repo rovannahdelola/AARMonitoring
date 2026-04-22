@@ -651,6 +651,20 @@ const deleteOfficer = async (officer) => {
   errorMessage.value = ''
 
   try {
+    // First, delete all AAR reports associated with this user
+    const { error: reportsError } = await supabase
+      .from('aar_report')
+      .delete()
+      .eq('user_id', officer.id)
+
+    if (reportsError) {
+      console.error('Error deleting officer reports:', reportsError)
+      errorMessage.value = `Failed to delete officer reports: ${reportsError.message}`
+      showToast('error', errorMessage.value)
+      return
+    }
+
+    // Then delete the user
     const { error } = await supabase.from('users').delete().eq('id', officer.id)
 
     if (error) {

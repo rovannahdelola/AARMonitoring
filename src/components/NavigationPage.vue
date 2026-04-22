@@ -7,14 +7,11 @@
     >
       <!-- Sidebar Header -->
       <div class="p-6 border-b border-white/10">
-        <div class="flex flex-col items-center text-center gap-4">
-          <div class="rounded-full p-4" style="background: #f3f1ee">
-            <img src="../assets/pnplogo.png" alt="PNP Logo" class="w-20 h-20 object-contain" />
+        <div class="flex flex-col items-center text-center gap-4 ">
+          <div class="rounded-full overflow-hidden ">
+            <img src="../assets/pnpdashboard.png" alt="PNP Logo" class="w-50 h-45 object-cover" />
           </div>
           <div>
-            <h1 class="text-lg font-bold text-white uppercase tracking-wide">
-              {{ sidebarTitle || 'Admin Dashboard' }}
-            </h1>
             <p class="text-xs mt-2 font-semibold" style="color: #f3f1ee">
               AFTER ACTVITY REPORT (AAR) PORTAL
             </p>

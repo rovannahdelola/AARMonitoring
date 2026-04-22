@@ -39,7 +39,7 @@
             style="border-color: #004595; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(8px)"
           >
             <div
-              class="rounded-lg p-3 flex-shrink-0"
+              class="rounded-lg p-3 shrink-0"
               style="background: rgba(0, 69, 149, 0.15)"
             >
               <svg
@@ -150,7 +150,7 @@
           class="bg-slate-900/80 rounded-2xl overflow-hidden shadow-md border border-slate-700 p-4 sm:p-5 lg:p-6 mt-4 mb-4"
         >
           <div
-            class="p-4 sm:p-5 lg:p-6 rounded-t-2xl border-b border-slate-700 bg-gradient-to-r from-slate-800 to-blue-900 flex flex-col gap-4"
+            class="p-4 sm:p-5 lg:p-6 rounded-t-2xl border-b border-slate-700 bg-linear-to-r from-slate-800 to-blue-900 flex flex-col gap-4"
           >
             <!-- Title and Download -->
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -538,7 +538,7 @@
               />
               <button
                 @click="resetAbsenceFilters"
-                class="text-white px-3 py-2 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center gap-1.5 transition bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
+                class="text-white px-3 py-2 rounded-lg font-bold text-xs sm:text-sm uppercase flex items-center gap-1.5 transition bg-linear-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 shadow-sm"
               >
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -715,7 +715,7 @@
           >
             <div v-if="previewContentPage1" class="preview-page">
               <div
-                ref="editablePage1El"
+                ref="editablePreviewEl"
                 class="editable-preview"
                 contenteditable="true"
                 spellcheck="false"
@@ -724,9 +724,7 @@
             </div>
             <div v-if="previewContentPage2" class="preview-page">
               <div
-                ref="editablePage2El"
                 class="editable-preview"
-                contenteditable="true"
                 spellcheck="false"
                 v-html="previewContentPage2"
               ></div>
@@ -739,6 +737,18 @@
           class="sticky bottom-0 bg-white border-t-2 p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3"
           :style="isWithoutAttendancePreview ? 'border-color: #dc2626' : 'border-color: #004595'"
         >
+          <button
+            @click="savePreviewChanges"
+            :disabled="isSavingFields"
+            class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2 text-white disabled:opacity-70 disabled:cursor-not-allowed"
+            style="background: #10b981"
+          >
+            <svg v-if="!isSavingFields" class="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            {{ isSavingFields ? 'Saving...' : 'Save' }}
+          </button>
+
           <button
             @click="downloadFromPreview"
             class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2 text-white"
@@ -778,6 +788,100 @@
               ></path>
             </svg>
             Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Modal for Success/Error Messages -->
+    <div
+      v-if="showStatusModal"
+      class="fixed inset-0 z-50 grid place-items-center p-3 sm:p-4"
+      style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(0, 0, 0, 0.5)"
+      @click.self="closeStatusModal"
+    >
+      <div
+        class="bg-white rounded-lg max-w-sm w-full shadow-2xl overflow-hidden animate-scale-in"
+      >
+        <!-- Modal Header with Status Icon -->
+        <div
+          class="p-4 sm:p-6 flex items-start gap-4"
+          :style="statusType === 'success' ? 'background: #d1fae5; border-bottom: 2px solid #10b981' : statusType === 'error' ? 'background: #fee2e2; border-bottom: 2px solid #dc2626' : 'background: #dbeafe; border-bottom: 2px solid #3b82f6'"
+        >
+          <!-- Status Icon -->
+          <div
+            class="rounded-full p-3 shrink-0"
+            :style="statusType === 'success' ? 'background: #10b981' : statusType === 'error' ? 'background: #dc2626' : 'background: #3b82f6'"
+          >
+            <svg
+              v-if="statusType === 'success'"
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            <svg
+              v-else-if="statusType === 'error'"
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+            <svg
+              v-else
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+          </div>
+
+          <!-- Message Content -->
+          <div class="flex-1 min-w-0">
+            <h3
+              class="font-bold text-lg sm:text-xl"
+              :style="statusType === 'success' ? 'color: #065f46' : statusType === 'error' ? 'color: #991b1b' : 'color: #1e40af'"
+            >
+              {{ statusTitle }}
+            </h3>
+            <p
+              class="text-sm sm:text-base mt-1 leading-relaxed"
+              :style="statusType === 'success' ? 'color: #047857' : statusType === 'error' ? 'color: #b91c1c' : 'color: #1e3a8a'"
+            >
+              {{ statusMessage }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="p-4 sm:p-6 flex justify-end gap-2">
+          <button
+            @click="closeStatusModal"
+            :style="statusType === 'success' ? 'background: #10b981; color: white' : statusType === 'error' ? 'background: #dc2626; color: white' : 'background: #3b82f6; color: white'"
+            class="px-5 sm:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-sm uppercase hover:opacity-90 transition"
+          >
+            OK
           </button>
         </div>
       </div>
@@ -825,8 +929,35 @@ const isWithoutAttendancePreview = ref(false)
 const isCompliedReportsPreview = ref(false)
 const headerImageData = ref({ pnp: '', bcpo: '' })
 
-const editablePage1El = ref(null)
-const editablePage2El = ref(null)
+// Editable fields state
+const editableFields = ref({
+  for: '',
+  subject: '',
+  address: '',
+  reference: '',
+  description: ''
+})
+const isSavingFields = ref(false)
+const editablePreviewEl = ref(null)
+
+// Status modal state for success/error messages
+const showStatusModal = ref(false)
+const statusMessage = ref('')
+const statusType = ref('success') // 'success' or 'error'
+const statusTitle = ref('')
+
+const showStatusModalMessage = (title, message, type = 'success') => {
+  statusTitle.value = title
+  statusMessage.value = message
+  statusType.value = type
+  showStatusModal.value = true
+}
+
+const closeStatusModal = () => {
+  showStatusModal.value = false
+  statusMessage.value = ''
+  statusTitle.value = ''
+}
 
 const escapeHtml = (value) => {
   return String(value ?? '')
@@ -838,27 +969,31 @@ const escapeHtml = (value) => {
 }
 
 const getEditedPreviewHtml = () => {
-  const page1Html = editablePage1El.value?.innerHTML || previewContentPage1.value || ''
-  const page2Html = editablePage2El.value?.innerHTML || previewContentPage2.value || ''
+  const page1Html = previewContentPage1.value || ''
+  const page2Html = previewContentPage2.value || ''
   return { page1Html, page2Html }
 }
 
 const buildPhotosPagesHtml = (screenshotUrls) => {
   return screenshotUrls.length
-    ? screenshotUrls
-        .map(
-          (url, index) => `
-              <div class="a4-page" style="width: 210mm; min-height: 297mm; background: #ffffff; color: #0f172a; padding: 22mm 20mm; font-family: Arial; font-size: 12pt; box-sizing: border-box; ${index < screenshotUrls.length - 1 ? 'page-break-after: always;' : ''}">
-                <div class="avoid-break" style="text-align: center; margin: 0 0 14px 0; page-break-inside: avoid; break-inside: avoid;">
-                  <h1 style="font-size: 18pt; letter-spacing: 1px; margin: 0; text-align: center; text-transform: uppercase; font-weight: bold;">ACTUAL PHOTO</h1>
-                </div>
-                <div class="avoid-break" style="width: 100%; text-align: center; page-break-inside: avoid; break-inside: avoid;">
-                  <img src="${url}" alt="Attendance Photo" style="width: 10cm; max-width: 10cm; height: auto; max-height: 18.5cm; object-fit: contain; display: block; margin: 0 auto; page-break-inside: avoid; break-inside: avoid;">
-                </div>
+    ? `
+        <div class="a4-page" style="width: 210mm; min-height: 297mm; background: #ffffff; color: #0f172a; padding: 22mm 20mm; font-family: Arial; font-size: 12pt; box-sizing: border-box;">
+          <div class="avoid-break" style="text-align: center; margin: 0 0 14px 0; page-break-inside: avoid; break-inside: avoid;">
+            <h1 style="font-size: 18pt; letter-spacing: 1px; margin: 0; text-align: center; text-transform: uppercase; font-weight: bold;">ACTUAL PHOTO</h1>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+            ${screenshotUrls
+              .map(
+                (url) => `
+              <div style="text-align: center; page-break-inside: avoid; break-inside: avoid; margin-bottom: 10px;">
+                <img src="${url}" alt="Attendance Photo" width="200" height="200" style="object-fit: contain; display: block; margin: 0 auto; page-break-inside: avoid; break-inside: avoid;">
               </div>
             `,
-        )
-        .join('')
+              )
+              .join('')}
+          </div>
+        </div>
+      `
     : `
         <div class="a4-page" style="width: 210mm; min-height: 297mm; background: #ffffff; color: #0f172a; padding: 22mm 20mm; font-family: Arial; font-size: 12pt; box-sizing: border-box;">
           <div class="avoid-break" style="text-align: center; margin: 0 0 14px 0; page-break-inside: avoid; break-inside: avoid;">
@@ -888,7 +1023,7 @@ const buildPreviewPage1Html = (record) => {
                 <td style="width: 70px; text-align: left; vertical-align: middle;">
                   <img src="${pnpSeal}" alt="PNP Seal" width="65" height="75" style="display: block; margin: 0 auto 0 0; width: 65px; height: 75px; object-fit: contain;">
                 </td>
-                <td style="text-align: center; vertical-align: middle; padding: 0 3px; letter-spacing: 0.4px;">
+                <td style="text-align: center; color: #080616; vertical-align: middle; padding: 0 3px; letter-spacing: 0.4px;">
                   <p style="margin: 0 0 1px 0; font-size: 10pt;">Republic of the Philippines</p>
                   <p style="margin: 0 0 1px 0; font-size: 10pt;">National Police Commission</p>
                   <p style="margin: 1px 0; font-size: 11pt; font-weight: bold;">PHILIPPINE NATIONAL POLICE, POLICE REGIONAL OFFICE 13</p>
@@ -908,7 +1043,7 @@ const buildPreviewPage1Html = (record) => {
           <table style="width: 100%; border: none; font-size: 11pt; margin-bottom: 10px; page-break-after: avoid;">
             <tr>
               <td style="width: 60px; padding: 3px 0;">FOR</td>
-              <td style="padding: 3px 0;">: City Director, BCPO </td>
+              <td style="padding: 3px 0;">: ${record.for}</td>
             </tr>
             <tr>
               <td style="padding: 3px 0;">FROM</td>
@@ -932,12 +1067,11 @@ const buildPreviewPage1Html = (record) => {
             <div style="margin-bottom: 10px; font-size: 11pt; color: #1e293b;">
               <p style="margin: 0 0 4px 0;">1. References:</p>
               <ol style="margin: 0 0 0 16px; padding: 0;">
-                <li style="margin: 0 0 2px 0;">PNP Master Plan TAGATAGUYOD</li>
-                <li style="margin: 0;">Latest station directive covering operations at ${locationLine}</li>
+                <li style="margin: 0 0 2px 0;">${record.reference}</li>
               </ol>
             </div>
             <div style="color: #0f172a; font-size: 11pt; margin-bottom: 12px;">
-              <p style="margin: 0 0 4px 0; text-align: justify; margin-left: 0; padding-left: 18pt; text-indent: -18pt;">2. Personnel of BCPS1 ${record.fullRankName}, ${narrativeHtml} under the supervision of <strong>PCPT NAMRA P ARIMAO JR, Acting Station Commander</strong> conduct establishment visit, police presence/visibility and ${record.address} on ${record.reportDate} at time. Said activity is conducted to ensure public safety and security thereat</p>
+              <p style="margin: 0 0 4px 0; text-align: justify; margin-left: 0; padding-left: 18pt; text-indent: -18pt;">2. ${record.description}</p>
             </div>
             <div style="margin-bottom: 10px; font-size: 11pt; color: #1e293b;">
             <p style="margin: 0; font-size: 11pt;">3. For information.</p>
@@ -1067,12 +1201,14 @@ const fetchRecords = async () => {
         rank: fallbackRank,
         name: fullRankName,
         fullRankName,
-        userId: record.user_id,
         status: record.status,
         screenshots: record.screenshots || '',
+        for: record.for || '',
         subject: record.subject || '',
         address: record.address || '',
         reportDate: narrativeDate,
+        reference: record.reference || '',
+        description: record.description || '',
       }
     })
 
@@ -1136,12 +1272,13 @@ const filterAbsenceRecords = async () => {
         id: record.id,
         date: 'N/A',
         dateObj: null,
-        userId: record.id,
-        badge_number: record.badge_number || 'N/A',
         subject: record.subject || '',
         address: record.address || '',
         screenshots: record.screenshots || '',
         rank_fullname: record.rank_fullname || 'Unknown',
+        for: record.for || '',
+        reference: record.reference || '',
+        description: record.description || '',
       }
     })
 
@@ -1289,6 +1426,182 @@ const normalizeHtmlForDocx = (html) => {
   }
 }
 
+// Extract edited values from the preview HTML
+const extractEditedValuesFromPreview = () => {
+  if (!editablePreviewEl.value) {
+    console.error('[AAR Extract] editablePreviewEl is null')
+    return null
+  }
+
+  const html = editablePreviewEl.value.innerHTML
+  console.log('[AAR Extract] Extracting from preview HTML')
+
+  try {
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(html, 'text/html')
+
+    // Extract FOR - find the table cell after "FOR" label
+    let forValue = ''
+    const tdElements = Array.from(doc.querySelectorAll('td'))
+    for (let i = 0; i < tdElements.length; i++) {
+      if (tdElements[i].textContent.trim().toUpperCase() === 'FOR') {
+        if (tdElements[i + 1]) {
+          forValue = tdElements[i + 1].textContent.replace(/^\s*:\s*/, '').trim()
+        }
+        break
+      }
+    }
+
+    // Extract SUBJECT - find the table cell after "SUBJECT" label
+    let subjectValue = ''
+    for (let i = 0; i < tdElements.length; i++) {
+      if (tdElements[i].textContent.trim().toUpperCase() === 'SUBJECT') {
+        if (tdElements[i + 1]) {
+          subjectValue = tdElements[i + 1].textContent.replace(/^\s*:\s*/, '').trim()
+        }
+        break
+      }
+    }
+
+    // Extract ADDRESS - find deployment address line
+    let addressValue = ''
+    const allText = doc.body.innerText
+    const addressMatch = allText.match(/(?:Deployment Address|Location|Address)[:\s]+([^\n]+)/i)
+    if (addressMatch) {
+      addressValue = addressMatch[1].trim()
+    }
+
+    // Extract REFERENCE - find the first list item
+    const firstLi = doc.querySelector('ol li')
+    const referenceValue = firstLi ? firstLi.textContent.trim() : ''
+
+    // Extract DESCRIPTION - find paragraph starting with "2."
+    let descriptionValue = ''
+    const paragraphs = Array.from(doc.querySelectorAll('p'))
+    for (const p of paragraphs) {
+      const text = p.textContent.trim()
+      if (text.startsWith('2.')) {
+        descriptionValue = text.replace(/^2\.\s*/, '').trim()
+        break
+      }
+    }
+
+    console.log('[AAR Extract] Extracted values:', {
+      forValue,
+      subjectValue,
+      addressValue,
+      referenceValue,
+      descriptionValue
+    })
+
+    return { forValue, subjectValue, addressValue, referenceValue, descriptionValue }
+  } catch (error) {
+    console.error('[AAR Extract] Error extracting values:', error)
+    return null
+  }
+}
+
+// Save the edited preview changes to Supabase
+const savePreviewChanges = async () => {
+  if (!previewRecord.value) {
+    showStatusModalMessage('Error', 'No record selected.', 'error')
+    return
+  }
+
+  console.log('[AAR Save] Saving changes for record ID:', previewRecord.value.id)
+
+  const extracted = extractEditedValuesFromPreview()
+  if (!extracted) {
+    showStatusModalMessage('Error', 'Could not extract values from preview.', 'error')
+    return
+  }
+
+  const { forValue, subjectValue, addressValue, referenceValue, descriptionValue } = extracted
+
+  // Compare with original values to detect changes
+  const hasForChange = forValue !== (previewRecord.value.for || '')
+  const hasSubjectChange = subjectValue !== (previewRecord.value.subject || '')
+  const hasAddressChange = addressValue !== (previewRecord.value.address || '')
+  const hasReferenceChange = referenceValue !== (previewRecord.value.reference || '')
+  const hasDescriptionChange = descriptionValue !== (previewRecord.value.description || '')
+
+  if (!hasForChange && !hasSubjectChange && !hasAddressChange && !hasReferenceChange && !hasDescriptionChange) {
+    showStatusModalMessage('Info', 'No changes detected.', 'info')
+    return
+  }
+
+  isSavingFields.value = true
+
+  try {
+    // Build parameters object with only changed fields
+    const rpcParams = {
+      p_user_id: previewRecord.value.id,
+    }
+
+    // Add only the fields that have changed (convert empty strings to null for database)
+    if (hasSubjectChange) rpcParams.p_new_subject = subjectValue && subjectValue.trim() ? subjectValue : null
+    if (hasAddressChange) rpcParams.p_new_address = addressValue && addressValue.trim() ? addressValue : null
+    if (hasForChange) rpcParams.p_new_for = forValue && forValue.trim() ? forValue : null
+    if (hasDescriptionChange) rpcParams.p_new_description = descriptionValue && descriptionValue.trim() ? descriptionValue : null
+    if (hasReferenceChange) rpcParams.p_new_reference = referenceValue && referenceValue.trim() ? referenceValue : null
+
+    console.log('[AAR RPC] Calling update_report_fields with:', rpcParams)
+
+    const { data, error } = await supabase.rpc('update_report_fields', rpcParams)
+
+    if (error) {
+      console.error('[AAR RPC] Error calling RPC:', error)
+      throw error
+    }
+
+    console.log('[AAR RPC] RPC response:', data)
+
+    if (!data || data.length === 0) {
+      showStatusModalMessage('Info', 'No records updated. Please verify the record status.', 'info')
+      isSavingFields.value = false
+      return
+    }
+
+    // Update local state with the first updated record
+    const updatedRecord = data[0]
+    previewRecord.value = {
+      ...previewRecord.value,
+      for: updatedRecord.for,
+      subject: updatedRecord.subject,
+      address: updatedRecord.address,
+      reference: updatedRecord.reference,
+      description: updatedRecord.description
+    }
+
+    // Update in all lists
+    const updateInList = (listRef) => {
+      const index = listRef.value.findIndex(item => item.id === previewRecord.value.id)
+      if (index !== -1) {
+        listRef.value[index] = {
+          ...listRef.value[index],
+          for: updatedRecord.for,
+          subject: updatedRecord.subject,
+          address: updatedRecord.address,
+          reference: updatedRecord.reference,
+          description: updatedRecord.description
+        }
+      }
+    }
+    updateInList(allRecords)
+    updateInList(filteredRecords)
+
+    showStatusModalMessage('Success', `Successfully updated ${data.length} record(s).`, 'success')
+  } catch (error) {
+    console.error('[AAR RPC] Error:', error)
+    showStatusModalMessage('Error', `Failed to save changes: ${error.message}`, 'error')
+  } finally {
+    isSavingFields.value = false
+  }
+}
+
+// Save edited fields via RPC function
+
+
 const downloadFromPreview = async () => {
   if (isCompliedReportsPreview.value) {
     await downloadAllCompliedReports()
@@ -1343,8 +1656,6 @@ const previewReport = async (record) => {
     previewContent.value = `${previewContentPage1.value}${previewContentPage2.value}`
 
     showPreviewModal.value = true
-
-    await nextTick()
   } catch (error) {
     console.error('Error generating preview:', error)
     alert('Error generating preview. Please try again.')
@@ -1380,10 +1691,10 @@ const previewWithoutAttendanceReport = () => {
             <tr style="${index % 2 === 0 ? 'background: #f9fafb;' : 'background: #ffffff;'}">
                 <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center; font-weight: 600; color: #374151; font-size: 11px;">${index + 1}</td>
                 <td style="padding: 8px; border: 1px solid #e5e7eb; color: #1f2937; font-weight: 500; font-size: 11px;">${officer.rank_fullname || 'N/A'}</td>
-                <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center; font-weight: 500; color: #1f2937; font-size: 11px;">${officer.badge_number || 'N/A'}</td>
                 <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center;">
                     <span style="display: inline-block; padding: 3px 8px; border-radius: 3px; font-weight: bold; font-size: 10px; background: #fee2e2; color: #991b1b; border: 1.5px solid #ef4444;">✗ Absent</span>
                 </td>
+                <td style="padding: 8px; border: 1px solid #e5e7eb; text-align: center; color: #374151; font-size: 10px; background: #f9fafb;">No Compliance</td>
             </tr>
         `,
       )
@@ -1391,11 +1702,11 @@ const previewWithoutAttendanceReport = () => {
 
     const previewHTML = `
             <div style="font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto;">
-                <div style="text-align: center; margin-bottom: 15px; background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); padding: 12px; border-radius: 6px;">
-                    <h1 style="color: #ffffff; font-size: 16px; margin-bottom: 4px; font-weight: bold;">PHILIPPINE NATIONAL POLICE</h1>
-                    <h2 style="color: #fee2e2; font-size: 13px; margin-bottom: 2px; font-weight: bold;">Officers Without Attendance Report</h2>
-                    <p style="color: #fecaca; font-size: 10px;">Date: ${new Date(selectedDate.value).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                    <p style="color: #fecaca; font-size: 10px;">Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <div style="text-align: center;  margin-bottom: 15px; background: transparent; padding: 12px; border-radius: 6px;">
+                    <h1 style="color: #080616; font-size: 16px; margin-bottom: 4px; font-weight: bold;">PHILIPPINE NATIONAL POLICE</h1>
+                    <h2 style="color: #080616; font-size: 13px; margin-bottom: 2px; font-weight: bold;">Officers Without Attendance Report</h2>
+                    <p style="color: #080616; font-size: 10px;">Date: ${new Date(selectedDate.value).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    <p style="color: #080616; font-size: 10px;">Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
 
                 <div style="border: 2px solid #ef4444; border-radius: 6px; padding: 10px; margin-bottom: 15px; background: linear-gradient(to right, #fee2e2 0%, #fef2f2 100%); box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);">
@@ -1417,7 +1728,7 @@ const previewWithoutAttendanceReport = () => {
                 <div style="background: #ffffff; border-radius: 8px; overflow: hidden; border: 2px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                     <table style="width: 100%; border-collapse: collapse;">
                         <thead>
-                            <tr style="background: linear-gradient(135deg, #002147 0%, #004595 100%);" >
+                            <tr style="background: #1A1953;" >
                                 <th style="padding: 8px; border: 1px solid #004595; text-align: center; width: 50px; color: #ffffff; font-weight: bold; font-size: 11px;">#</th>
                                 <th style="padding: 8px; border: 1px solid #004595; text-align: left; color: #ffffff; font-weight: bold; font-size: 11px;">RANK & FULL NAME</th>
                                 <th style="padding: 8px; border: 1px solid #004595; text-align: center; width: 120px; color: #ffffff; font-weight: bold; font-size: 11px;">BADGE NUMBER</th>
@@ -1638,7 +1949,7 @@ const downloadAllCompliedReports = async () => {
   }
 }
 
-const closePreview = () => {
+const closePreview = async () => {
   showPreviewModal.value = false
   previewContent.value = ''
   previewContentPage1.value = ''
@@ -1646,8 +1957,7 @@ const closePreview = () => {
   previewRecord.value = null
   isWithoutAttendancePreview.value = false
   isCompliedReportsPreview.value = false
-  editablePage1El.value = null
-  editablePage2El.value = null
+  editablePreviewEl.value = null
 }
 
 // (Edit mode removed) Keep preview modal view-only
