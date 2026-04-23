@@ -170,14 +170,16 @@
 
             <!-- Reports Table -->
             <div class="overflow-x-auto border border-slate-700 rounded-xl">
-              <table class="w-full text-sm">
+              <table class="w-full text-sm min-w-max">
                 <thead>
-                  <tr class="bg-slate-800 border-b border-slate-700">
-                    <th class="px-4 py-3 text-left font-bold text-slate-300">Subject</th>
-                    <th class="px-4 py-3 text-left font-bold text-slate-300">Date</th>
-                    <th class="px-4 py-3 text-left font-bold text-slate-300">Address</th>
-                    <th class="px-4 py-3 text-center font-bold text-slate-300">Files</th>
-                    <th class="px-4 py-3 text-center font-bold text-slate-300 w-24">View</th>
+                  <tr class="bg-slate-800 border-b border-slate-700 sticky top-0">
+                    <th class="px-3 py-3 text-left font-bold text-slate-300 whitespace-nowrap">Subject</th>
+                    <th class="px-3 py-3 text-left font-bold text-slate-300 whitespace-nowrap">Date</th>
+                    <th class="px-3 py-3 text-left font-bold text-slate-300 whitespace-nowrap">Address</th>
+                    <th class="px-3 py-3 text-left font-bold text-slate-300 whitespace-nowrap">Reference</th>
+                    <th class="px-3 py-3 text-left font-bold text-slate-300 whitespace-nowrap">Description</th>
+                    <th class="px-3 py-3 text-center font-bold text-slate-300 whitespace-nowrap">Screenshot</th>
+                    <th class="px-3 py-3 text-center font-bold text-slate-300 whitespace-nowrap">Files</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -186,31 +188,23 @@
                     :key="idx"
                     class="border-b border-slate-700 hover:bg-slate-800/40 transition"
                   >
-                    <td class="px-4 py-3 text-slate-200">{{ subject }}</td>
-                    <td class="px-4 py-3 text-slate-200">
+                    <td class="px-3 py-3 text-slate-200 max-w-sm truncate">{{ subject }}</td>
+                    <td class="px-3 py-3 text-slate-200 whitespace-nowrap">
                       {{ userReports.dates?.split('; ')[idx] || 'N/A' }}
                     </td>
-                    <td class="px-4 py-3 text-slate-200">
+                    <td class="px-3 py-3 text-slate-200 max-w-sm truncate">
                       {{ userReports.addresses?.split('; ')[idx] || 'N/A' }}
                     </td>
-                    <td class="px-4 py-3 text-center">
-                      <button
-                        v-if="isFirstFileOccurrence(idx)"
-                        class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-slate-700 hover:bg-purple-500/20 text-purple-300 hover:text-purple-200 transition text-xs font-semibold"
-                        type="button"
-                        @click="viewFiles(idx)"
-                        title="View Files"
-                      >
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                      </button>
-                      <span v-else class="text-slate-400 text-xs">-</span>
+                    <td class="px-3 py-3 text-slate-200 max-w-xs truncate">
+                      {{ userReports.reference || 'N/A' }}
                     </td>
-                    <td class="px-4 py-3 text-center">
+                    <td class="px-3 py-3 text-slate-200 max-w-xs truncate">
+                      {{ userReports.description || 'N/A' }}
+                    </td>
+                    <td class="px-3 py-3 text-center whitespace-nowrap">
                       <button
                         v-if="userReports.screenshots?.split('; ')[idx]"
-                        class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-slate-700 hover:bg-blue-500/20 text-blue-300 hover:text-blue-200 transition text-xs font-semibold"
+                        class="inline-flex items-center justify-center px-2 py-1 rounded-lg bg-slate-700 hover:bg-blue-500/20 text-blue-300 hover:text-blue-200 transition text-xs font-semibold"
                         type="button"
                         @click="viewImage(idx)"
                         title="View Screenshot"
@@ -221,18 +215,42 @@
                       </button>
                       <span v-else class="text-slate-400 text-xs">-</span>
                     </td>
+                    <td class="px-3 py-3 text-center whitespace-nowrap">
+                      <button
+                        v-if="isFirstFileOccurrence(idx)"
+                        class="inline-flex items-center justify-center px-2 py-1 rounded-lg bg-slate-700 hover:bg-purple-500/20 text-purple-300 hover:text-purple-200 transition text-xs font-semibold"
+                        type="button"
+                        @click="viewFiles(idx)"
+                        title="View Files"
+                      >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                      </button>
+                      <span v-else class="text-slate-400 text-xs">-</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <div class="mt-5 flex items-center justify-end">
+            <div class="mt-5 flex items-center justify-end gap-3">
               <button
                 class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 bg-slate-700 hover:bg-slate-600 text-white"
                 type="button"
                 @click="closeViewModal"
               >
                 Close
+              </button>
+              <button
+                class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 bg-green-600 hover:bg-green-500 text-white flex items-center gap-2"
+                type="button"
+                @click="downloadRecordsAsZip"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                Download ZIP
               </button>
             </div>
           </div>
@@ -760,7 +778,45 @@ const deleteOfficer = async (officer) => {
   errorMessage.value = ''
 
   try {
-    // First, delete all AAR reports associated with this user
+    // Step 1: Delete all documents directly referencing this user_id
+    const { error: docsUserError } = await supabase
+      .from('documents')
+      .delete()
+      .eq('user_id', officer.id)
+
+    if (docsUserError) {
+      console.error('Error deleting documents by user_id:', docsUserError)
+      throw new Error(`Failed to delete documents: ${docsUserError.message}`)
+    }
+
+    // Step 2: Get all AAR reports for this user
+    const { data: aarReports, error: fetchError } = await supabase
+      .from('aar_report')
+      .select('id')
+      .eq('user_id', officer.id)
+
+    if (fetchError) {
+      throw fetchError
+    }
+
+    // Step 3: Delete all documents that reference these AAR reports
+    if (aarReports && aarReports.length > 0) {
+      const aarReportIds = aarReports.map(report => report.id)
+      
+      for (const aarReportId of aarReportIds) {
+        const { error: docError } = await supabase
+          .from('documents')
+          .delete()
+          .eq('aar_report_id', aarReportId)
+
+        if (docError) {
+          console.error('Error deleting documents by aar_report_id:', docError)
+          throw new Error(`Failed to delete documents: ${docError.message}`)
+        }
+      }
+    }
+
+    // Step 4: Delete all AAR reports for this user
     const { error: reportsError } = await supabase
       .from('aar_report')
       .delete()
@@ -768,26 +824,22 @@ const deleteOfficer = async (officer) => {
 
     if (reportsError) {
       console.error('Error deleting officer reports:', reportsError)
-      errorMessage.value = `Failed to delete officer reports: ${reportsError.message}`
-      showToast('error', errorMessage.value)
-      return
+      throw new Error(`Failed to delete officer reports: ${reportsError.message}`)
     }
 
-    // Then delete the user
-    const { error } = await supabase.from('users').delete().eq('id', officer.id)
+    // Step 5: Delete the user
+    const { error: userError } = await supabase.from('users').delete().eq('id', officer.id)
 
-    if (error) {
-      console.error('Error deleting officer:', error)
-      errorMessage.value = `Failed to delete: ${error.message}`
-      showToast('error', errorMessage.value)
-      return
+    if (userError) {
+      console.error('Error deleting officer:', userError)
+      throw new Error(`Failed to delete user: ${userError.message}`)
     }
 
     await fetchOfficers(searchTerm.value)
     showToast('success', 'Officer deleted successfully.')
   } catch (err) {
     console.error('Exception deleting officer:', err)
-    errorMessage.value = 'Error deleting officer.'
+    errorMessage.value = err.message || 'Error deleting officer.'
     showToast('error', errorMessage.value)
   } finally {
     deletingId.value = null
@@ -920,6 +972,8 @@ const confirmRestore = async () => {
     let addresses = ''
     let reference = ''
     let description = ''
+    let screenshotLinks = ''
+    let fileLinks = ''
 
     // Parse summary.txt
     for (const line of lines) {
@@ -935,6 +989,10 @@ const confirmRestore = async () => {
         reference = line.replace('Reference:', '').trim()
       } else if (line.startsWith('Description:')) {
         description = line.replace('Description:', '').trim()
+      } else if (line.startsWith('Screenshots:')) {
+        screenshotLinks = line.replace('Screenshots:', '').trim()
+      } else if (line.startsWith('Files:')) {
+        fileLinks = line.replace('Files:', '').trim()
       }
     }
 
@@ -964,15 +1022,7 @@ const confirmRestore = async () => {
       userId = newUser[0].id
     }
 
-    // Collect file names from the zip
-    const fileNames = []
-    loadedZip.forEach((relativePath, file) => {
-      if (!relativePath.includes('summary.txt') && !relativePath.includes('screenshots/') && !file.dir) {
-        fileNames.push(file.name)
-      }
-    })
-
-    // Insert into aar_report table
+    // Insert into aar_report table with screenshots
     const { data: aarRecord, error: aarError } = await supabase
       .from('aar_report')
       .insert({
@@ -980,7 +1030,7 @@ const confirmRestore = async () => {
         subject: subjects !== 'N/A' ? subjects : '',
         address: addresses !== 'N/A' ? addresses : '',
         date: dates !== 'N/A' ? dates : new Date().toISOString().split('T')[0],
-        screenshots: '',
+        screenshots: screenshotLinks !== 'N/A' && screenshotLinks ? screenshotLinks : '',
         status: 'complied',
         reference: reference !== 'N/A' ? reference : '',
         description: description !== 'N/A' ? description : '',
@@ -993,17 +1043,21 @@ const confirmRestore = async () => {
     const aarRecordId = aarRecord[0].id
 
     // Insert file references into documents table
-    for (const fileName of fileNames) {
-      const { error: docError } = await supabase
-        .from('documents')
-        .insert({
-          aar_report_id: aarRecordId,
-          files: fileName,
-          user_id: userId,
-        })
+    if (fileLinks !== 'N/A' && fileLinks) {
+      const fileNamesList = fileLinks.split(',').map(f => f.trim())
+      for (const fileName of fileNamesList) {
+        if (fileName) {
+          const { error: docError } = await supabase
+            .from('documents')
+            .insert({
+              files: fileName,
+              user_id: userId,
+            })
 
-      if (docError) {
-        console.error('Error inserting document:', docError)
+          if (docError) {
+            console.error('Error inserting document:', docError)
+          }
+        }
       }
     }
 
@@ -1015,6 +1069,95 @@ const confirmRestore = async () => {
     showToast('error', `Error: ${err.message}`)
   } finally {
     restoreLoading.value = false
+  }
+}
+
+const downloadRecordsAsZip = async () => {
+  if (!userReports.value) return
+
+  try {
+    // Import JSZip dynamically
+    const JSZip = (await import('jszip')).default
+    const { saveAs } = await import('file-saver')
+
+    const zip = new JSZip()
+    const fileName = `${userReports.value?.rank_fullname || 'Officer'}_Records_${Date.now()}`
+    const folder = zip.folder(fileName)
+
+    // Collect all screenshots and files links
+    const allScreenshots = userReports.value?.screenshots?.split('; ') || []
+    const allFiles = userReports.value?.files?.split('; ') || []
+    const uniqueFiles = [...new Set(allFiles)]
+
+    const screenshotsString = allScreenshots.length > 0 ? allScreenshots.join(', ') : 'N/A'
+    const filesString = uniqueFiles.length > 0 ? uniqueFiles.join(', ') : 'N/A'
+
+    // Create a summary text file with all data including screenshots and files
+    const summaryContent = `AAR RECORDS SUMMARY
+${'='.repeat(50)}
+
+Officer: ${userReports.value?.rank_fullname || 'N/A'}
+Total Reports: ${userReports.value?.totalreport || 0}
+
+RECORDS:
+${'-'.repeat(50)}
+
+Subjects: ${userReports.value?.subject || 'N/A'}
+
+Dates: ${userReports.value?.dates || 'N/A'}
+
+Addresses: ${userReports.value?.addresses || 'N/A'}
+
+Reference: ${userReports.value?.reference || 'N/A'}
+
+Description: ${userReports.value?.description || 'N/A'}
+
+Screenshots: ${screenshotsString}
+
+Files: ${filesString}
+
+Generated: ${new Date().toLocaleString()}
+    `
+    folder.file('summary.txt', summaryContent)
+
+    // Download files if they exist
+    for (let i = 0; i < uniqueFiles.length; i++) {
+      const fileUrl = uniqueFiles[i]
+      if (fileUrl && (fileUrl.startsWith('http://') || fileUrl.startsWith('https://'))) {
+        try {
+          const response = await fetch(fileUrl)
+          const blob = await response.blob()
+          const urlParts = fileUrl.split('/')
+          const filename = urlParts[urlParts.length - 1].split('?')[0] || `document_${i + 1}`
+          folder.file(filename, blob)
+        } catch (err) {
+          console.error(`Error downloading file ${i + 1}:`, err)
+        }
+      }
+    }
+
+    // Download screenshots if they exist
+    const screenshotFolder = folder.folder('screenshots')
+    for (let i = 0; i < allScreenshots.length; i++) {
+      const screenshotUrl = allScreenshots[i]
+      if (screenshotUrl && (screenshotUrl.startsWith('http://') || screenshotUrl.startsWith('https://'))) {
+        try {
+          const response = await fetch(screenshotUrl)
+          const blob = await response.blob()
+          screenshotFolder.file(`screenshot_${i + 1}.jpg`, blob)
+        } catch (err) {
+          console.error(`Error downloading screenshot ${i + 1}:`, err)
+        }
+      }
+    }
+
+    // Generate and save the zip
+    const content = await folder.generateAsync({ type: 'blob' })
+    saveAs(content, `${fileName}.zip`)
+    showToast('success', 'Records downloaded as ZIP successfully!')
+  } catch (err) {
+    console.error('Error creating zip:', err)
+    showToast('error', 'Error downloading records as ZIP')
   }
 }
 

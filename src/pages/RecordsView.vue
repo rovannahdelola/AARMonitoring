@@ -1196,6 +1196,7 @@ const fetchRecords = async () => {
 
       return {
         id: record.id,
+        p_id: record.p_id,
         date: formattedDate,
         dateObj,
         rank: fallbackRank,
@@ -1270,6 +1271,7 @@ const filterAbsenceRecords = async () => {
     absenceRecords.value = (absenceData || []).map((record) => {
       return {
         id: record.id,
+        p_id: record.p_id,
         date: 'N/A',
         dateObj: null,
         subject: record.subject || '',
@@ -1533,28 +1535,27 @@ const savePreviewChanges = async () => {
   isSavingFields.value = true
 
   try {
-    // Build parameters object with only changed fields
-    const rpcParams = {
-      p_user_id: previewRecord.value.id,
-    }
 
-    // Add only the fields that have changed (convert empty strings to null for database)
-    if (hasSubjectChange) rpcParams.p_new_subject = subjectValue && subjectValue.trim() ? subjectValue : null
-    if (hasAddressChange) rpcParams.p_new_address = addressValue && addressValue.trim() ? addressValue : null
-    if (hasForChange) rpcParams.p_new_for = forValue && forValue.trim() ? forValue : null
-    if (hasDescriptionChange) rpcParams.p_new_description = descriptionValue && descriptionValue.trim() ? descriptionValue : null
-    if (hasReferenceChange) rpcParams.p_new_reference = referenceValue && referenceValue.trim() ? referenceValue : null
+    const rpcParams = { p_report_id: previewRecord.value.p_id }
+
+    if (hasSubjectChange) rpcParams.p_new_subject = subjectValue?.trim() || null
+    if (hasAddressChange) rpcParams.p_new_address = addressValue?.trim() || null
+    if (hasForChange) rpcParams.p_new_for = forValue?.trim() || null
+    if (hasDescriptionChange) rpcParams.p_new_description = descriptionValue?.trim() || null
+    if (hasReferenceChange) rpcParams.p_new_reference = referenceValue?.trim() || null
 
     console.log('[AAR RPC] Calling update_report_fields with:', rpcParams)
 
     const { data, error } = await supabase.rpc('update_report_fields', rpcParams)
 
+    
+    console.log('[AAR RPC] RPC response:', data)
+
+
     if (error) {
       console.error('[AAR RPC] Error calling RPC:', error)
       throw error
     }
-
-    console.log('[AAR RPC] RPC response:', data)
 
     if (!data || data.length === 0) {
       showStatusModalMessage('Info', 'No records updated. Please verify the record status.', 'info')
@@ -1670,6 +1671,49 @@ const downloadWordReport = async (htmlContent, filename = 'report.doc') => {
       ? filename
       : filename.replace(/\.doc$/i, '.docx')
     const docBlob = htmlDocx.asBlob(htmlTemplate)
+    
+    // Create a File object from the blob for uploading
+    const file = new File([docBlob], safeName, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' })
+    
+    // Upload to 'files' bucket first
+    const fileExt = file.name.split('.').pop()
+    const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`
+    
+    const { error: uploadError } = await supabase.storage
+      .from('files')
+      .upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: false,
+      })
+    
+    if (uploadError) {
+      console.error('Upload error:', uploadError)
+      throw new Error(`Failed to upload ${file.name}: ${uploadError.message}`)
+    }
+    
+    // Get public URL
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from('files').getPublicUrl(fileName)
+    
+    // Insert into documents table with reference to preview.record.id
+    if (previewRecord.value && previewRecord.value.id) {
+      const { error: insertError } = await supabase
+        .from('documents')
+        .insert({
+          files: publicUrl,
+          user_id: previewRecord.value.id,
+        })
+      
+      if (insertError) {
+        console.error('Database insert error:', insertError)
+        throw new Error(`Failed to save document record: ${insertError.message}`)
+      }
+      
+      console.log('Document uploaded and recorded successfully')
+    }
+    
+    // Finally, trigger the download
     saveAs(docBlob, safeName)
   } catch (error) {
     console.error('Error downloading Word report:', error)
