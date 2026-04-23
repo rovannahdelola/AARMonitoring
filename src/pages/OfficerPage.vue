@@ -409,8 +409,111 @@
               </svg>
               Clear
             </button>
+
+            <button
+              class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase flex items-center gap-2 transition-all duration-200 bg-purple-600 hover:bg-purple-500 text-white"
+              @click="openRestoreModal"
+              :disabled="isLoading"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                ></path>
+              </svg>
+              Restore Records
+            </button>
+
+            <input
+              ref="restoreFileInput"
+              type="file"
+              accept=".zip"
+              class="hidden"
+              @change="handleRestoreFile"
+            />
           </div>
         </div>
+
+    <!-- Restore Modal -->
+    <div
+      v-if="restoreModalOpen"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      @click.self="closeRestoreModal"
+    >
+      <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+      <div
+        class="relative w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900/90 shadow-xl overflow-hidden"
+      >
+        <div class="p-5 border-b border-slate-700 bg-linear-to-r from-slate-800 to-purple-900">
+          <h3 class="text-sm sm:text-base font-bold text-white">Restore Records from ZIP</h3>
+          <p class="text-xs sm:text-sm font-semibold text-slate-300 mt-1">
+            Upload a previously exported ZIP file to restore records
+          </p>
+        </div>
+
+        <div class="p-5 space-y-4">
+          <div class="border-2 border-dashed border-slate-600 rounded-lg p-6 text-center cursor-pointer hover:border-purple-500 hover:bg-purple-500/5 transition"
+            @click="triggerRestoreFileInput"
+          >
+            <svg
+              class="w-8 h-8 mx-auto mb-2 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+              ></path>
+            </svg>
+            <p class="text-sm font-bold text-slate-300">Click to upload ZIP file</p>
+            <p class="text-xs text-slate-400 mt-1">or drag and drop</p>
+          </div>
+
+          <div v-if="restoreFileName" class="bg-slate-800 rounded-lg p-3 border border-slate-700">
+            <p class="text-sm font-semibold text-green-400">✓ {{ restoreFileName }}</p>
+          </div>
+
+          <div v-if="restoreLoading" class="text-center py-4">
+            <svg class="animate-spin h-6 w-6 mx-auto text-purple-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-sm font-semibold text-slate-300 mt-2">Restoring records...</p>
+          </div>
+
+          <div v-if="!restoreLoading" class="flex items-center justify-end gap-3 pt-2">
+            <button
+              class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 bg-slate-700 hover:bg-slate-600 text-white"
+              type="button"
+              @click="closeRestoreModal"
+              :disabled="restoreLoading"
+            >
+              Cancel
+            </button>
+            <button
+              class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 bg-purple-600 hover:bg-purple-500 text-white disabled:opacity-50"
+              type="button"
+              @click="confirmRestore"
+              :disabled="!restoreFile || restoreLoading"
+            >
+              Restore
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
         <!-- Results -->
         <div class="bg-slate-900/80 rounded-2xlshadow-md border border-slate-700">
@@ -548,6 +651,12 @@ const loadingReports = ref(false)
 const imageModalOpen = ref(false)
 const selectedImage = ref(null)
 const selectedFiles = ref(null)
+
+const restoreModalOpen = ref(false)
+const restoreFileInput = ref(null)
+const restoreFile = ref(null)
+const restoreFileName = ref('')
+const restoreLoading = ref(false)
 
 const toast = ref({ visible: false, type: 'success', message: '' })
 let toastTimer = null
@@ -752,6 +861,161 @@ const isFirstFileOccurrence = (idx) => {
   const currentFile = allFiles[idx]
   // Check if this is the first occurrence of this file
   return allFiles.indexOf(currentFile) === idx
+}
+
+const openRestoreModal = () => {
+  restoreModalOpen.value = true
+  restoreFile.value = null
+  restoreFileName.value = ''
+}
+
+const closeRestoreModal = () => {
+  restoreModalOpen.value = false
+  restoreFile.value = null
+  restoreFileName.value = ''
+  if (restoreFileInput.value) {
+    restoreFileInput.value.value = ''
+  }
+}
+
+const triggerRestoreFileInput = () => {
+  if (restoreFileInput.value) {
+    restoreFileInput.value.click()
+  }
+}
+
+const handleRestoreFile = (event) => {
+  const files = event.target.files
+  if (files && files.length > 0) {
+    restoreFile.value = files[0]
+    restoreFileName.value = files[0].name
+  }
+}
+
+const confirmRestore = async () => {
+  if (!restoreFile.value) {
+    showToast('error', 'Please select a ZIP file')
+    return
+  }
+
+  restoreLoading.value = true
+
+  try {
+    const JSZip = (await import('jszip')).default
+    const zip = new JSZip()
+    const loadedZip = await zip.loadAsync(restoreFile.value)
+
+    // Read summary.txt
+    const summaryFile = loadedZip.file('summary.txt')
+    if (!summaryFile) {
+      throw new Error('Invalid ZIP file: summary.txt not found')
+    }
+
+    const summaryText = await summaryFile.async('text')
+    const lines = summaryText.split('\n')
+    
+    let officerName = ''
+    let subjects = ''
+    let dates = ''
+    let addresses = ''
+    let reference = ''
+    let description = ''
+
+    // Parse summary.txt
+    for (const line of lines) {
+      if (line.startsWith('Officer:')) {
+        officerName = line.replace('Officer:', '').trim()
+      } else if (line.startsWith('Subjects:')) {
+        subjects = line.replace('Subjects:', '').trim()
+      } else if (line.startsWith('Dates:')) {
+        dates = line.replace('Dates:', '').trim()
+      } else if (line.startsWith('Addresses:')) {
+        addresses = line.replace('Addresses:', '').trim()
+      } else if (line.startsWith('Reference:')) {
+        reference = line.replace('Reference:', '').trim()
+      } else if (line.startsWith('Description:')) {
+        description = line.replace('Description:', '').trim()
+      }
+    }
+
+    if (!officerName) {
+      throw new Error('Invalid ZIP file: Officer name not found in summary')
+    }
+
+    // Get or create officer in users table
+    let userId
+    const { data: existingUsers, error: checkError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('rank_fullname', officerName.trim())
+
+    if (checkError) throw checkError
+
+    if (existingUsers && existingUsers.length > 0) {
+      userId = existingUsers[0].id
+    } else {
+      const { data: newUser, error: insertError } = await supabase
+        .from('users')
+        .insert({ rank_fullname: officerName.trim() })
+        .select()
+
+      if (insertError) throw insertError
+      if (!newUser || newUser.length === 0) throw new Error('Failed to create user')
+      userId = newUser[0].id
+    }
+
+    // Collect file names from the zip
+    const fileNames = []
+    loadedZip.forEach((relativePath, file) => {
+      if (!relativePath.includes('summary.txt') && !relativePath.includes('screenshots/') && !file.dir) {
+        fileNames.push(file.name)
+      }
+    })
+
+    // Insert into aar_report table
+    const { data: aarRecord, error: aarError } = await supabase
+      .from('aar_report')
+      .insert({
+        user_id: userId,
+        subject: subjects !== 'N/A' ? subjects : '',
+        address: addresses !== 'N/A' ? addresses : '',
+        date: dates !== 'N/A' ? dates : new Date().toISOString().split('T')[0],
+        screenshots: '',
+        status: 'complied',
+        reference: reference !== 'N/A' ? reference : '',
+        description: description !== 'N/A' ? description : '',
+      })
+      .select()
+
+    if (aarError) throw aarError
+    if (!aarRecord || aarRecord.length === 0) throw new Error('Failed to create AAR record')
+
+    const aarRecordId = aarRecord[0].id
+
+    // Insert file references into documents table
+    for (const fileName of fileNames) {
+      const { error: docError } = await supabase
+        .from('documents')
+        .insert({
+          aar_report_id: aarRecordId,
+          files: fileName,
+          user_id: userId,
+        })
+
+      if (docError) {
+        console.error('Error inserting document:', docError)
+      }
+    }
+
+    showToast('success', `Records restored successfully for ${officerName}`)
+    closeRestoreModal()
+    await fetchOfficers(searchTerm.value)
+  } catch (err) {
+    console.error('Error restoring records:', err)
+    showToast('error', `Error: ${err.message}`)
+  } finally {
+    restoreLoading.value = false
+  }
 }
 
 
