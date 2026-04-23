@@ -1035,7 +1035,7 @@
           <div class="bg-blue-500/10 rounded-2xl p-4 shadow-md border-l-4 border-blue-500">
             <div class="flex items-start gap-3">
               <svg
-                class="w-5 h-5 flex-shrink-0 text-blue-400"
+                class="w-5 h-5 shrink-0 text-blue-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -1083,7 +1083,7 @@
       >
         <div class="flex items-center gap-2 md:gap-3">
           <svg
-            class="w-5 h-5 md:w-6 md:h-6 text-white flex-shrink-0"
+            class="w-5 h-5 md:w-6 md:h-6 text-white shrink-0"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -1223,7 +1223,7 @@
           >
             <div class="flex items-center gap-3">
               <div
-                class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold bg-white/20 border-2 border-white/40"
+                class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold bg-white/20 border-2 border-white/40"
               >
                 {{ selectedStep?.id }}
               </div>
@@ -1236,7 +1236,7 @@
             </div>
             <button
               @click="closeStepModal"
-              class="flex-shrink-0 p-1.5 hover:bg-white/20 rounded-lg transition-colors duration-200"
+              class="shrink-0 p-1.5 hover:bg-white/20 rounded-lg transition-colors duration-200"
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -1286,7 +1286,7 @@
                   :key="index"
                   class="flex gap-2 items-start"
                 >
-                  <span class="text-blue-400 font-bold flex-shrink-0">•</span>
+                  <span class="text-blue-400 font-bold shrink-0">•</span>
                   <span>{{ tip }}</span>
                 </li>
               </ul>
@@ -1380,8 +1380,8 @@ const submissionSteps = ref([
   {
     id: 2,
     title: 'Describe Activity',
-    description: 'Complete the subject field with your duty summary and accountability notes.',
-    fullDescription:
+    subject: 'Complete the subject field with your duty summary and accountability notes.',
+    fullDetails:
       'Provide a clear and concise subject and details of your daily activities, duties performed, and accountability notes. This should summarize what you accomplished during your shift.',
     tips: [
       'Be specific about the activities performed',
@@ -1395,8 +1395,8 @@ const submissionSteps = ref([
   {
     id: 3,
     title: 'Confirm Address',
-    description: 'Enter the exact deployment location, including barangay or landmark for clarity.',
-    fullDescription:
+    subject: 'Enter the exact deployment location, including barangay or landmark for clarity.',
+    fullDetails:
       'Enter your exact deployment or operational address. Include the specific barangay, landmark, or street name to provide clear location information for record purposes.',
     tips: [
       'Use specific landmarks (e.g., "Near Municipal Building")',
@@ -1410,8 +1410,8 @@ const submissionSteps = ref([
   {
     id: 4,
     title: 'Set Deployment Date',
-    description: 'Use the date picker to match the actual day of your field assignment.',
-    fullDescription:
+    subject: 'Use the date picker to match the actual day of your field assignment.',
+    fullDetails:
       'Select the date that corresponds to when you actually performed the duty or activity. This is crucial for accurate record-keeping and attendance tracking.',
     tips: [
       'The date should match your actual deployment day',
@@ -1425,8 +1425,8 @@ const submissionSteps = ref([
   {
     id: 5,
     title: 'Attach Evidence',
-    description: 'Upload clear PNG/JPG screenshots (max 25MB each) that prove your deployment.',
-    fullDescription:
+    subject: 'Upload clear PNG/JPG screenshots (max 25MB each) that prove your deployment.',
+    fullDetails:
       'Attach clear, readable screenshots or photos as evidence of your deployment. These should show proof of your presence at the specified location (e.g., timestamps, official locations, activity proof).',
     tips: [
       'Ensure screenshots are clear and readable',
