@@ -110,7 +110,7 @@
                   </p>
                 </div>
                 <div
-                  class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br from-emerald-500 to-emerald-600"
+                  class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-linear-to-br from-emerald-500 to-emerald-600"
                 >
                   <svg
                     class="w-7 h-7 sm:w-9 sm:h-9 text-white"
@@ -150,7 +150,7 @@
                   <p class="text-xs sm:text-sm font-semibold text-slate-400">Officers</p>
                 </div>
                 <div
-                  class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-gradient-to-br from-red-500 to-red-600"
+                  class="rounded-2xl p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300 shadow-md bg-linear-to-br from-red-500 to-red-600"
                 >
                   <svg
                     class="w-7 h-7 sm:w-9 sm:h-9 text-white"
