@@ -807,7 +807,7 @@ const deleteOfficer = async (officer) => {
         const { error: docError } = await supabase
           .from('documents')
           .delete()
-          .eq('aar_report_id', aarReportId)
+          .eq('user_id', aarReportId)
 
         if (docError) {
           console.error('Error deleting documents by aar_report_id:', docError)
