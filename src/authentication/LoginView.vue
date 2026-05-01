@@ -55,17 +55,18 @@
             
                             <!-- Dropdown for selecting login type -->
                             <div class="mb-4">
-                                <label class="block text-sm font-medium mb-1.5 text-slate-300">Login As</label>
+                                <label class="block text-xs sm:text-sm font-medium mb-2 sm:mb-2.5 text-slate-300">Login As</label>
                                 <div class="relative">
                                     <select 
                                         v-model="loginType" 
-                                        class="w-full px-4 py-3 text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition appearance-none cursor-pointer text-white"
+                                        style="font-size: 11px;"
+                                        class="w-full px-2 sm:px-4 py-1.5 sm:py-3 sm:text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition appearance-none cursor-pointer text-white leading-tight sm:leading-normal"
                                     >
                                         <option value="administrator">Administrator</option>
                                         <option value="user">Officer / Personnel</option>
                                     </select>
-                                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                                        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                                        <svg class="w-3.5 h-3.5 sm:w-5 sm:h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                         </svg>
                                     </div>

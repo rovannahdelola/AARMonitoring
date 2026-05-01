@@ -104,11 +104,31 @@
         </div>
 
         <div class="p-5">
-          <p class="text-sm font-semibold text-slate-200">
-            This action cannot be undone.
+          <p class="text-sm font-semibold text-slate-200 mb-4">
+            This action cannot be undone. Would you like to download the officer's data as a ZIP file before deletion?
           </p>
 
-          <div class="mt-5 flex items-center justify-end gap-3">
+          <div class="space-y-3">
+            <button
+              class="w-full px-4 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 bg-blue-600 hover:bg-blue-500 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+              type="button"
+              @click="downloadAsZipThenDelete"
+              :disabled="deletingId === officerToDelete?.id"
+            >
+              📥 Download as ZIP then Delete
+            </button>
+            
+            <button
+              class="w-full px-4 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 bg-red-600 hover:bg-red-500 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+              type="button"
+              @click="confirmDelete"
+              :disabled="deletingId === officerToDelete?.id"
+            >
+              🗑️ Just Delete
+            </button>
+          </div>
+
+          <div class="mt-4 flex items-center justify-end gap-3">
             <button
               class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 bg-slate-700 hover:bg-slate-600 text-white"
               type="button"
@@ -116,14 +136,6 @@
               :disabled="deletingId === officerToDelete?.id"
             >
               Cancel
-            </button>
-            <button
-              class="px-4 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 bg-red-600 hover:bg-red-500 text-white"
-              type="button"
-              @click="confirmDelete"
-              :disabled="deletingId === officerToDelete?.id"
-            >
-              Delete
             </button>
           </div>
         </div>
@@ -650,6 +662,8 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import NavigationPage from '@/components/NavigationPage.vue'
 import { supabase } from '@/lib/supabase.js'
+import JSZip from 'jszip'
+import { saveAs } from 'file-saver'
 
 const router = useRouter()
 
@@ -709,6 +723,80 @@ const confirmDelete = async () => {
   if (!officerToDelete.value?.id) return
   await deleteOfficer(officerToDelete.value)
   closeDeleteModal()
+}
+
+const downloadAsZipThenDelete = async () => {
+  if (!officerToDelete.value?.id) return
+  
+  try {
+    deletingId.value = officerToDelete.value.id
+    showToast('success', 'Starting download and delete process...')
+    
+    // Fetch officer's AAR reports
+    const { data: aarReports, error: fetchError } = await supabase
+      .from('aar_report')
+      .select('*')
+      .eq('user_id', officerToDelete.value.id)
+
+    if (fetchError) {
+      throw new Error(`Failed to fetch reports: ${fetchError.message}`)
+    }
+
+    // Create ZIP file
+    const zip = new JSZip()
+    
+    // Add officer info
+    const officerInfo = {
+      id: officerToDelete.value.id,
+      name: officerToDelete.value.rank_fullname,
+      email: officerToDelete.value.email,
+      createdAt: officerToDelete.value.created_at,
+      reportsCount: aarReports?.length || 0
+    }
+    
+    zip.file('officer_info.json', JSON.stringify(officerInfo, null, 2))
+    
+    // Add reports folder if there are any
+    if (aarReports && aarReports.length > 0) {
+      const reportsFolder = zip.folder('reports')
+      
+      aarReports.forEach((report, index) => {
+        const reportData = {
+          id: report.id,
+          date: report.date,
+          subject: report.subject,
+          address: report.address,
+          reference: report.reference,
+          description: report.description,
+          for: report.for,
+          screenshots: report.screenshots,
+          status: report.status
+        }
+        reportsFolder.file(`report_${index + 1}.json`, JSON.stringify(reportData, null, 2))
+      })
+    }
+    
+    // Generate ZIP and download
+    const zipBlob = await zip.generateAsync({ type: 'blob' })
+    const fileName = `${officerToDelete.value.rank_fullname?.replace(/[^a-z0-9]+/gi, '_') || 'officer'}_data_${new Date().toISOString().split('T')[0]}.zip`
+    saveAs(zipBlob, fileName)
+    
+    // After download starts, proceed with deletion
+    showToast('success', 'Download started. Now deleting officer...')
+    
+    // Small delay to ensure download starts
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    // Now delete the officer
+    await deleteOfficer(officerToDelete.value)
+    closeDeleteModal()
+    
+  } catch (err) {
+    console.error('Error in download and delete process:', err)
+    errorMessage.value = err.message || 'Error processing download and delete.'
+    showToast('error', errorMessage.value)
+    deletingId.value = null
+  }
 }
 
 const fetchOfficers = async (term = '') => {

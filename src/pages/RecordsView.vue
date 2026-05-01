@@ -626,22 +626,37 @@
     <!-- Preview Modal -->
     <div
       v-if="showPreviewModal"
-      class="fixed inset-0 z-50 grid place-items-center p-3 sm:p-4 overflow-y-auto "
-      style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px)"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
+      role="dialog"
+      aria-modal="true"
       @click.self="closePreview"
     >
+      <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
       <div
-        class="bg-white rounded-lg max-w-6xl w-full max-h-[85vh] overflow-hidden shadow-2xl flex flex-col ml-auto mr-10"
+        class="relative w-full max-w-6xl max-h-[90vh] rounded-2xl border border-slate-700 bg-slate-900/90 shadow-2xl overflow-hidden flex flex-col ml-auto mr-10"
       >
         <!-- Modal Header -->
         <div
-          class="sticky top-0 bg-white border-b-2 p-4 sm:p-5 lg:p-6 flex justify-between items-center z-10"
-          :style="isWithoutAttendancePreview ? 'border-color: #dc2626' : 'border-color: #004595'"
+          class="sticky top-0 border-b border-slate-700 p-5 lg:p-6 flex justify-between items-center z-10"
+          :class="{
+            'bg-linear-to-r from-red-900/40 to-rose-900/40': isWithoutAttendancePreview,
+            'bg-linear-to-r from-slate-800 to-blue-900': !isWithoutAttendancePreview
+          }"
         >
-          <div class="flex items-center gap-2 sm:gap-3">
-            <div class="rounded-lg p-1.5 sm:p-2" :style="{ background: isWithoutAttendancePreview ? '#dc2626' : '#004595' }">
+          <div class="flex items-center gap-3">
+            <div
+              class="rounded-lg p-2 flex items-center justify-center"
+              :class="{
+                'bg-red-500/20': isWithoutAttendancePreview,
+                'bg-blue-500/20': !isWithoutAttendancePreview
+              }"
+            >
               <svg
-                class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                class="w-6 h-6"
+                :class="{
+                  'text-red-400': isWithoutAttendancePreview,
+                  'text-blue-400': !isWithoutAttendancePreview
+                }"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -658,51 +673,47 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                ></path>
-                <path
-                  v-if="!isWithoutAttendancePreview"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 ></path>
               </svg>
             </div>
             <div>
-              <h2 class="text-lg sm:text-xl lg:text-2xl font-bold" :style="{ color: isWithoutAttendancePreview ? '#dc2626' : '#002147' }">
+              <h2
+                class="text-lg lg:text-xl font-bold"
+                :class="{
+                  'text-red-300': isWithoutAttendancePreview,
+                  'text-blue-300': !isWithoutAttendancePreview
+                }"
+              >
                 {{ isWithoutAttendancePreview ? 'Not Submitted Reports' : 'Document Preview' }}
               </h2>
-              <p v-if="!isWithoutAttendancePreview && previewRecord?.fullRankName" class="text-xs sm:text-sm text-slate-600 mt-0.5">
+              <p v-if="!isWithoutAttendancePreview && previewRecord?.fullRankName" class="text-xs text-slate-400 mt-1">
                 {{ previewRecord.fullRankName }}
               </p>
             </div>
           </div>
-          <div class="flex items-center gap-2">
-            <button
-              @click="closePreview"
-              class="rounded-full p-1.5 sm:p-2 hover:bg-gray-100 transition"
+          <button
+            @click="closePreview"
+            class="rounded-lg p-2 hover:bg-slate-700/50 transition text-slate-300 hover:text-white"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <svg
-                class="w-5 h-5 sm:w-6 sm:h-6"
-                :style="{ color: isWithoutAttendancePreview ? '#dc2626' : '#002147' }"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
         </div>
 
         <!-- Preview Content -->
-        <div  class="flex-1 overflow-auto p-4 sm:p-6 md:p-8 ml-10" style="background: #ffffff">
+        <div class="flex-1 overflow-auto p-6 lg:p-8 ml-10" style="background: #1e293b">
           <div
             v-if="isWithoutAttendancePreview || isCompliedReportsPreview"
             class="max-w-6xl mx-auto"
@@ -710,8 +721,7 @@
           ></div>
           <div
             v-else
-            class="flex flex-col items-center justify-center"
-            style="background: transparent; gap: 4px;"
+            class="flex flex-col items-center justify-center gap-4"
           >
             <div v-if="previewContentPage1" class="preview-page">
               <div
@@ -734,28 +744,32 @@
 
         <!-- Modal Footer -->
         <div
-          class="sticky bottom-0 bg-white border-t-2 p-4 sm:p-5 md:p-6 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3"
-          :style="isWithoutAttendancePreview ? 'border-color: #dc2626' : 'border-color: #004595'"
+          class="sticky bottom-0 border-t border-slate-700 p-5 lg:p-6 flex flex-col sm:flex-row justify-end gap-3 bg-slate-800/50 backdrop-blur-sm"
         >
           <button
             @click="savePreviewChanges"
             :disabled="isSavingFields"
-            class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2 text-white disabled:opacity-70 disabled:cursor-not-allowed"
-            style="background: #10b981"
+            class="px-5 lg:px-6 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 flex items-center justify-center gap-2 text-white disabled:opacity-50 disabled:cursor-not-allowed bg-emerald-600 hover:bg-emerald-500 shadow-lg hover:shadow-xl"
           >
-            <svg v-if="!isSavingFields" class="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-if="!isSavingFields" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
-            {{ isSavingFields ? 'Saving...' : 'Save' }}
+            <svg v-else class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            {{ isSavingFields ? 'Saving...' : 'Save edits' }}
           </button>
 
           <button
             @click="downloadFromPreview"
-            class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2 text-white"
-            :style="{ background: isWithoutAttendancePreview ? '#dc2626' : '#004595' }"
+            class="px-5 lg:px-6 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 flex items-center justify-center gap-2 text-white shadow-lg hover:shadow-xl"
+            :class="{
+              'bg-red-600 hover:bg-red-500': isWithoutAttendancePreview,
+              'bg-blue-600 hover:bg-blue-500': !isWithoutAttendancePreview
+            }"
           >
             <svg
-              class="w-3 h-3 sm:w-4 sm:h-4"
+              class="w-4 h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -767,15 +781,14 @@
                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
               ></path>
             </svg>
-            Download
+            📥 Download
           </button>
           <button
             @click="closePreview"
-            class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm uppercase hover:opacity-90 transition flex items-center justify-center gap-2"
-            style="background: #6b7280; color: #ffffff"
+            class="px-5 lg:px-6 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 flex items-center justify-center gap-2 text-white bg-slate-700 hover:bg-slate-600 shadow-lg hover:shadow-xl"
           >
             <svg
-              class="w-3 h-3 sm:w-4 sm:h-4"
+              class="w-4 h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -796,90 +809,114 @@
     <!-- Status Modal for Success/Error Messages -->
     <div
       v-if="showStatusModal"
-      class="fixed inset-0 z-50 grid place-items-center p-3 sm:p-4"
-      style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(0, 0, 0, 0.5)"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
       @click.self="closeStatusModal"
     >
+      <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
       <div
-        class="bg-white rounded-lg max-w-sm w-full shadow-2xl overflow-hidden animate-scale-in"
+        class="relative w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900/90 shadow-xl overflow-hidden animate-scale-in"
       >
-        <!-- Modal Header with Status Icon -->
+        <!-- Modal Header with Status Icon and Gradient -->
         <div
-          class="p-4 sm:p-6 flex items-start gap-4"
-          :style="statusType === 'success' ? 'background: #d1fae5; border-bottom: 2px solid #10b981' : statusType === 'error' ? 'background: #fee2e2; border-bottom: 2px solid #dc2626' : 'background: #dbeafe; border-bottom: 2px solid #3b82f6'"
+          class="p-6 border-b border-slate-700"
+          :class="{
+            'bg-linear-to-r from-emerald-900/40 to-green-900/40': statusType === 'success',
+            'bg-linear-to-r from-red-900/40 to-rose-900/40': statusType === 'error',
+            'bg-linear-to-r from-blue-900/40 to-cyan-900/40': statusType === 'info'
+          }"
         >
-          <!-- Status Icon -->
-          <div
-            class="rounded-full p-3 shrink-0"
-            :style="statusType === 'success' ? 'background: #10b981' : statusType === 'error' ? 'background: #dc2626' : 'background: #3b82f6'"
-          >
-            <svg
-              v-if="statusType === 'success'"
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div class="flex items-start gap-4">
+            <!-- Status Icon -->
+            <div
+              class="rounded-full p-3 shrink-0 flex items-center justify-center"
+              :class="{
+                'bg-emerald-500/20': statusType === 'success',
+                'bg-red-500/20': statusType === 'error',
+                'bg-blue-500/20': statusType === 'info'
+              }"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                d="M5 13l4 4L19 7"
-              ></path>
-            </svg>
-            <svg
-              v-else-if="statusType === 'error'"
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-            <svg
-              v-else
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-          </div>
+              <svg
+                v-if="statusType === 'success'"
+                class="w-6 h-6 text-emerald-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+              <svg
+                v-else-if="statusType === 'error'"
+                class="w-6 h-6 text-red-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <svg
+                v-else
+                class="w-6 h-6 text-blue-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
 
-          <!-- Message Content -->
-          <div class="flex-1 min-w-0">
-            <h3
-              class="font-bold text-lg sm:text-xl"
-              :style="statusType === 'success' ? 'color: #065f46' : statusType === 'error' ? 'color: #991b1b' : 'color: #1e40af'"
-            >
-              {{ statusTitle }}
-            </h3>
-            <p
-              class="text-sm sm:text-base mt-1 leading-relaxed"
-              :style="statusType === 'success' ? 'color: #047857' : statusType === 'error' ? 'color: #b91c1c' : 'color: #1e3a8a'"
-            >
-              {{ statusMessage }}
-            </p>
+            <!-- Message Content -->
+            <div class="flex-1 min-w-0">
+              <h3
+                class="font-bold text-base sm:text-lg"
+                :class="{
+                  'text-emerald-300': statusType === 'success',
+                  'text-red-300': statusType === 'error',
+                  'text-blue-300': statusType === 'info'
+                }"
+              >
+                {{ statusTitle }}
+              </h3>
+              <p
+                class="text-sm mt-2 leading-relaxed"
+                :class="{
+                  'text-emerald-200/80': statusType === 'success',
+                  'text-red-200/80': statusType === 'error',
+                  'text-blue-200/80': statusType === 'info'
+                }"
+              >
+                {{ statusMessage }}
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Modal Footer -->
-        <div class="p-4 sm:p-6 flex justify-end gap-2">
+        <div class="p-6 flex justify-end gap-3">
           <button
             @click="closeStatusModal"
-            :style="statusType === 'success' ? 'background: #10b981; color: white' : statusType === 'error' ? 'background: #dc2626; color: white' : 'background: #3b82f6; color: white'"
-            class="px-5 sm:px-6 py-2 sm:py-2.5 rounded-lg font-bold text-sm uppercase hover:opacity-90 transition"
+            :class="{
+              'bg-emerald-600 hover:bg-emerald-500': statusType === 'success',
+              'bg-red-600 hover:bg-red-500': statusType === 'error',
+              'bg-blue-600 hover:bg-blue-500': statusType === 'info'
+            }"
+            class="px-5 py-2.5 rounded-xl font-bold text-sm uppercase transition-all duration-200 text-white shadow-lg hover:shadow-xl"
           >
             OK
           </button>
@@ -1591,6 +1628,27 @@ const savePreviewChanges = async () => {
     updateInList(allRecords)
     updateInList(filteredRecords)
 
+    // Now upload the document after saving changes
+    try {
+      const { page1Html, page2Html } = getEditedPreviewHtml()
+      const contentToUpload = normalizeHtmlForDocx(`${page1Html || ''}${page2Html || ''}`)
+      
+      if (contentToUpload) {
+        const officerName = previewRecord.value?.name || 'Officer'
+        const reportDate = previewRecord.value?.reportDate || ''
+        const filename = reportDate
+          ? `AAR_Report_${officerName.replace(/[^a-z0-9]+/gi, '_')}_${reportDate.replace(/[^a-z0-9]+/gi, '_')}.docx`
+          : `AAR_Report_${officerName.replace(/[^a-z0-9]+/gi, '_')}.docx`
+        
+        const htmlWithInlineHeaders = inlineHeaderImages(contentToUpload)
+        const fullyInlinedHtml = await inlineAllImages(htmlWithInlineHeaders)
+        await uploadWordReport(fullyInlinedHtml, filename)
+      }
+    } catch (uploadError) {
+      console.error('[AAR Save] Document upload error:', uploadError)
+      // Don't fail the save if upload fails, just log it
+    }
+
     showStatusModalMessage('Success', `Successfully updated ${data.length} record(s).`, 'success')
   } catch (error) {
     console.error('[AAR RPC] Error:', error)
@@ -1629,8 +1687,8 @@ const downloadFromPreview = async () => {
   }
 
   const filename = previewRecord.value?.reportDate
-    ? `AAR_Report_${previewRecord.value.reportDate.replace(/[^a-z0-9]+/gi, '_')}.docx`
-    : 'report.docx'
+    ? `AAR_Report_${previewRecord.value.name?.replace(/[^a-z0-9]+/gi, '_') || 'Officer'}_${previewRecord.value.reportDate.replace(/[^a-z0-9]+/gi, '_')}.docx`
+    : `AAR_Report_${previewRecord.value?.name?.replace(/[^a-z0-9]+/gi, '_') || 'Officer'}.docx`
 
   const htmlWithInlineHeaders = inlineHeaderImages(contentToDownload)
   const fullyInlinedHtml = await inlineAllImages(htmlWithInlineHeaders)
@@ -1663,7 +1721,8 @@ const previewReport = async (record) => {
   }
 }
 
-const downloadWordReport = async (htmlContent, filename = 'report.doc') => {
+// Upload Word report to Supabase storage and documents table
+const uploadWordReport = async (htmlContent, filename = 'report.doc') => {
   try {
     const htmlDocx = await loadHtmlDocx()
     const htmlTemplate = buildDocHtml(htmlContent)
@@ -1675,7 +1734,7 @@ const downloadWordReport = async (htmlContent, filename = 'report.doc') => {
     // Create a File object from the blob for uploading
     const file = new File([docBlob], safeName, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' })
     
-    // Upload to 'files' bucket first
+    // Upload to 'files' bucket
     const fileExt = file.name.split('.').pop()
     const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`
     
@@ -1712,8 +1771,23 @@ const downloadWordReport = async (htmlContent, filename = 'report.doc') => {
       
       console.log('Document uploaded and recorded successfully')
     }
+  } catch (error) {
+    console.error('Error uploading Word report:', error)
+    throw error
+  }
+}
+
+// Download Word report (without upload - upload is handled in savePreviewChanges)
+const downloadWordReport = async (htmlContent, filename = 'report.doc') => {
+  try {
+    const htmlDocx = await loadHtmlDocx()
+    const htmlTemplate = buildDocHtml(htmlContent)
+    const safeName = filename.toLowerCase().endsWith('.docx')
+      ? filename
+      : filename.replace(/\.doc$/i, '.docx')
+    const docBlob = htmlDocx.asBlob(htmlTemplate)
     
-    // Finally, trigger the download
+    // Trigger the download
     saveAs(docBlob, safeName)
   } catch (error) {
     console.error('Error downloading Word report:', error)
